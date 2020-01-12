@@ -55,9 +55,17 @@ const SellingPointsTitle = styled.h1`
   @media (max-width: 765px) {
     font-size: 24px;
   }
+  
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
 
-  @media (max-width: 525px) {
+  @media (max-width: 575px) {
     font-size: 20px;
+  }
+  
+  @media (max-width: 420px) {
+    text-align: center;
   }
 `;
 
