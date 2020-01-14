@@ -96,7 +96,7 @@ class App extends React.Component {
         {hamburgerMenu}
         <Switch>
           <Route exact path="/">
-            <Landing content={landingPage} />
+            <Landing content={landingPage} toggleModal={this.toggleModal} />
           </Route>
           {stateRoutes.map(
             ({

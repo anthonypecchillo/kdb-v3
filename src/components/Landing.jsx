@@ -18,12 +18,12 @@ const LandingGrid = styled.div`
   padding-top: 75px;
 `;
 
-const Landing = ({ content }) => {
+const Landing = ({ content, toggleModal }) => {
   const { jumbotron, map, sellingPoints } = content;
   return (
     <LandingGrid>
       <Jumbotron content={jumbotron} />
-      <Map content={map} />
+      <Map content={map} toggleModal={toggleModal} />
       <SellingPoints content={sellingPoints} />
     </LandingGrid>
   );

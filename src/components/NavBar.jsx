@@ -70,6 +70,11 @@ const NavTitle = styled.div`
   @media (max-width: 990px) {
     text-align: center;
   }
+  
+  @media (max-width: 391px) {
+    line-height: 20px;
+    padding-top: 20px;
+  }
 `;
 
 const NavLink = styled.div`
