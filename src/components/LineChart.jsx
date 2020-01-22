@@ -42,7 +42,7 @@ class LineDataSource {
       yAxisValuesStep: '5',
       rotateYAxisName: '1',
       yAxisMinValue: 0,
-      yAxisMaxValue: 1200,
+      // yAxisMaxValue: 1200,
       bgAlpha: '0',
       canvasBgAlpha: '0',
       alignCaptionWithCanvas: '1',
@@ -237,108 +237,7 @@ class LineDataSource {
       // trendValueBorderDashGap: Number,
     };
 
-    this.data = [
-      {
-        label: '1996',
-        value: '433',
-      },
-      {
-        label: '1997',
-        value: '358',
-      },
-      {
-        label: '1998',
-        value: '536',
-      },
-      {
-        label: '1999',
-        value: '441',
-      },
-      {
-        label: '2000',
-        value: '547',
-      },
-      {
-        label: '2001',
-        value: '419',
-      },
-      {
-        label: '2002',
-        value: '883',
-      },
-      {
-        label: '2003',
-        value: '1078',
-      },
-      {
-        label: '2004',
-        value: '728',
-      },
-      {
-        label: '2005',
-        value: '592',
-      },
-      {
-        label: '2006',
-        value: '398',
-      },
-      {
-        label: '2007',
-        value: '184',
-      },
-      {
-        label: '2008',
-        value: '254',
-      },
-      {
-        label: '2009',
-        value: '167',
-      },
-      {
-        label: '2010',
-        value: '259',
-      },
-      {
-        label: '2011',
-        value: '271',
-      },
-      {
-        label: '2012',
-        value: '305',
-      },
-      {
-        label: '2013',
-        value: '221',
-      },
-      {
-        label: '2014',
-        value: '309',
-      },
-      {
-        label: '2015',
-        value: '264',
-      },
-      {
-        label: '2016',
-        value: '372',
-      },
-      {
-        label: '2017',
-        value: '257',
-      },
-      {
-        label: '2018',
-        value: null,
-      },
-      {
-        label: '2019',
-        value: null,
-      },
-      {
-        label: '2020',
-        value: null,
-      },
-    ];
+    this.data = data;
   }
 }
 
@@ -348,22 +247,55 @@ const LineChartStyled = styled.div`
   justify-self: ${({ justify }) => justify || 'center'};
 `;
 
-const LineChart = ({ categories, data, dataSourceConfig, gridColumn, gridRow, justify, nationName, stateName }) => {
-  const dataSource = new LineDataSource(categories, data, dataSourceConfig);
-  const chartConfigs = {
-    type: 'line',
-    width: '700',
-    height: '400',
-    containerBackgroundOpacity: '0',
-    dataFormat: 'json',
-    dataSource,
-  };
+class LineChart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chart: null,
+    }
+  }
 
-  return (
-    <LineChartStyled gridColumn={gridColumn} gridRow={gridRow} justify={justify}>
-      <ReactFusioncharts {...chartConfigs} />
-    </LineChartStyled>
-  );
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => { 
+    if (this.state.chart) {
+      console.log(this.state.chart);
+      this.state.chart.resizeTo(this.state.chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * 0.6, this.state.chart.height);
+    } 
+  }
+
+  handleRender = (chart) => {
+    if (!this.state.chart) {
+      this.setState({ chart }, this.resize);
+
+    }
+  }
+
+  render() {
+    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, nationName, stateName } = this.props;
+
+    const dataSource = new LineDataSource(categories, data, dataSourceConfig);
+    const chartConfigs = {
+      type: 'line',
+      // width: '700',
+      height: '400',
+      containerBackgroundOpacity: '0',
+      dataFormat: 'json',
+      dataSource,
+    };
+
+    return (
+      <LineChartStyled gridColumn={gridColumn} gridRow={gridRow} justify={justify}>
+        <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
+      </LineChartStyled>
+    );
+  }
 };
 
 export default LineChart;

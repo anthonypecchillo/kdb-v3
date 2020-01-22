@@ -13,16 +13,18 @@ import styled from 'styled-components';
 charts(FusionCharts);
 
 class PieDataSource {
-  constructor(data, { caption, numberSuffix }) {
+  constructor(data, { caption, numberSuffix, showLegend = '0', showLabels = '1' }) {
     this.chart = {
       caption,
       numberSuffix,
+      showLabels,
+      showLegend,
+      legendPosition: 'right',
       animation: '1',
       animationDuration: '1',
       animateClockwise: '0',
       alphaAnimation: '0',
       showPercentValues: '0',
-      showLabels: '1',
       showValues: '0',
       theme: 'fusion',
       captionAlignment: 'center',
@@ -38,7 +40,6 @@ class PieDataSource {
       captionpadding: '0',
       decimals: '1',
       centerLabel: '$label:<br/><br/>$value',
-      showLegend: '0',
       formatNumberScale: '0',
       chartRightMargin: '-6',
       // doughnutRadius: '75%',
@@ -76,7 +77,6 @@ class PieDataSource {
       // chartTopMargin: '-80',
       // paletteColors: '#FF0000, #0372AB, #FF5904',
       // plottooltext: '<b>$percentValue</b> of our Android users are on <b>$label</b>',
-      // legendPosition: 'right',
     };
 
     this.data = data;
@@ -84,25 +84,60 @@ class PieDataSource {
 }
 
 const PieChartStyled = styled.div`
+  align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
 `;
 
-const PieChart = ({ data, dataSourceConfig, justify }) => {
-  const dataSource = new PieDataSource(data, dataSourceConfig);
-  const chartConfigs = {
-    type: 'pie2d',
-    width: '350',
-    height: '250',
-    containerBackgroundOpacity: '0',
-    dataFormat: 'json',
-    dataSource,
-  };
+class PieChart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chart: null,
+    }
+  }
 
-  return (
-    <PieChartStyled justify={justify}>
-      <ReactFusioncharts {...chartConfigs} />
-    </PieChartStyled>
-  );
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => { 
+    const { percentOfTotalColumns } = this.props;
+    const { chart } = this.state;
+
+    if (chart) {
+      chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
+    } 
+  }
+
+  handleRender = (chart) => {
+    if (!this.state.chart) {
+      this.setState({ chart }, this.resize);
+    }
+  }
+
+  render() {
+    const { align, data, dataSourceConfig, justify, height = '250', width = '350' } = this.props;
+
+    const dataSource = new PieDataSource(data, dataSourceConfig);
+    const chartConfigs = {
+      type: 'pie2d',
+      containerBackgroundOpacity: '0',
+      dataFormat: 'json',
+      dataSource,
+      height,
+      // width,
+    };
+
+    return (
+      <PieChartStyled align={align} justify={justify}>
+        <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
+      </PieChartStyled>
+    );
+  }
 };
 
 export default PieChart;

@@ -246,22 +246,54 @@ const BarChartStyled = styled.div`
   justify-self: ${({ justify }) => justify || 'center'};
 `;
 
-const BarChart = ({ data, dataSourceConfig, justify, nationName, stateName }) => {
-  const dataSource = new BarDataSource(data, dataSourceConfig);
-  const chartConfigs = {
-    dataSource,
-    containerBackgroundOpacity: '0',
-    dataFormat: 'json',
-    height: '490',
-    type: 'column2d',
-    width: '700',
-  };
+class BarChart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chart: null,
+    }
+  }
 
-  return (
-    <BarChartStyled justify={justify}>
-      <ReactFusioncharts {...chartConfigs} />
-    </BarChartStyled>
-  );
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => { 
+    if (this.state.chart) {
+      this.state.chart.resizeTo(this.state.chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width, this.state.chart.height);
+    } 
+  }
+
+  handleRender = (chart) => {
+    if (!this.state.chart) {
+      this.setState({ chart }, this.resize);
+
+    }
+  }
+
+  render() {
+    const { data, dataSourceConfig, justify, nationName, stateName } = this.props;
+
+    const dataSource = new BarDataSource(data, dataSourceConfig);
+    const chartConfigs = {
+      dataSource,
+      containerBackgroundOpacity: '0',
+      dataFormat: 'json',
+      height: '490',
+      type: 'column2d',
+      // width: '700',
+    };
+
+    return (
+      <BarChartStyled justify={justify}>
+        <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
+      </BarChartStyled>
+    );
+  }
 };
 
 export default BarChart;

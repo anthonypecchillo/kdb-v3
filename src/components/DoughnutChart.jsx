@@ -86,26 +86,61 @@ class DoughnutDataSource {
 const DoughnutChartStyled = styled.div`
   grid-column: ${({ gridColumn }) => gridColumn || null};
   grid-row: ${({ gridRow }) => gridRow || null};
+  align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
-  align-self: center;
 `;
 
-const DoughnutChart = ({ data, dataSourceConfig, gridColumn, gridRow, justify, nationName, stateName }) => {
-  const dataSource = new DoughnutDataSource(data, dataSourceConfig);
-  const chartConfigs = {
-    type: 'doughnut2d',
-    width: '350',
-    height: '250',
-    containerBackgroundOpacity: '0',
-    dataFormat: 'json',
-    dataSource,
-  };
+class DoughnutChart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chart: null,
+    }
+  }
 
-  return (
-    <DoughnutChartStyled gridColumn={gridColumn} gridRow={gridRow} justify={justify}>
-      <ReactFusioncharts {...chartConfigs} />
-    </DoughnutChartStyled>
-  );
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => { 
+    const { percentOfTotalColumns } = this.props;
+    const { chart } = this.state;
+
+    if (chart) {
+      chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
+    } 
+  }
+
+  handleRender = (chart) => {
+    if (!this.state.chart) {
+      this.setState({ chart }, this.resize);
+
+    }
+  }
+
+  render() {
+    const { align, data, dataSourceConfig, gridColumn, gridRow, justify, nationName, stateName } = this.props;
+
+    const dataSource = new DoughnutDataSource(data, dataSourceConfig);
+    const chartConfigs = {
+      type: 'doughnut2d',
+      // width: '350',
+      height: '250',
+      containerBackgroundOpacity: '0',
+      dataFormat: 'json',
+      dataSource,
+    };
+
+    return (
+      <DoughnutChartStyled gridColumn={gridColumn} gridRow={gridRow} align={align} justify={justify}>
+        <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
+      </DoughnutChartStyled>
+    );
+  }
 };
 
 export default DoughnutChart;

@@ -245,22 +245,55 @@ const StackedColumnChartStyled = styled.div`
   justify-self: ${({ justify }) => justify || 'center'};
 `;
 
-const StackedColumnChart = ({ categories, data, dataSourceConfig, justify }) => {
-  const dataSource = new StackedColumnDataSource(categories, data, dataSourceConfig);
-  const chartConfigs = {
-    type: 'stackedcolumn2d',
-    width: '700',
-    height: '400',
-    containerBackgroundOpacity: '0',
-    dataFormat: 'json',
-    dataSource,
-  };
+class StackedColumnChart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chart: null,
+    }
+  }
 
-  return (
-    <StackedColumnChartStyled justify={justify}>
-      <ReactFusioncharts {...chartConfigs} />
-    </StackedColumnChartStyled>
-  );
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => { 
+    if (this.state.chart) {
+      console.log(this.state.chart);
+      this.state.chart.resizeTo(this.state.chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width, this.state.chart.height);
+    } 
+  }
+
+  handleRender = (chart) => {
+    if (!this.state.chart) {
+      this.setState({ chart }, this.resize);
+
+    }
+  }
+
+  render() {
+    const { categories, data, dataSourceConfig, justify } = this.props;
+
+    const dataSource = new StackedColumnDataSource(categories, data, dataSourceConfig);
+    const chartConfigs = {
+      type: 'stackedcolumn2d',
+      // width: '700',
+      height: '400',
+      containerBackgroundOpacity: '0',
+      dataFormat: 'json',
+      dataSource,
+    };
+
+    return (
+      <StackedColumnChartStyled justify={justify}>
+        <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
+      </StackedColumnChartStyled>
+    );
+  }
 };
 
 export default StackedColumnChart;
