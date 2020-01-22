@@ -20,16 +20,16 @@ const NJBodyStyled = styled.div`
   width: 100vw;
 `;
 
-const NJBody = ({ nationName, jurisdictionName }) => {
+const NJBody = ({ nationName, jurisdictionName, language }) => {
   const { pageId } = useParams();
   let view;
 
   switch (pageId) {
     case 'overview':
-      view = <NJOverviewPage jurisdictionName={jurisdictionName} nationName={nationName} />;
+      view = <NJOverviewPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
       break;
     case 'forests-and-land-use':
-      view = <NJForestAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} />;
+      view = <NJForestAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
       break;
     case 'governance':
       view = <NJGovernancePage />;
@@ -43,7 +43,7 @@ const NJBody = ({ nationName, jurisdictionName }) => {
     default:
       view = null;
   }
-  
+
   return (
     <NJBodyStyled>
       <center>{`Nation/Jurisidiction ${pageId} page!`}</center>

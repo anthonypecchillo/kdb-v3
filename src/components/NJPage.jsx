@@ -14,7 +14,7 @@ const NJPageGrid = styled.div`
   padding-top: 75px;
   grid-template-rows: 460px auto;
 
-  height: 3950px;
+  height: 6000px;
   width: 100%;
 `;
 
@@ -24,6 +24,7 @@ const NJPage = ({
   headerImageURL,
   jurisdictionName,
   jurisdictionType,
+  language,
   nationName,
 }) => {
   const { path } = useRouteMatch();
@@ -42,7 +43,7 @@ const NJPage = ({
           <Redirect to={`${path}/overview`} />
         </Route>
         <Route path={`${path}/:pageId`}>
-          <NJBody nationName={nationName} jurisdictionName={jurisdictionName} />
+          <NJBody nationName={nationName} jurisdictionName={jurisdictionName} language={language} />
         </Route>
       </Switch>
     </NJPageGrid>
