@@ -60,15 +60,22 @@ const ContactsTitle = styled.h3`
   }
 `;
 
+const ContactsCardGrid = styled.div`
+  display: grid;
+  grid-row-gap: 5%;
+  grid-template-rows: 20px 150px auto;
+  place-items: center;
+
+  height: 100%;
+  width: 100%;
+  max-width: 330px;
+`;
+
 const ContactsRoleTitle = styled.h4`
   align-self: end;
   justify-self: center;
 
   margin: 0;
-
-  ${'' /* @media (max-width: 765px) {
-    margin-bottom: 10px;
-  } */}
 `;
 
 const ContactsPhoto = styled.div`
@@ -94,7 +101,6 @@ const ContactsPhoto = styled.div`
 
 const ContactsDetails = styled.div`
   align-self: start;
-  ${'' /* border: 1px solid black; */}
   text-align: center;
   width: 100%;
 `;
@@ -109,21 +115,6 @@ const ContactsDetailsText = styled.div`
 //   grid-template-columns: 45px 135px;
 //   grid-template-rows: 4fr 3fr 3fr;
 // `;
-
-const ContactsCardGrid = styled.div`
-  display: grid;
-  grid-row-gap: 5%;
-  grid-template-rows: 20px 150px auto;
-  place-items: center;
-
-  height: 100%;
-  width: 100%;
-  max-width: 330px;
-
-  @media (max-width: 765px) {
-    ${'' /* grid-row-gap: 0; */}
-  }
-`;
 
 const NJContacts = ({ jurisdiction }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_CONTACTS, {
