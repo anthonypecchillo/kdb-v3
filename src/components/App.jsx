@@ -6,6 +6,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
+import About from './About';
+import Contact from './Contact';
 import Footer from './Footer';
 import HamburgerMenu from './HamburgerMenu';
 import Landing from './Landing';
@@ -98,6 +100,12 @@ class App extends React.Component {
           <Route exact path="/">
             <Landing content={landingPage} />
           </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/contact">
+            <Contact />
+          </Route>
           {stateRoutes.map(
             ({
               FLAGS,
@@ -113,9 +121,10 @@ class App extends React.Component {
                   flags={FLAGS}
                   fullName={FULL_NAME}
                   headerImageURL={HEADER_IMAGE_URL}
-                  jurisdictionType={JURISDICTION_TYPE}
-                  nationName={NATION_NAME}
                   jurisdictionName={JURISDICTION_NAME}
+                  jurisdictionType={JURISDICTION_TYPE}
+                  language={language}
+                  nationName={NATION_NAME}
                 />
               </Route>
             )

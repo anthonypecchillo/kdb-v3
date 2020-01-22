@@ -170,9 +170,13 @@ const NavBar = ({ content, toggleHamburgerMenu, toggleLanguage, toggleModal }) =
         <Logo />
       </Link>
       <NavTitle onClick={toggleModal}>Knowledge Database</NavTitle>
-      <NavLink gridArea="navlink1">{ABOUT}</NavLink>
+      <Link to="/about">
+        <NavLink gridArea="navlink1">{ABOUT}</NavLink>
+      </Link>
       <NavLink gridArea="navlink2">{NAVIGATE}</NavLink>
-      <NavLink gridArea="navlink3">{CONTACT}</NavLink>
+      <Link to="/contact">
+        <NavLink gridArea="navlink3">{CONTACT}</NavLink>
+      </Link>
       <LanguageSelect toggleLanguage={toggleLanguage} />
       <SearchBar>
         <SearchBarInput placeholder={SEARCH_PLACEHOLDER} type="text" />
