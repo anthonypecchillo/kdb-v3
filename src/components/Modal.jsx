@@ -102,7 +102,7 @@ const Modal = ({ toggleModal }) => {
   //   alert('You clicked me!');
   // };
   return (
-    <div>
+    <>
       <ModalBox>
         <MemberStatesGrid>
           {jurisdictions.map((jurisdiction, index) => {
@@ -126,7 +126,7 @@ const Modal = ({ toggleModal }) => {
         </MemberStatesGrid>
       </ModalBox>
       <ModalFade onClick={toggleModal} />
-    </div>
+    </>
   );
 };
 
