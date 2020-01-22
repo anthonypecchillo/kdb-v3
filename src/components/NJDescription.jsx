@@ -68,29 +68,6 @@ const DescriptionPhoto = styled.div`
   }
 `;
 
-const DescriptionParagraph = styled.p`
-  font-size: 14px;
-  margin: 10px;
-  text-indent: 25px;
-  ${'' /* letter-spacing: 1px; */}
-  line-height: 21px;
-`;
-
-const DescriptionPhoto2 = styled.img`
-  float: right;
-  height: auto;
-  margin: 10px;
-  max-width: 48%;
-
-  @media (max-width: 765px) {
-    ${'' /* max-height: 300px; */}
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
-    float: none;
-  }
-`;
-
 const DescriptionContent = styled.div`
   height: 100%;
   width: 100%;

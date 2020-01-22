@@ -84,15 +84,6 @@ const dataSourceConfig3 = {
   showLegend: '1',
 };
 
-const dataBullet = {
-  target: null,
-  value: 0.82,
-};
-
-const dataSourceConfigBullet = {
-  caption: 'Human Development Index',
-};
-
 const EconomicsGrid = styled.div`
   display: grid;
   grid-template-rows: 1fr 0.5fr 2fr 0.5fr 1fr 0.6fr 0.5fr 1fr 0.6fr 6.25fr 2fr 0.75fr;
@@ -163,7 +154,7 @@ const NJEconomics = ({ jurisdiction }) => {
   if (loading) return <p>LOADING</p>;
   if (error) return <p>ERROR</p>;
 
-  const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, population } = data.jurisdictionByName;
+  const { gdp, humanDevelopmentIndex, nation, perCapitaIncome } = data.jurisdictionByName;
 
   const percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;
 
