@@ -2,23 +2,33 @@
  * Copyright 2019-present GCF Task Force. All Rights Reserved.
  */
 
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import React from 'react';
 import styled from 'styled-components';
 
 import DoughnutChart from './DoughnutChart';
 import PieChart from './PieChart';
 
-const data1 = [
-  {
-    label: 'Forest',
-    value: 246856,
-    // color: '#ff69b4',
-  },
-  {
-    label: 'Non-Forest',
-    value: 123456,
-  },
-];
+const GET_JURISDICTION_LAND = gql`
+  query getJurisdictionLand($name: String!) {
+    jurisdictionByName(name: $name) {
+      id
+      name
+      landArea {
+        amount
+        year
+        citation_id
+      }
+      forestArea {
+        amount
+        units
+        year
+        citation_id
+      }
+    }
+  }
+`;
 
 const data2 = [
   {
@@ -32,15 +42,7 @@ const data2 = [
   },
 ];
 
-const dataTotal1 = data1.reduce((acc, { value }) => acc + value, 0).toLocaleString();
 const dataTotal2 = data2.reduce((acc, { value }) => acc + value, 0).toLocaleString();
-
-const dataSourceConfig1 = {
-  caption: 'Land Distribution',
-  centerLabel: '$label:<br/><br/>$value',
-  defaultCenterLabel: `Total:<br/><br/>${dataTotal1} km²`,
-  numberSuffix: ' km²',
-};
 
 const dataSourceConfig2 = {
   caption: 'Forest Management',
@@ -86,12 +88,42 @@ const VegetationGrid = styled.div`
   /* justify-items: center; */
 `;
 
-const NJVegetation = () => (
-  <VegetationGrid>
-    <DoughnutChart data={data1} dataSourceConfig={dataSourceConfig1} justify="center" />
-    <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" />
-    <DoughnutChart data={data2} dataSourceConfig={dataSourceConfig2} justify="center" />
-  </VegetationGrid>
-);
+const NJVegetation = ({ jurisdiction }) => {
+  const { data, loading, error } = useQuery(GET_JURISDICTION_LAND, {
+    variables: { name: jurisdiction },
+  });
+  // if (loading) return <Loading />;
+  if (loading) return <p>LOADING</p>;
+  if (error) return <p>ERROR</p>;
+
+  const { forestArea, landArea } = data.jurisdictionByName;
+
+  const landDistributionData = [
+    {
+      label: 'Forest',
+      value: Math.round(forestArea.amount),
+      // color: '#ff69b4',
+    },
+    {
+      label: 'Non-Forest',
+      value: Math.round(landArea.amount - forestArea.amount),
+    },
+  ];
+
+  const landDistributionDataSourceConfig = {
+    caption: 'Land Distribution',
+    centerLabel: '$label:<br/><br/>$value',
+    defaultCenterLabel: `Total:<br/><br/>${Math.round(landArea.amount).toLocaleString()} km²`,
+    numberSuffix: ' km²',
+  };
+
+  return (
+    <VegetationGrid>
+      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} />
+      <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" percentOfTotalColumns={1} />
+      <DoughnutChart data={data2} dataSourceConfig={dataSourceConfig2} justify="center" percentOfTotalColumns={1} />
+    </VegetationGrid>
+  )
+};
 
 export default NJVegetation;
