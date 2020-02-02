@@ -145,6 +145,7 @@ class App extends React.Component {
                   fullName={FULL_NAME}
                   headerImageURL={HEADER_IMAGE_URL}
                   jurisdictionType={JURISDICTION_TYPE}
+                  language={language}
                   nationName={NATION_NAME}
                   jurisdictionName={JURISDICTION_NAME}
                 />
