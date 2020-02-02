@@ -30,7 +30,7 @@ const LawBodyLogo = styled.div`
   grid-row: 1/4;
   justify-self: right;
 
-  background: ${({ logo }) => `no-repeat center/100% url(${logo})`};
+  background: ${({ coatOfArmsUrl }) => `no-repeat center/100% url(${coatOfArmsUrl})`};
   height: 112.5px;
   width: 112.5px;
 `;
@@ -54,32 +54,26 @@ const Icon2 = styled.a`
   justify-self: right;
 `;
 
-const LawBody = ({ isOpen }) => {
+const LawBody = ({ coatOfArmsUrl, isOpen, summary, title, url }) => {
   // TODO: Conditional Here! If summary is an array, dynamically render list.
   //                         Else, render as paragraph tag.
   if (!isOpen) {
     return <LawBodyGrid isOpen={isOpen} />;
   }
 
+  summary = summary || 'Summary Unavailable';
+
   return (
     <LawBodyGrid isOpen={isOpen}>
-      <LawBodyTitle>Environmental Law of Brazil</LawBodyTitle>
-      <LawBodyLogo logo={GCFTFLogo} />
+      <LawBodyTitle>{title}</LawBodyTitle>
+      <LawBodyLogo coatOfArmsUrl={coatOfArmsUrl} />
       <LawBodySummary>
         <LawBodySummaryTitle>Summary:</LawBodySummaryTitle>
-        <LawBodySummaryText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in mauris quam. In
-          semper dolor vel nunc porttitor ornare. Maecenas hendrerit urna euismod, sodales orci
-          eget, pulvinar risus.
-          <br />
-          <br />
-          Proin lacinia tincidunt ante, quis feugiat ipsum accumsan id. Sed facilisis urna nisl, in
-          ultricies turpis fermentum eget. Nullam turpis libero, venenatis eu ...
-        </LawBodySummaryText>
+        <LawBodySummaryText>{summary}</LawBodySummaryText>
       </LawBodySummary>
       <Icon2
         className="far fa-file-pdf fa-4x"
-        href="https://laws-and-policies.s3-us-west-1.amazonaws.com/brazil/brasil-mato-redd%2Bcouncil.pdf"
+        href={url}
         rel="noopener noreferrer"
         target="_blank"
       />

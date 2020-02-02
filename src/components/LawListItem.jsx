@@ -2,6 +2,7 @@
  * Copyright 2019-present GCF Task Force. All Rights Reserved.
  */
 
+import { format } from 'date-fns';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -95,21 +96,31 @@ class LawListItem extends React.Component {
   }
 
   render() {
-    const { index, lawListLength } = this.props;
+    const { index, law, lawListLength } = this.props;
     const { isOpen } = this.state;
+
     const chevronClass = isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+    const pubDate = law.pubDate ? format(new Date(law.pubDate), 'MMMM do, yyyy') : 'Date Unavailable';
+    const { coatOfArmsUrl } = law.region;
+
     return (
       <LawListItemGrid index={index} isOpen={isOpen} lastIndex={lawListLength - 1}>
         <LawHeader onClick={this.handleChevronClick}>
-          <LawTitle>Law 2308</LawTitle>
-          <LawDate>September 22nd, 2020</LawDate>
+          <LawTitle>{`${law.lawTranslate.lawType} ${law.lawNumber}`}</LawTitle>
+          <LawDate>{pubDate}</LawDate>
           <Icon className={chevronClass} />
         </LawHeader>
-        <LawBody isOpen={isOpen} />
+        <LawBody
+          coatOfArmsUrl={coatOfArmsUrl}
+          isOpen={isOpen}
+          summary={law.lawTranslate.summary}
+          title={law.lawTranslate.name}
+          url={law.citation.url}
+        />
         <LawTagList isOpen={isOpen}>
-          <LawTag>Forestry</LawTag>
-          <LawTag>Environmental</LawTag>
-          <LawTag>Conservation</LawTag>
+          {law.lawTags.map((lawTag, index) => (
+            <LawTag key={index}>{lawTag.lawTagTranslate.tagName}</LawTag>
+          ))}
         </LawTagList>
       </LawListItemGrid>
     );

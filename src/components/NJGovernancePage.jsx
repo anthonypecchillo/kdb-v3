@@ -19,14 +19,14 @@ const GovernanceGrid = styled.div`
   width: 100%;
 `;
 
-const NJGovernancePage = () => {
+const NJGovernancePage = ({ jurisdictionName, language, nationName }) => {
   return (
     <GovernanceGrid>
       <Tile>
-        <Programs />
+        <Programs jurisdiction={jurisdictionName} language={language} nation={nationName} />
       </Tile>
       <Tile>
-        <Safeguards />
+        <Safeguards jurisdiction={jurisdictionName} language={language} nation={nationName} />
       </Tile>
     </GovernanceGrid>
   );

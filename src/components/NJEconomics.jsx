@@ -11,7 +11,7 @@ import BulletChart from './BulletChart';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_ECONOMICS = gql`
-  query getJurisdictionEconomics($name: String!) {
+  query getJurisdictionEconomics($name: String!, $languageCode: String!) {
     jurisdictionByName(name: $name) {
       id
       name
@@ -40,49 +40,29 @@ const GET_JURISDICTION_ECONOMICS = gql`
           citation_id
         }
       }
+      region {
+        gdpComponents {
+          amount
+          percent
+          gdpCategory {
+            gdpCategoryTranslate(code: $languageCode) {
+              languageCode
+              name
+            }
+          }
+          citation_id
+        }
+       	majorExports {
+          id
+          majorExportTranslate(code: $languageCode) {
+            languageCode
+            name
+          }
+        }
+      }
     }
   }
 `;
-
-const TAG_LIST = [
-  'Mining',
-  'Petroleum',
-  'Transportation Equipment',
-  'Soy',
-  'Sugar',
-  'Ethanol',
-  'Meat',
-  'Coffee',
-];
-
-const data3 = [
-  {
-    label: 'Services',
-    value: 70.80,
-    // color: '#ff69b4',
-  },
-  {
-    label: 'Industry',
-    value: 20.20,
-  },
-  {
-    label: 'Agriculture',
-    value: 5.20,
-  },
-  {
-    label: 'Mining',
-    value: 3.80,
-  },
-];
-
-const dataSourceConfig3 = {
-  caption: 'GDP Breakdown',
-  // xAxisName: 'Vegetation Type',
-  // yAxisName: 'Land Area (km²)',
-  numberSuffix: ' %',
-  showLabels: '0',
-  showLegend: '1',
-};
 
 const EconomicsGrid = styled.div`
   display: grid;
@@ -146,20 +126,35 @@ const DeforestationTagListItem = styled.li`
   width: 90%;
 `;
 
-const NJEconomics = ({ jurisdiction }) => {
+const NJEconomics = ({ jurisdiction, language }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_ECONOMICS, {
-    variables: { name: jurisdiction },
+    variables: { name: jurisdiction, languageCode: language },
   });
   // if (loading) return <Loading />;
   if (loading) return <p>LOADING</p>;
   if (error) return <p>ERROR</p>;
 
-  const { gdp, humanDevelopmentIndex, nation, perCapitaIncome } = data.jurisdictionByName;
+  const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, region } = data.jurisdictionByName;
 
   const percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;
 
   const humnDevelopmentIndexData = { target: null, value: humanDevelopmentIndex.amount };
   const humanDevelopmentIndexDataSourceConfig = { caption: 'Human Development Index' };
+
+  const { gdpComponents, majorExports } = region;
+  const gdpBreakdownData = gdpComponents.map(gdpComponent => {
+    return {
+      label: gdpComponent.gdpCategory.gdpCategoryTranslate.name,
+      value: gdpComponent.percent,
+    };
+  });
+
+  const gdpBreakdownDataSourceConfig = {
+    caption: 'GDP Breakdown',
+    numberSuffix: '%',
+    showLabels: '0',
+    showLegend: '1',
+  };
 
   return (
     <EconomicsGrid>
@@ -172,12 +167,12 @@ const NJEconomics = ({ jurisdiction }) => {
       <EconomicsTotalTitle>State GDP</EconomicsTotalTitle>
       <EconomicsTotalValue>{`${gdp.amount.toLocaleString()} ${gdp.units}`}</EconomicsTotalValue>
       <EconomicsTotalNationalPercent>{`${percentageOfNationalGDP.toLocaleString()}% of National GDP`}</EconomicsTotalNationalPercent>
-      <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" height={'310'} width="370" percentOfTotalColumns={1} />
+      <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} width="370" percentOfTotalColumns={1} />
       <EconomicsTagListContainer>
         <EconomicsTotalTitle>Major Exports</EconomicsTotalTitle>
         <DeforestationTagList>
-          {TAG_LIST.map((tag, index) => (
-            <DeforestationTagListItem key={index}>{tag}</DeforestationTagListItem>
+          {majorExports.map((majorExport, index) => (
+            <DeforestationTagListItem key={index}>{majorExport.majorExportTranslate.name}</DeforestationTagListItem>
           ))}
         </DeforestationTagList>
       </EconomicsTagListContainer>

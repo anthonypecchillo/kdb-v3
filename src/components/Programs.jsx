@@ -39,6 +39,7 @@ class Programs extends React.Component {
 
   render() {
     const { activeTab } = this.state;
+    const { jurisdiction, language, nation } = this.props;
     let view;
 
     switch (activeTab) {
@@ -46,7 +47,7 @@ class Programs extends React.Component {
         view = <ProgramsOverview />;
         break;
       case 'Laws & Regulations':
-        view = <LawList />;
+        view = <LawList jurisdiction={jurisdiction} language={language} nation={nation} />;
         break;
       case 'Institutional Frameworks':
         view = <InstitutionalFrameworksList />;

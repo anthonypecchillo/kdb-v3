@@ -2,33 +2,48 @@
  * Copyright 2019-present GCF Task Force. All Rights Reserved.
  */
 
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import React from 'react';
 import styled from 'styled-components';
 
 import LawListItem from './LawListItem';
 
-const DUMMY_LAW_DATA = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-  { id: 11 },
-  { id: 12 },
-  { id: 13 },
-  { id: 14 },
-  { id: 15 },
-  { id: 16 },
-  { id: 17 },
-  { id: 18 },
-  { id: 19 },
-  { id: 20 },
-];
+const GET_JURISDICTION_LAWS = gql`
+  query getJurisdictionLaws($name: String!, $languageCode: String!) {
+    regionByName(name: $name) {
+      id
+      laws {
+        id
+        lawNumber
+        pubDate
+        region {
+          coatOfArmsUrl
+        }
+        citation {
+          id
+          filename
+          url
+        }
+        lawTranslate(code: $languageCode) {
+          id
+          languageCode
+          lawType
+          name
+          summary
+        }
+        lawTags {
+          id
+          lawTagTranslate(code: $languageCode) {
+            id
+            languageCode
+            tagName
+          }
+        }
+      }
+    }
+  }
+`;
 
 const LawListStyled = styled.div`
   background-color: white;
@@ -39,12 +54,24 @@ const LawListStyled = styled.div`
   width: 100%;
 `;
 
-const LawList = () => (
-  <LawListStyled>
-    {DUMMY_LAW_DATA.map((law, index) => (
-      <LawListItem index={index} key={law.id} law={law} lawListLength={DUMMY_LAW_DATA.length} />
-    ))}
-  </LawListStyled>
-);
+const LawList = ({ jurisdiction, language, nation }) => {
+  const region = jurisdiction || nation;
+  const { data, loading, error } = useQuery(GET_JURISDICTION_LAWS, {
+    variables: { name: region, languageCode: language },
+  });
+  // if (loading) return <Loading />;
+  if (loading) return <p>LOADING</p>;
+  if (error) return <p>ERROR</p>;
+
+  const { laws } = data.regionByName;
+
+  return (
+    <LawListStyled>
+      {laws.map((law, index) => (
+        <LawListItem index={index} key={law.id} law={law} lawListLength={laws.length} />
+      ))}
+    </LawListStyled>
+  );
+};
 
 export default LawList;
