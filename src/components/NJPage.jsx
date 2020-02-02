@@ -34,16 +34,21 @@ const NJPage = ({
         flags={flags}
         fullName={fullName}
         headerImageURL={headerImageURL}
+        jurisdictionName={jurisdictionName}
         jurisdictionType={jurisdictionType}
         nationName={nationName}
-        jurisdictionName={jurisdictionName}
       />
       <Switch>
         <Route exact path={path}>
           <Redirect to={`${path}/overview`} />
         </Route>
         <Route path={`${path}/:pageId`}>
-          <NJBody nationName={nationName} jurisdictionName={jurisdictionName} language={language} />
+          <NJBody
+            jurisdictionName={jurisdictionName}
+            jurisdictionType={jurisdictionType}
+            nationName={nationName}
+            language={language}
+          />
         </Route>
       </Switch>
     </NJPageGrid>
