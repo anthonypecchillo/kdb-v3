@@ -6,6 +6,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
+import NationalOverviewPage from './NationalOverviewPage';
+
 import NJOverviewPage from './NJOverviewPage';
 import NJForestAndLandUsePage from './NJForestAndLandUsePage';
 import NJGovernancePage from './NJGovernancePage';
@@ -20,28 +22,52 @@ const NJBodyStyled = styled.div`
   width: 100vw;
 `;
 
-const NJBody = ({ nationName, jurisdictionName, language }) => {
+const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) => {
   const { pageId } = useParams();
   let view;
 
-  switch (pageId) {
-    case 'overview':
-      view = <NJOverviewPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
-      break;
-    case 'forests-and-land-use':
-      view = <NJForestAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
-      break;
-    case 'governance':
-      view = <NJGovernancePage />;
-      break;
-    case 'partnerships':
-      view = <NJPartnershipsPage />;
-      break;
-    case 'report-cards':
-      view = <NJReportCardsPage />;
-      break;
-    default:
-      view = null;
+  if (jurisdictionType === 'nation') {
+    switch (pageId) {
+      case 'overview':
+        view = <NationalOverviewPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'forests-and-land-use':
+        view = <NJForestAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'governance':
+        view = <NJGovernancePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'partnerships':
+        view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'report-cards':
+        view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      default:
+        view = null;
+    }
+  }
+
+  if (jurisdictionType === 'state') {
+    switch (pageId) {
+      case 'overview':
+        view = <NJOverviewPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'forests-and-land-use':
+        view = <NJForestAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'governance':
+        view = <NJGovernancePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'partnerships':
+        view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      case 'report-cards':
+        view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        break;
+      default:
+        view = null;
+    }
   }
 
   return (
