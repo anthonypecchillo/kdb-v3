@@ -265,7 +265,6 @@ class LineChart extends React.Component {
 
   resize = () => { 
     if (this.state.chart) {
-      console.log(this.state.chart);
       this.state.chart.resizeTo(this.state.chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * 0.6, this.state.chart.height);
     } 
   }
