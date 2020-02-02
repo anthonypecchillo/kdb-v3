@@ -16,7 +16,8 @@ import App from './components/App';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: 'http://localhost:4000/',
+  // uri: 'http://localhost:4000/',
+  uri: 'https://1qhhedp1la.execute-api.us-west-1.amazonaws.com/dev/graphql',
 });
 
 const client = new ApolloClient({
