@@ -162,7 +162,7 @@ class BulletChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '100', justify, nationName, stateName, width = '350' } = this.props;
+    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '100', justify, nationName, stateName, width } = this.props;
 
     const dataSource = new BulletDataSource(data, dataSourceConfig);
     const chartConfigs = {
@@ -171,7 +171,7 @@ class BulletChart extends React.Component {
       dataFormat: 'json',
       dataSource,
       height,
-      // width,
+      width,
     };
 
     return (

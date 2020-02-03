@@ -2,9 +2,10 @@
  * Copyright 2019-present GCF Task Force. All Rights Reserved.
  */
 
-import { useQuery } from '@apollo/react-hooks';
+// import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import React from 'react';
+import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
 import BulletChart from './BulletChart';
@@ -126,59 +127,96 @@ const DeforestationTagListItem = styled.li`
   width: 90%;
 `;
 
-const NJEconomics = ({ jurisdiction, language }) => {
-  const { data, loading, error } = useQuery(GET_JURISDICTION_ECONOMICS, {
-    variables: { name: jurisdiction, languageCode: language },
-  });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
-  if (error) return <p>ERROR</p>;
-
-  const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, region } = data.jurisdictionByName;
-
-  const percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;
-
-  const humnDevelopmentIndexData = { target: null, value: humanDevelopmentIndex.amount };
-  const humanDevelopmentIndexDataSourceConfig = { caption: 'Human Development Index' };
-
-  const { gdpComponents, majorExports } = region;
-  const gdpBreakdownData = gdpComponents.map(gdpComponent => {
-    return {
-      label: gdpComponent.gdpCategory.gdpCategoryTranslate.name,
-      value: gdpComponent.percent,
+class NJEconomics extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dimensions: { width: 0, height: 0 },
     };
-  });
+  }
 
-  const gdpBreakdownDataSourceConfig = {
-    caption: 'GDP Breakdown',
-    numberSuffix: '%',
-    showLabels: '0',
-    showLegend: '1',
-  };
+  componentDidMount() {
+    let width = this.container.offsetWidth;
+    let height = this.container.offsetHeight;
 
-  return (
-    <EconomicsGrid>
-      <EconomicsTitle>Economics</EconomicsTitle>
-      <EconomicsTotalTitle>Human Development Index</EconomicsTotalTitle>
-      <BulletChart data={humnDevelopmentIndexData} dataSourceConfig={humanDevelopmentIndexDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-      <EconomicsTotalTitle>Per Capita Income</EconomicsTotalTitle>
-      <EconomicsTotalValue>{`${Math.round(perCapitaIncome.amount).toLocaleString()} ${perCapitaIncome.units}`}</EconomicsTotalValue>
-      <EconomicsTotalNationalPercent>Annual</EconomicsTotalNationalPercent>
-      <EconomicsTotalTitle>State GDP</EconomicsTotalTitle>
-      <EconomicsTotalValue>{`${gdp.amount.toLocaleString()} ${gdp.units}`}</EconomicsTotalValue>
-      <EconomicsTotalNationalPercent>{`${percentageOfNationalGDP.toLocaleString()}% of National GDP`}</EconomicsTotalNationalPercent>
-      <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} width="370" percentOfTotalColumns={1} />
-      <EconomicsTagListContainer>
-        <EconomicsTotalTitle>Major Exports</EconomicsTotalTitle>
-        <DeforestationTagList>
-          {majorExports.map((majorExport, index) => (
-            <DeforestationTagListItem key={index}>{majorExport.majorExportTranslate.name}</DeforestationTagListItem>
-          ))}
-        </DeforestationTagList>
-      </EconomicsTagListContainer>
-      <EconomicsCitation>IBGE. 2012. Censo Demográfico 2010</EconomicsCitation>
-    </EconomicsGrid>
-  );
+    this.setState({
+      dimensions: {
+        width: width,
+        height: height,
+      },
+    });
+  }
+  // const { data, loading, error } = useQuery(GET_JURISDICTION_ECONOMICS, {
+  //   variables: { name: jurisdiction, languageCode: language },
+  // });
+  // // if (loading) return <Loading />;
+  // if (loading) return <p>LOADING</p>;
+  // if (error) return <p>ERROR</p>;
+
+  render() {
+    const { jurisdiction, language } = this.props;
+
+    return (
+      <EconomicsGrid ref={el => (this.container = el)}>
+        <Query
+          query={GET_JURISDICTION_ECONOMICS}
+          variables={{ name: jurisdiction, languageCode: language }}
+          >
+            {({ loading, error, data }) => {
+              if (loading) return <p>LOADING</p>;
+              if (error) return <p>ERROR</p>;
+
+              const { height, width } = this.state.dimensions;
+              const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, region } = data.jurisdictionByName;
+
+              const percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;
+
+              const humnDevelopmentIndexData = { target: null, value: humanDevelopmentIndex.amount };
+              const humanDevelopmentIndexDataSourceConfig = { caption: 'Human Development Index' };
+
+              const { gdpComponents, majorExports } = region;
+              const gdpBreakdownData = gdpComponents.map(gdpComponent => {
+                return {
+                  label: gdpComponent.gdpCategory.gdpCategoryTranslate.name,
+                  value: gdpComponent.percent,
+                };
+              });
+
+              const gdpBreakdownDataSourceConfig = {
+                caption: 'GDP Breakdown',
+                numberSuffix: '%',
+                showLabels: '0',
+                showLegend: '1',
+              };
+
+              return (
+                <>
+                <EconomicsTitle>Economics</EconomicsTitle>
+                <EconomicsTotalTitle>Human Development Index</EconomicsTotalTitle>
+                <BulletChart data={humnDevelopmentIndexData} dataSourceConfig={humanDevelopmentIndexDataSourceConfig} justify="center" percentOfTotalColumns={1} width={width} />
+                <EconomicsTotalTitle>Per Capita Income</EconomicsTotalTitle>
+                <EconomicsTotalValue>{`${Math.round(perCapitaIncome.amount).toLocaleString()} ${perCapitaIncome.units}`}</EconomicsTotalValue>
+                <EconomicsTotalNationalPercent>Annual</EconomicsTotalNationalPercent>
+                <EconomicsTotalTitle>State GDP</EconomicsTotalTitle>
+                <EconomicsTotalValue>{`${gdp.amount.toLocaleString()} ${gdp.units}`}</EconomicsTotalValue>
+                <EconomicsTotalNationalPercent>{`${percentageOfNationalGDP.toLocaleString()}% of National GDP`}</EconomicsTotalNationalPercent>
+                <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} width={width * 1} percentOfTotalColumns={1} />
+                <EconomicsTagListContainer>
+                  <EconomicsTotalTitle>Major Exports</EconomicsTotalTitle>
+                  <DeforestationTagList>
+                    {majorExports.map((majorExport, index) => (
+                      <DeforestationTagListItem key={index}>{majorExport.majorExportTranslate.name}</DeforestationTagListItem>
+                    ))}
+                  </DeforestationTagList>
+                </EconomicsTagListContainer>
+                <EconomicsCitation>IBGE. 2012. Censo Demográfico 2010</EconomicsCitation>
+              </>
+            );
+          }}
+        </Query>
+      </EconomicsGrid>
+    );
+  }
 };
 
 export default NJEconomics;

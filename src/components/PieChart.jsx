@@ -87,6 +87,7 @@ class PieDataSource {
 const PieChartStyled = styled.div`
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
+  ${'' /* width: ${({ width }) => width}; */}
 `;
 
 class PieChart extends React.Component {
@@ -99,6 +100,7 @@ class PieChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
+    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -110,6 +112,7 @@ class PieChart extends React.Component {
     const { chart } = this.state;
 
     if (chart) {
+      // TODO: Change the first argument to this.props.width???
       chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
     } 
   }
@@ -121,7 +124,8 @@ class PieChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, justify, height = '250', width = '350' } = this.props;
+    const { align, data, dataSourceConfig, justify, height = '250', percentOfTotalColumns, width = '310' } = this.props;
+    const { chart } = this.state;
 
     const dataSource = new PieDataSource(data, dataSourceConfig);
     const chartConfigs = {
@@ -130,11 +134,11 @@ class PieChart extends React.Component {
       dataFormat: 'json',
       dataSource,
       height,
-      // width,
+      width,
     };
 
     return (
-      <PieChartStyled align={align} justify={justify}>
+      <PieChartStyled align={align} justify={justify} width={width}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </PieChartStyled>
     );

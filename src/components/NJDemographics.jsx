@@ -4,7 +4,8 @@
 
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import React from 'react';
+import React, { useState } from 'react';
+import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
 import DoughnutChart from './DoughnutChart';
@@ -116,42 +117,70 @@ const DemographicsCitation = styled.div`
   padding: 0 1.25%;
 `;
 
-const NJDemographics = ({ jurisdiction }) => {
-  const { data, loading, error } = useQuery(GET_JURISDICTION_DEMOGRAPHICS, {
-    variables: { name: jurisdiction },
-  });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
-  if (error) return <p>ERROR</p>;
+class NJDemographics extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dimensions: {width: 0,  height: 0},
+    };
+  }
 
-  const { nation, population, region } = data.jurisdictionByName;
-  const { urbanPopulation, ruralPopulation } = region.urbanVsRural;
+  componentDidMount() {
+    let width = this.container.offsetWidth;
+    let height = this.container.offsetHeight;
 
-  const percentageOfNationalPopulation = (population.amount / nation.population.amount) * 100;
+    this.setState({
+      dimensions: {
+        width: width,
+        height: height,
+      },
+    });
+  }
 
-  const urbanVsRuralData = [
-    { label: 'Urban', value: Math.round((urbanPopulation * 0.01) * population.amount) },
-    { label: 'Rural', value: Math.round((ruralPopulation * 0.01) * population.amount) },
-  ];
-  const urbanVsRuralDataTotal = urbanVsRuralData.reduce((acc, { value }) => acc + value, 0).toLocaleString();
-  const urbanVsRuralDataSourceConfig = {
-    caption: 'Population Distribution',
-    centerLabel: '$label:<br/><br/>$value',
-    defaultCenterLabel: `Total:<br/><br/>${urbanVsRuralDataTotal}`,
-    numberSuffix: ' people',
-  };
+  render() {
+    const { jurisdiction, language } = this.props;
 
-  return (
-    <DemographicsGrid>
-      <DemographicsTitle>Demographics</DemographicsTitle>
-      <DemographicsTotalTitle>Total Population:</DemographicsTotalTitle>
-      <DemographicsTotalValue>{population.amount.toLocaleString()}</DemographicsTotalValue>
-      <DemographicsTotalNationalPercent>{`${percentageOfNationalPopulation.toLocaleString()}% of National Population`}</DemographicsTotalNationalPercent>
-      <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-      <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" height={'310'} width="370" percentOfTotalColumns={0.9} />
-      <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
-    </DemographicsGrid>
-  );
+    return (
+      <DemographicsGrid ref={el => (this.container = el)}>
+        <Query query={GET_JURISDICTION_DEMOGRAPHICS} variables={{ name: jurisdiction }}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>LOADING</p>;
+            if (error) return <p>ERROR</p>;
+
+            const { height, width } = this.state.dimensions;
+            const { nation, population, region } = data.jurisdictionByName;
+            const { urbanPopulation, ruralPopulation } = region.urbanVsRural;
+
+            const percentageOfNationalPopulation = (population.amount / nation.population.amount) * 100;
+
+            const urbanVsRuralData = [
+              { label: 'Urban', value: Math.round((urbanPopulation * 0.01) * population.amount) },
+              { label: 'Rural', value: Math.round((ruralPopulation * 0.01) * population.amount) },
+            ];
+            const urbanVsRuralDataTotal = urbanVsRuralData.reduce((acc, { value }) => acc + value, 0).toLocaleString();
+            const urbanVsRuralDataSourceConfig = {
+              caption: 'Population Distribution',
+              centerLabel: '$label:<br/><br/>$value',
+              defaultCenterLabel: `Total:<br/><br/>${urbanVsRuralDataTotal}`,
+              numberSuffix: ' people',
+            };
+
+            return (
+              <>
+                <DemographicsTitle>Demographics</DemographicsTitle>
+                <DemographicsTotalTitle>Total Population:</DemographicsTotalTitle>
+                <DemographicsTotalValue>{population.amount.toLocaleString()}</DemographicsTotalValue>
+                <DemographicsTotalNationalPercent>{`${percentageOfNationalPopulation.toLocaleString()}% of National Population`}</DemographicsTotalNationalPercent>
+                <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
+                <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" height={'310'} percentOfTotalColumns={0.9} width={width * 0.9} />
+                <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
+              </>
+            );
+          }}
+        </Query>
+      </DemographicsGrid>
+    );
+  }
 };
 
 export default NJDemographics;
