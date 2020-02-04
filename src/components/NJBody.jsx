@@ -72,9 +72,6 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
 
   return (
     <NJBodyStyled>
-      <center>{`Nation/Jurisidiction ${pageId} page!`}</center>
-      <br />
-      <br />
       {view}
     </NJBodyStyled>
   );
