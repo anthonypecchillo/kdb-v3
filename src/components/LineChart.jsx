@@ -277,7 +277,7 @@ class LineChart extends React.Component {
   }
 
   render() {
-    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, nationName, stateName } = this.props;
+    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify } = this.props;
 
     const dataSource = new LineDataSource(categories, data, dataSourceConfig);
     const chartConfigs = {

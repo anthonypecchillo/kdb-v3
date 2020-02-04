@@ -5,8 +5,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import GCFTFLogo from '../assets/logos/GCFTF.png';
-
 const LawBodyGrid = styled.div`
   display: grid;
   grid-row-gap: 10px;

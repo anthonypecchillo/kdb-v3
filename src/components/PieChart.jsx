@@ -125,7 +125,6 @@ class PieChart extends React.Component {
 
   render() {
     const { align, data, dataSourceConfig, justify, height = '250', percentOfTotalColumns, width = '310' } = this.props;
-    const { chart } = this.state;
 
     const dataSource = new PieDataSource(data, dataSourceConfig);
     const chartConfigs = {

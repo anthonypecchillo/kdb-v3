@@ -123,7 +123,7 @@ class DoughnutChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, gridColumn, gridRow, justify, nationName, stateName } = this.props;
+    const { align, data, dataSourceConfig, gridColumn, gridRow, justify } = this.props;
 
     const dataSource = new DoughnutDataSource(data, dataSourceConfig);
     const chartConfigs = {

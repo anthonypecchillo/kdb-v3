@@ -276,7 +276,7 @@ class BarChart extends React.Component {
   }
 
   render() {
-    const { data, dataSourceConfig, justify, nationName, stateName } = this.props;
+    const { data, dataSourceConfig, justify } = this.props;
 
     const dataSource = new BarDataSource(data, dataSourceConfig);
     const chartConfigs = {

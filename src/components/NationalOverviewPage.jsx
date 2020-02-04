@@ -11,8 +11,8 @@ import NationalEconomics from './NationalEconomics';
 import NJContacts from './NJContacts';
 import NJDescription from './NJDescription';
 import NJForestMonitoringAndMeasurementSystems from './NJForestMonitoringAndMeasurementSystems';
-import NJDemographics from './NJDemographics';
-import NJEconomics from './NJEconomics';
+// import NJDemographics from './NJDemographics';
+// import NJEconomics from './NJEconomics';
 import Tile from './Tile';
 
 const OverviewGrid = styled.div`

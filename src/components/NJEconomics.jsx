@@ -131,30 +131,28 @@ class NJEconomics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: { width: 0, height: 0 },
+      dimensions: {
+        width: 0,
+        // height: 0,
+      },
     };
   }
 
   componentDidMount() {
-    let width = this.container.offsetWidth;
-    let height = this.container.offsetHeight;
+    const width = this.container.offsetWidth;
+    // const height = this.container.offsetHeight;
 
     this.setState({
       dimensions: {
         width: width,
-        height: height,
+        // height: height,
       },
     });
   }
-  // const { data, loading, error } = useQuery(GET_JURISDICTION_ECONOMICS, {
-  //   variables: { name: jurisdiction, languageCode: language },
-  // });
-  // // if (loading) return <Loading />;
-  // if (loading) return <p>LOADING</p>;
-  // if (error) return <p>ERROR</p>;
 
   render() {
     const { jurisdiction, language } = this.props;
+    const { width } = this.state.dimensions;
 
     return (
       <EconomicsGrid ref={el => (this.container = el)}>
@@ -166,7 +164,6 @@ class NJEconomics extends React.Component {
               if (loading) return <p>LOADING</p>;
               if (error) return <p>ERROR</p>;
 
-              const { height, width } = this.state.dimensions;
               const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, region } = data.jurisdictionByName;
 
               const percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;

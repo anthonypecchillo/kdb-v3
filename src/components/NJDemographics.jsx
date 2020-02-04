@@ -2,9 +2,8 @@
  * Copyright 2019-present GCF Task Force. All Rights Reserved.
  */
 
-import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import React, { useState } from 'react';
+import React from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
@@ -121,24 +120,28 @@ class NJDemographics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: {width: 0,  height: 0},
+      dimensions: {
+        width: 0,
+        // height: 0,
+      },
     };
   }
 
   componentDidMount() {
-    let width = this.container.offsetWidth;
-    let height = this.container.offsetHeight;
+    const width = this.container.offsetWidth;
+    // const height = this.container.offsetHeight;
 
     this.setState({
       dimensions: {
         width: width,
-        height: height,
+        // height: height,
       },
     });
   }
 
   render() {
     const { jurisdiction, language } = this.props;
+    const { width } = this.state.dimensions;
 
     return (
       <DemographicsGrid ref={el => (this.container = el)}>
@@ -147,7 +150,6 @@ class NJDemographics extends React.Component {
             if (loading) return <p>LOADING</p>;
             if (error) return <p>ERROR</p>;
 
-            const { height, width } = this.state.dimensions;
             const { nation, population, region } = data.jurisdictionByName;
             const { urbanPopulation, ruralPopulation } = region.urbanVsRural;
 
