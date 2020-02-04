@@ -15,10 +15,16 @@ const SAFEGUARDS_TAB_LABELS = ['Rights & Tenure', 'Transparency & Partic.', 'Ben
 const SafeguardsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 37px calc(100% - 5% - 15px);
+  grid-template-rows: 40px 37px calc(100% - 5% - 15px);
 
   height: 100%;
   width: 100%;
+`;
+
+const SafeguardsTitle = styled.h2`
+  margin: 0;
+  margin-top: 10px;
+  text-align: center;
 `;
 
 class Safeguards extends React.Component {
@@ -45,7 +51,7 @@ class Safeguards extends React.Component {
       case 'Rights & Tenure':
         view = <RightsAndTenure />;
         break;
-      case 'Transparency & Partic':
+      case 'Transparency & Partic.':
         view = <TransparencyAndParticipation />;
         break;
       case 'Benefits Sharing':
@@ -57,6 +63,7 @@ class Safeguards extends React.Component {
 
     return (
       <SafeguardsGrid>
+        <SafeguardsTitle>Safeguards</SafeguardsTitle>
         <Tabs
           activeTab={activeTab}
           handleTabClick={this.handleTabClick}

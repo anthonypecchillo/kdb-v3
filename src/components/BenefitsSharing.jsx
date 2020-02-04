@@ -120,7 +120,7 @@ const content = (
 
 const BenefitsSharingStyled = styled.div`
   border-top: 3px solid #3e522d;
-  height: calc(100% - 2.5%);
+  height: calc(100% - 2.5% - 40px);
   margin-top: 15px;
   overflow-y: scroll;
   padding: 15px;

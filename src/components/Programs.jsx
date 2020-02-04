@@ -15,10 +15,16 @@ const PROGRAMS_TAB_LABELS = ['Overview', 'Laws & Regulations', 'Institutional Fr
 const ProgramsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 37px calc(100% - 5% - 15px);
+  grid-template-rows: 40px 37px calc(100% - 5% - 15px);
 
   height: 100%;
   width: 100%;
+`;
+
+const ProgramsTitle = styled.h2`
+  margin: 0;
+  margin-top: 10px;
+  text-align: center;
 `;
 
 class Programs extends React.Component {
@@ -58,6 +64,7 @@ class Programs extends React.Component {
 
     return (
       <ProgramsGrid>
+        <ProgramsTitle>Programs</ProgramsTitle>
         <Tabs
           activeTab={activeTab}
           handleTabClick={this.handleTabClick}

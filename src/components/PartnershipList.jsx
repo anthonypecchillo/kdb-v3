@@ -31,15 +31,14 @@ const DUMMY_PARTNERSHIP_DATA = [
 ];
 
 const PartnershipListStyled = styled.div`
-  grid-column: 1/5;
   justify-self: center;
 
   background-color: white;
   border-top: 3px solid #3e522d;
   height: 100%;
-  margin: 30px 0;
+  margin: 15px 0;
   overflow-y: scroll;
-  width: 70%;
+  width: 100%;
 `;
 
 const PartnershipList = () => (
