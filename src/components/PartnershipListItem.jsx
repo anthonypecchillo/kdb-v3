@@ -105,9 +105,9 @@ class PartnershipListItem extends React.Component {
         <PartnershipBody isOpen={isOpen} />
 
         <PartnershipTagList isOpen={isOpen}>
-          <PartnershipTag>Forestry</PartnershipTag>
-          <PartnershipTag>Environmental</PartnershipTag>
-          <PartnershipTag>Conservation</PartnershipTag>
+          <PartnershipTag>Mato Grasso</PartnershipTag>
+          <PartnershipTag>Amazonas</PartnershipTag>
+          <PartnershipTag>Acre</PartnershipTag>
         </PartnershipTagList>
       </PartnershipListItemGrid>
     );
