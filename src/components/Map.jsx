@@ -51,11 +51,15 @@ const MapButtonText = styled.span`
   font-size: 18px;
   font-weight: 700;
   padding: 0 25px;
+
+  @media (max-width: 1090px) {
+    font-size: 16px;
+  }
 `;
 
 const MapContainer = styled.div`
   height: 662.5px;
-  width: 100vw;
+  width: 95vw;
 `;
 
 class Map extends React.Component {

@@ -103,7 +103,7 @@ const Dot = styled.li`
   cursor: pointer;
   height: 18px;
   margin: 0 9px;
-  opacity: ${({ isActive }) => (isActive && '0.75') || '0.15'}
+  opacity: ${({ isActive }) => (isActive && '1') || '0.5'}
   transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
   width: 18px;
 
@@ -200,7 +200,7 @@ class Carousel extends React.Component {
         <Dots className="carousel__indicators">
           {slides.map((slide, index) => (
             <Dot
-              color="#b5db37"
+              color="#3e522d"
               key={index}
               index={index}
               activeIndex={activeIndex}
