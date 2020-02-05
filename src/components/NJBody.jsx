@@ -19,7 +19,7 @@ const NJBodyStyled = styled.div`
   /* background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); */
   height: 100%;
   padding: 2.5% 1.25%;
-  width: 100vw;
+  width: 100%;
 `;
 
 const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) => {

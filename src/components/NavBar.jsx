@@ -78,7 +78,23 @@ const NavTitle = styled.div`
   }
 `;
 
-const NavLink = styled.div`
+const NavItemLink = styled(Link)`
+  text-decoration: none;
+
+  &:active {
+    text-decoration: ${({ underline }) => underline && 'underline solid black'};
+  }
+
+  &:link {
+    color: black;
+  }
+
+  &:visited {
+    color: black;
+  }
+`;
+
+const NavItem = styled.div`
   grid-area: ${({ gridArea }) => gridArea};
 
   font-weight: 600;
@@ -176,13 +192,13 @@ const NavBar = ({ content, toggleHamburgerMenu, toggleLanguage, toggleModal }) =
         <Logo />
       </Link>
       <NavTitle>Knowledge Database</NavTitle>
-      <Link to="/about">
-        <NavLink gridArea="navlink1">{ABOUT}</NavLink>
-      </Link>
-      <NavLink gridArea="navlink2" onClick={toggleModal}>{NAVIGATE}</NavLink>
-      <Link to="/contact">
-        <NavLink gridArea="navlink3">{CONTACT}</NavLink>
-      </Link>
+      <NavItemLink to="/about">
+        <NavItem gridArea="navlink1">{ABOUT}</NavItem>
+      </NavItemLink>
+      <NavItem gridArea="navlink2" onClick={toggleModal}>{NAVIGATE}</NavItem>
+      <NavItemLink to="/contact">
+        <NavItem gridArea="navlink3">{CONTACT}</NavItem>
+      </NavItemLink>
       <LanguageSelect toggleLanguage={toggleLanguage} />
       <SearchBar>
         <SearchBarInput placeholder={SEARCH_PLACEHOLDER} type="text" />
