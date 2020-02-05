@@ -35,8 +35,10 @@ const FooterGrid = styled.div`
   grid-template-rows: 1.5fr 4.5fr 2fr 1fr;
   align-items: center;
 
-  background-color: #3e522d;
-  color: white;
+  ${'' /* background-color: #3e522d; */}
+  background-color: white;
+  border-top: 3px solid #3e522d;
+  color: black;
   height: 352px;
 
   @media (max-width: 765px) {
@@ -124,7 +126,7 @@ const FooterNavListItemGrid = styled.div`
   display: grid;
   grid-template-columns: 30px auto 4fr;
 
-  color: white;
+  color: black;
   cursor: pointer;
   transition: color 0.4s ease 0.05s;
 
@@ -138,11 +140,11 @@ const FooterNavListItemGrid = styled.div`
   }
 
   &:link {
-    color: white;
+    color: black;
   }
 
   &:visited {
-    color: white;
+    color: black;
   }
 
   @media (max-width: 765px) {
@@ -173,7 +175,7 @@ const Icon = styled.i`
 const SocialIcon = styled.i`
   place-self: start;
 
-  color: white;
+  color: black;
   transition: color 0.6s ease 0s;
 
   &:hover {
@@ -192,8 +194,9 @@ const FooterCopyrightText = styled.div`
     grid-area: copyright;
     grid-column: 1/5;
 
-    background-color: black;
-    color: #b5db37;
+    background-color: #3e522d;
+    ${'' /* color: #b5db37; */}
+    color: white;
     height: 100%;
     line-height: 50px;
     margin: 0;
@@ -222,7 +225,7 @@ const LogoLink = styled.a`
 
 const Logo = styled.div`
   background: ${({ logo }) => `no-repeat center/100% url(${logo}`});
-  background-color: white;
+  ${'' /* background-color: black; */}
   height: 115px;
   width: 115px;
 
