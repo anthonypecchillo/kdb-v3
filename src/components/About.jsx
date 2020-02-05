@@ -6,6 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import LottieControl from './LottieControl';
+import ScrollToTopOnMount from './ScrollToTopOnMount';
 import Tile from './Tile';
 
 // One fragment is (was?) 90.6px!
@@ -15,7 +16,7 @@ const AboutGrid = styled.div`
   grid-template-rows: 1fr;
 
   background-color: #e5e5e5;
-  height: 1000px;
+  height: 800px;
   padding: 50px 50px;
   padding-top: 125px;
 `;
@@ -23,14 +24,17 @@ const AboutGrid = styled.div`
 const About = ({ content }) => {
   // const { jumbotron, map, sellingPoints } = content;
   return (
-    <AboutGrid>
-      <Tile height="600px" width="1000px">
-        <LottieControl />
-        <center>
-          <h1>Under Construction!</h1>
-        </center>
-      </Tile>
-    </AboutGrid>
+    <>
+      <ScrollToTopOnMount />
+      <AboutGrid>
+        <Tile height="600px" width="1000px">
+          <LottieControl />
+          <center>
+            <h1>Under Construction!</h1>
+          </center>
+        </Tile>
+      </AboutGrid>
+    </>
   );
 };
 

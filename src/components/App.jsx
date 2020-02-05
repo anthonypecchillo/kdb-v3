@@ -14,6 +14,7 @@ import Landing from './Landing';
 import NJPage from './NJPage';
 import Modal from './Modal';
 import NavBar from './NavBar';
+import Sources from './Sources';
 
 import content from '../const/multi-lingual';
 import jurisdictions from '../const/jurisdictions';
@@ -98,10 +99,13 @@ class App extends React.Component {
         {hamburgerMenu}
         <Switch>
           <Route exact path="/">
-            <Landing content={landingPage} />
+            <Landing content={landingPage} toggleModal={this.toggleModal} />
           </Route>
           <Route exact path="/about">
             <About />
+          </Route>
+          <Route exact path="/sources">
+            <Sources />
           </Route>
           <Route exact path="/contact">
             <Contact />

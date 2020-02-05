@@ -9,7 +9,8 @@ import LottieControl from './LottieControl';
 import ScrollToTopOnMount from './ScrollToTopOnMount';
 import Tile from './Tile';
 
-const ContactGrid = styled.div`
+// One fragment is (was?) 90.6px!
+const SourcesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -20,21 +21,21 @@ const ContactGrid = styled.div`
   padding-top: 125px;
 `;
 
-const Contact = ({ content }) => {
+const Sources = ({ content }) => {
   // const { jumbotron, map, sellingPoints } = content;
   return (
     <>
       <ScrollToTopOnMount />
-      <ContactGrid>
+      <SourcesGrid>
         <Tile height="600px" width="1000px">
           <LottieControl />
           <center>
             <h1>Under Construction!</h1>
           </center>
         </Tile>
-      </ContactGrid>
+      </SourcesGrid>
     </>
   );
 };
 
-export default Contact;
+export default Sources;

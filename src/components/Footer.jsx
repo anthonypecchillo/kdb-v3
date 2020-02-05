@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import CIFORLogo from '../assets/logos/CIFOR.png';
@@ -115,6 +116,10 @@ const FooterNavListGrid = styled.div`
   }
 `;
 
+const FooterNavListItemLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const FooterNavListItemGrid = styled.div`
   display: grid;
   grid-template-columns: 30px auto 4fr;
@@ -123,8 +128,21 @@ const FooterNavListItemGrid = styled.div`
   cursor: pointer;
   transition: color 0.4s ease 0.05s;
 
+  &:active {
+    text-decoration: ${({ underline }) => underline && 'underline solid black'};
+  }
+
   &:hover {
     color: #b5db37;
+    cursor: pointer;
+  }
+
+  &:link {
+    color: white;
+  }
+
+  &:visited {
+    color: white;
   }
 
   @media (max-width: 765px) {
@@ -250,18 +268,24 @@ const Footer = ({ content }) => {
       <FooterTitle2>{WITH_SUPPORT_FROM}</FooterTitle2>
 
       <FooterNavListGrid>
-        <FooterNavListItemGrid>
-          <Icon className="fas fa-info" />
-          <span className="menu-text">{ABOUT}</span>
-        </FooterNavListItemGrid>
-        <FooterNavListItemGrid>
-          <Icon className="far fa-file-pdf" />
-          <span className="menu-text">{SOURCES}</span>
-        </FooterNavListItemGrid>
-        <FooterNavListItemGrid>
-          <Icon className="far fa-address-book" />
-          <span className="menu-text">{CONTACTS}</span>
-        </FooterNavListItemGrid>
+        <FooterNavListItemLink to="/about">
+          <FooterNavListItemGrid>
+            <Icon className="fas fa-info" />
+            <span className="menu-text">{ABOUT}</span>
+          </FooterNavListItemGrid>
+        </FooterNavListItemLink>
+        <FooterNavListItemLink to="/sources">
+          <FooterNavListItemGrid>
+            <Icon className="far fa-file-pdf" />
+            <span className="menu-text">{SOURCES}</span>
+          </FooterNavListItemGrid>
+        </FooterNavListItemLink>
+        <FooterNavListItemLink to="/contact">
+          <FooterNavListItemGrid>
+            <Icon className="far fa-address-book" />
+            <span className="menu-text">{CONTACTS}</span>
+          </FooterNavListItemGrid>
+        </FooterNavListItemLink>
         <BackToMainSiteLink href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
           <FooterNavListItemGrid>
             <Icon className="fas fa-home" />

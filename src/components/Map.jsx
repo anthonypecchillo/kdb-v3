@@ -58,20 +58,29 @@ const MapContainer = styled.div`
   width: 100vw;
 `;
 
-const Map = ({ content }) => {
-  const { TITLE, SUB_TITLE, NAVIGATE_FULL_DATABASE } = content;
-  return (
-    <MapGrid>
-      <MapContainer>
-        <MapTitle>{TITLE}</MapTitle>
-        <MapSubTitle>{SUB_TITLE}</MapSubTitle>
-        <WorldMap />
-      </MapContainer>
-      <MapButton>
-        <MapButtonText>{NAVIGATE_FULL_DATABASE}</MapButtonText>
-      </MapButton>
-    </MapGrid>
-  );
+class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const { content, toggleModal } = this.props;
+    const { TITLE, SUB_TITLE, NAVIGATE_FULL_DATABASE } = content;
+
+    return (
+      <MapGrid>
+        <MapContainer>
+          <MapTitle>{TITLE}</MapTitle>
+          <MapSubTitle>{SUB_TITLE}</MapSubTitle>
+          <WorldMap />
+        </MapContainer>
+        <MapButton onClick={toggleModal}>
+          <MapButtonText>{NAVIGATE_FULL_DATABASE}</MapButtonText>
+        </MapButton>
+      </MapGrid>
+    );
+  }
 };
 
 export default Map;

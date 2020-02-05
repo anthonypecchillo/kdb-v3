@@ -70,6 +70,12 @@ const NavTitle = styled.div`
   @media (max-width: 990px) {
     text-align: center;
   }
+
+  @media (max-width: 413px) {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 20px 35px 0px 32px;
+  }
 `;
 
 const NavLink = styled.div`
@@ -169,11 +175,11 @@ const NavBar = ({ content, toggleHamburgerMenu, toggleLanguage, toggleModal }) =
       <Link to="/">
         <Logo />
       </Link>
-      <NavTitle onClick={toggleModal}>Knowledge Database</NavTitle>
+      <NavTitle>Knowledge Database</NavTitle>
       <Link to="/about">
         <NavLink gridArea="navlink1">{ABOUT}</NavLink>
       </Link>
-      <NavLink gridArea="navlink2">{NAVIGATE}</NavLink>
+      <NavLink gridArea="navlink2" onClick={toggleModal}>{NAVIGATE}</NavLink>
       <Link to="/contact">
         <NavLink gridArea="navlink3">{CONTACT}</NavLink>
       </Link>

@@ -160,7 +160,7 @@ const JumbotronButtonText = styled.span`
   font-weight: 700;
 `;
 
-const Jumbotron = ({ content }) => {
+const Jumbotron = ({ content, scrollToMap, toggleModal }) => {
   const { DESCRIPTION, NAVIGATE_DB, GLOBAL_SUMMARY } = content;
   return (
     <JumbotronGrid>
@@ -182,11 +182,11 @@ const Jumbotron = ({ content }) => {
         <div />
         <JumbotronButtonGrid>
           <div />
-          <JumbotronButton>
+          <JumbotronButton onClick={toggleModal}>
             <JumbotronButtonText>{NAVIGATE_DB}</JumbotronButtonText>
           </JumbotronButton>
           <div />
-          <JumbotronButton>
+          <JumbotronButton onClick={scrollToMap}>
             <JumbotronButtonText>{GLOBAL_SUMMARY}</JumbotronButtonText>
           </JumbotronButton>
         </JumbotronButtonGrid>
