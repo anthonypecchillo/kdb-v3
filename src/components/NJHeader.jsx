@@ -48,7 +48,7 @@ const NJHeaderGrid = styled.div`
   overflow: hidden;
   top: -326px;
   width: 100%;
-  z-index: 998;
+  z-index: 997;
 `;
 
 const NJHeaderTitle = styled.h1`
