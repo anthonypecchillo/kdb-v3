@@ -153,6 +153,8 @@ class MapDataSource {
       showLegend: false,
       chartRightMargin: 40,
       chartBottomMargin: 18,
+      bgAlpha: '0',
+      // canvasBgAlpha: '1',
     };
 
     this.colorRange = {
@@ -205,6 +207,7 @@ const NJMap = ({ nationName, stateName }) => {
 
   const chartConfigs = {
     type: chartType,
+    containerBackgroundOpacity: '0',
     width: '120%',
     height: '330',
     dataFormat: 'json',
