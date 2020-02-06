@@ -3,7 +3,8 @@
  */
 
 import React from 'react';
-import styled from 'styled-components';
+import ReactDOM from 'react-dom';
+import styled, { css } from 'styled-components';
 
 import NJMap from './NJMap';
 import NJNav from './NJNav';
@@ -42,8 +43,12 @@ const NJHeaderGrid = styled.div`
   background-position: top left;
   background-attachment: fixed;
 
-  height: 100%;
+  height: 460px;
+  position: sticky;
+  overflow: hidden;
+  top: -326px;
   width: 100%;
+  z-index: 998;
 `;
 
 const NJHeaderTitle = styled.h1`

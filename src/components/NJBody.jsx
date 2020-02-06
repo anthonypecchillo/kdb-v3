@@ -18,7 +18,7 @@ import NJReportCardsPage from './NJReportCardsPage';
 const NJBodyStyled = styled.div`
   background-color: #e5e5e5;
   /* background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); */
-  height: 100%;
+  height: calc(100% - 110px);
   padding: 2.5% 1.25%;
   width: 100%;
 `;
