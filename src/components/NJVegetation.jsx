@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import DoughnutChart from './DoughnutChart';
+import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_LAND = gql`
@@ -92,8 +93,7 @@ const NJVegetation = ({ jurisdiction }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_LAND, {
     variables: { name: jurisdiction },
   });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { forestArea, landArea } = data.jurisdictionByName;

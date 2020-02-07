@@ -8,6 +8,8 @@ import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
 
+import Loading from './Loading';
+
 import Avatar from '../assets/images/avatar.png';
 import Indonesia from '../assets/images/Indonesia.jpg';
 
@@ -78,8 +80,7 @@ const NJDescription = ({ jurisdiction, language }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_DESCRIPTION, {
     variables: { name: jurisdiction, languageCode: language },
   });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { description } = data.jurisdictionByName.contentJurisdictional.contentJurisdictionalTranslate;

@@ -8,6 +8,7 @@ import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
 import DoughnutChart from './DoughnutChart';
+import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_DEMOGRAPHICS = gql`
@@ -147,7 +148,7 @@ class NJDemographics extends React.Component {
       <DemographicsGrid ref={el => (this.container = el)}>
         <Query query={GET_JURISDICTION_DEMOGRAPHICS} variables={{ name: jurisdiction }}>
           {({ loading, error, data }) => {
-            if (loading) return <p>LOADING</p>;
+            if (loading) return <Loading/>;
             if (error) return <p>ERROR</p>;
 
             const { nation, population, region } = data.jurisdictionByName;

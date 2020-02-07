@@ -9,6 +9,7 @@ import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
 import BulletChart from './BulletChart';
+import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_ECONOMICS = gql`
@@ -161,7 +162,7 @@ class NJEconomics extends React.Component {
           variables={{ name: jurisdiction, languageCode: language }}
           >
             {({ loading, error, data }) => {
-              if (loading) return <p>LOADING</p>;
+              if (loading) return <Loading />;
               if (error) return <p>ERROR</p>;
 
               const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, region } = data.jurisdictionByName;

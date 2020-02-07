@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 import DoughnutChart from './DoughnutChart';
 import LineChart from './LineChart';
+import Loading from './Loading';
 
 const GET_JURISDICTION_DEFORESTATION = gql`
   query getJurisdictionDeforestation($name: String!, $languageCode: String!) {
@@ -120,8 +121,7 @@ const NJDeforestation = ({ jurisdiction, language }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_DEFORESTATION, {
     variables: { name: jurisdiction, languageCode: language },
   });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { driversOfDeforestation } = data.jurisdictionByName.contentJurisdictional.contentJurisdictionalTranslate;

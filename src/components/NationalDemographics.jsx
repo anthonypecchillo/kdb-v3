@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import DoughnutChart from './DoughnutChart';
+import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_NATION_DEMOGRAPHICS = gql`
@@ -120,8 +121,7 @@ const NationalDemographics = ({ nation }) => {
   const { data, loading, error } = useQuery(GET_NATION_DEMOGRAPHICS, {
     variables: { name: nation },
   });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { population, region } = data.nationByName;

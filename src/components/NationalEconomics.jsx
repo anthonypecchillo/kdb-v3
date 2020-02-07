@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BulletChart from './BulletChart';
+import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_NATION_ECONOMICS = gql`
@@ -128,12 +129,10 @@ const DeforestationTagListItem = styled.li`
 `;
 
 const NationalEconomics = ({ language, nation }) => {
-  console.log(language);
   const { data, loading, error } = useQuery(GET_NATION_ECONOMICS, {
     variables: { name: nation, languageCode: language },
   });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { gdp, humanDevelopmentIndex, perCapitaIncome, region } = data.nationByName;

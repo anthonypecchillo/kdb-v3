@@ -7,6 +7,8 @@ import gql from 'graphql-tag';
 import React from 'react';
 import styled from 'styled-components';
 
+import Loading from './Loading';
+
 import Avatar from '../assets/images/avatar.png';
 import William from '../assets/images/william-boyd.jpg';
 
@@ -120,8 +122,7 @@ const NJContacts = ({ jurisdiction }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_CONTACTS, {
     variables: { name: jurisdiction },
   });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { contacts } = data.jurisdictionByName;

@@ -8,6 +8,8 @@ import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
 
+import Loading from './Loading';
+
 const GET_JURISDICTION_FMMS = gql`
   query getJurisdictionFMMS($name: String!, $languageCode: String!) {
     jurisdictionByName(name: $name) {
@@ -55,8 +57,7 @@ const NJForestMonitoringAndMeasurementSystems = ({ jurisdiction, language }) => 
   const { data, loading, error } = useQuery(GET_JURISDICTION_FMMS, {
     variables: { name: jurisdiction, languageCode: language },
   });
-  // if (loading) return <Loading />;
-  if (loading) return <p>LOADING</p>;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { forestMonitoringMeasurementSystems } = data.jurisdictionByName.contentJurisdictional.contentJurisdictionalTranslate;

@@ -5,6 +5,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// import Loading from './Loading';
 import StackedColumnChart from './StackedColumnChart';
 
 const categories4 = [
