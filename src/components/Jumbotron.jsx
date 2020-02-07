@@ -169,7 +169,7 @@ const Jumbotron = ({ content, scrollToMap, toggleModal }) => {
         <JumbotronBrandText>
           GOVERNORS' CLIMATE &
           <br />
-          FOREST (GCF) TASK FORCE
+          FORESTS TASK FORCE
         </JumbotronBrandText>
         <div />
         <JumbotronTitle>
