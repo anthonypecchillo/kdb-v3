@@ -207,7 +207,7 @@ const LoaderBall = styled.div`
   height: 10px;
   background: #3e522d;
   border-radius: 50%;
-  animation: ball 4s infinite;
+  animation: ${ball} 4s infinite;
 `;
 
 const Loading = () => (
