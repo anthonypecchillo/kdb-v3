@@ -34,7 +34,8 @@ const navLinkList = [
 
 const NJHeaderGrid = styled.div`
   display: grid;
-  grid-template-columns: 50px 3fr minmax(330px, 1fr) 50px;
+  ${'' /* grid-template-columns: 50px 3fr minmax(330px, 1fr) 50px; */}
+  grid-template-columns: 50px 3fr 330px 50px;
   grid-template-rows: 1fr 3fr 30px 30px;
 
   background-image: ${({ bannerURL }) => `url(${bannerURL})`};
