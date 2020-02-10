@@ -23,7 +23,6 @@ const GET_JURISDICTION_DESCRIPTION = gql`
         contentJurisdictionalTranslate(code: $languageCode) {
           id
           languageCode
-          contentJurisdictionalId
           description
           driversOfDeforestation
           forestMonitoringMeasurementSystems

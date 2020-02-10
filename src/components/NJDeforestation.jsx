@@ -36,7 +36,6 @@ const GET_JURISDICTION_DEFORESTATION = gql`
         contentJurisdictionalTranslate(code: $languageCode) {
           id
           languageCode
-          contentJurisdictionalId
           description
           driversOfDeforestation
           forestMonitoringMeasurementSystems
@@ -117,7 +116,6 @@ const DeforestationTagListItem = styled.li`
 
 // TODO: Use primary key from DB as uniqueID for props
 const NJDeforestation = ({ jurisdiction, language }) => {
-  console.log(language);
   const { data, loading, error } = useQuery(GET_JURISDICTION_DEFORESTATION, {
     variables: { name: jurisdiction, languageCode: language },
   });
