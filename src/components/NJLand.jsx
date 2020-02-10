@@ -27,21 +27,13 @@ const GET_JURISDICTION_LAND = gql`
         year
         citation_id
       }
+      forestManagement {
+        protected
+        unprotected
+      }
     }
   }
 `;
-
-const data2 = [
-  {
-    label: 'Protected',
-    value: 206856,
-    // color: '#ff69b4',
-  },
-  {
-    label: 'Unprotected',
-    value: 163456,
-  },
-];
 
 const data3 = [
   {
@@ -66,15 +58,6 @@ const data3 = [
     value: 456,
   },
 ];
-
-const dataTotal2 = data2.reduce((acc, { value }) => acc + value, 0).toLocaleString();
-
-const dataSourceConfig2 = {
-  caption: 'Forest Management',
-  centerLabel: '$label:<br/><br/>$value',
-  numberSuffix: ' km²',
-  defaultCenterLabel: `Total:<br/><br/>${dataTotal2} km²`,
-};
 
 const dataSourceConfig3 = {
   caption: 'Major Vegetation Types',
@@ -106,7 +89,7 @@ const NJLand = ({ jurisdiction }) => {
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
-  const { forestArea, landArea } = data.jurisdictionByName;
+  const { forestArea, forestManagement, landArea } = data.jurisdictionByName;
 
   const landDistributionData = [
     {
@@ -127,11 +110,30 @@ const NJLand = ({ jurisdiction }) => {
     numberSuffix: ' km²',
   };
 
+  const forestManagementData = [
+    {
+      label: 'Protected',
+      value: Math.round(forestManagement.protected),
+      // color: '#ff69b4',
+    },
+    {
+      label: 'Unprotected',
+      value: Math.round(forestManagement.unprotected),
+    },
+  ];
+  const forestManagementTotal = forestManagementData.reduce((acc, { value }) => acc + value, 0);
+  const forestManagementDataSourceConfig = {
+    caption: 'Forest Management',
+    centerLabel: '$label:<br/><br/>$value',
+    numberSuffix: ' km²',
+    defaultCenterLabel: `Total:<br/><br/>${Math.round(forestManagementTotal).toLocaleString()} km²`,
+  };
+
   return (
     <LandGrid>
       <LandTitle>Land</LandTitle>
       <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="left" percentOfTotalColumns={0.5} />
-      <DoughnutChart data={data2} dataSourceConfig={dataSourceConfig2} justify="right" percentOfTotalColumns={0.5} />
+      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="right" percentOfTotalColumns={0.5} />
       <BarChart data={data3} dataSourceConfig={dataSourceConfig3} justify="left" />
     </LandGrid>
   )

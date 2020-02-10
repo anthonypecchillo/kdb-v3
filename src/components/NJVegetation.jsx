@@ -27,30 +27,13 @@ const GET_JURISDICTION_LAND = gql`
         year
         citation_id
       }
+      forestManagement {
+        protected
+        unprotected
+      }
     }
   }
 `;
-
-const data2 = [
-  {
-    label: 'Protected',
-    value: 206856,
-    // color: '#ff69b4',
-  },
-  {
-    label: 'Unprotected',
-    value: 163456,
-  },
-];
-
-const dataTotal2 = data2.reduce((acc, { value }) => acc + value, 0).toLocaleString();
-
-const dataSourceConfig2 = {
-  caption: 'Forest Management',
-  centerLabel: '$label:<br/><br/>$value',
-  defaultCenterLabel: `Total:<br/><br/>${dataTotal2} km²`,
-  numberSuffix: ' km²',
-};
 
 const data3 = [
   {
@@ -96,7 +79,7 @@ const NJVegetation = ({ jurisdiction }) => {
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
-  const { forestArea, landArea } = data.jurisdictionByName;
+  const { forestArea, forestManagement, landArea } = data.jurisdictionByName;
 
   const landDistributionData = [
     {
@@ -109,7 +92,6 @@ const NJVegetation = ({ jurisdiction }) => {
       value: Math.round(landArea.amount - forestArea.amount),
     },
   ];
-
   const landDistributionDataSourceConfig = {
     caption: 'Land Distribution',
     centerLabel: '$label:<br/><br/>$value',
@@ -117,11 +99,30 @@ const NJVegetation = ({ jurisdiction }) => {
     numberSuffix: ' km²',
   };
 
+  const forestManagementData = [
+    {
+      label: 'Protected',
+      value: Math.round(forestManagement.protected),
+      // color: '#ff69b4',
+    },
+    {
+      label: 'Unprotected',
+      value: Math.round(forestManagement.unprotected),
+    },
+  ];
+  const forestManagementTotal = forestManagementData.reduce((acc, { value }) => acc + value, 0);
+  const forestManagementDataSourceConfig = {
+    caption: 'Forest Management',
+    centerLabel: '$label:<br/><br/>$value',
+    numberSuffix: ' km²',
+    defaultCenterLabel: `Total:<br/><br/>${Math.round(forestManagementTotal).toLocaleString()} km²`,
+  };
+
   return (
     <VegetationGrid>
       <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} />
       <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" percentOfTotalColumns={1} />
-      <DoughnutChart data={data2} dataSourceConfig={dataSourceConfig2} justify="center" percentOfTotalColumns={1} />
+      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="center" percentOfTotalColumns={1} />
     </VegetationGrid>
   )
 };
