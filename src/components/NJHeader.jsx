@@ -3,8 +3,7 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import NJMap from './NJMap';
 import NJNav from './NJNav';
@@ -87,11 +86,16 @@ const NJMapContainer = styled.div`
   grid-row: 2/4;
 
   background-color: ${({ opacity }) => `rgba(255, 255, 255, ${opacity})`};
+  border: ${({ opacity }) => `3px solid rgba(62, 82, 45, ${opacity})`};
   box-shadow: ${({ shadowOpacity }) => `6px 18px 18px rgba(0, 0, 0, ${shadowOpacity}), -6px 18px 18px rgba(0, 0, 0, ${shadowOpacity})`};
   height: 100%;
   opacity: ${({ opacity }) => opacity};
   overflow: hidden;
   width: 100%;
+
+  @media (max-width: 990px) {
+    display: none;
+  }
 `;
 
 class NJHeader extends React.Component {
