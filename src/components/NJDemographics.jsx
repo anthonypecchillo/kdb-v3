@@ -12,7 +12,7 @@ import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_DEMOGRAPHICS = gql`
-  query getJurisdictionDemographics($name: String!) {
+  query getJurisdictionDemographics($name: String!, $languageCode: String!) {
     jurisdictionByName(name: $name) {
       id
       name
@@ -34,38 +34,19 @@ const GET_JURISDICTION_DEMOGRAPHICS = gql`
           ruralPopulation
           citation_id
         }
+        socialGroupComponents {
+          amount
+          percent
+          socialGroupCategory {
+            socialGroupCategoryTranslate(code: $languageCode) {
+              name
+            }
+          }
+        }
       }
     }
   }
 `;
-
-const data3 = [
-  {
-    label: 'Multi-ethnic',
-    value: 550037,
-    // color: '#ff69b4',
-  },
-  {
-    label: 'White',
-    value: 198279,
-  },
-  {
-    label: 'Black',
-    value: 48118,
-  },
-  {
-    label: 'Indigenous',
-    value: 18252,
-  },
-  {
-    label: 'Indigenous',
-    value: 18252,
-  },
-  {
-    label: 'Other',
-    value: 15762,
-  },
-];
 
 const dataSourceConfig3 = {
   caption: 'Ethnic Distribution',
@@ -146,13 +127,14 @@ class NJDemographics extends React.Component {
 
     return (
       <DemographicsGrid ref={el => (this.container = el)}>
-        <Query query={GET_JURISDICTION_DEMOGRAPHICS} variables={{ name: jurisdiction }}>
+        <Query query={GET_JURISDICTION_DEMOGRAPHICS} variables={{ name: jurisdiction, languageCode: language }}>
           {({ loading, error, data }) => {
             if (loading) return <Loading/>;
             if (error) return <p>ERROR</p>;
 
             const { nation, population, region } = data.jurisdictionByName;
-            const { urbanPopulation, ruralPopulation } = region.urbanVsRural;
+            const { urbanVsRural, socialGroupComponents } = region;
+            const { urbanPopulation, ruralPopulation } = urbanVsRural;
 
             const percentageOfNationalPopulation = (population.amount / nation.population.amount) * 100;
 
@@ -168,6 +150,17 @@ class NJDemographics extends React.Component {
               numberSuffix: ' people',
             };
 
+            const socialGroupsData = socialGroupComponents.map(component => {
+              return { label: component.socialGroupCategory.socialGroupCategoryTranslate.name, value: component.percent };
+            });
+            const socialGroupsDataSourceConfig = {
+              caption: 'Ethnic Distribution',
+              // numberSuffix: ' people',
+              numberSuffix: '%',
+              showLabels: '0',
+              showLegend: '1',
+            };
+
             return (
               <>
                 <DemographicsTitle>Demographics</DemographicsTitle>
@@ -175,7 +168,7 @@ class NJDemographics extends React.Component {
                 <DemographicsTotalValue>{population.amount.toLocaleString()}</DemographicsTotalValue>
                 <DemographicsTotalNationalPercent>{`${percentageOfNationalPopulation.toLocaleString()}% of National Population`}</DemographicsTotalNationalPercent>
                 <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-                <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" height={'310'} percentOfTotalColumns={0.9} width={width * 0.9} />
+                <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} percentOfTotalColumns={0.9} width={width * 0.9} />
                 <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
               </>
             );
