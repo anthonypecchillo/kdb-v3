@@ -24,13 +24,13 @@ const ForestAndLandUseGrid = styled.div`
 const NJForestAndLandUsePage = ({ nationName, jurisdictionName, language }) => (
   <ForestAndLandUseGrid>
     <Tile gridColumn="1/3" gridRow="1/2">
-      <NJLand jurisdiction={jurisdictionName} />
+      <NJLand jurisdiction={jurisdictionName} language={language} />
     </Tile>
     <Tile gridColumn="2/4" gridRow="2/3">
       <NJCO2Emissions jurisdiction={jurisdictionName} />
     </Tile>
     <Tile gridColumn="1/2" gridRow="2/3">
-      <NJVegetation jurisdiction={jurisdictionName} />
+      <NJVegetation jurisdiction={jurisdictionName} language={language} />
     </Tile>
     <Tile gridColumn="1/4" gridRow="3/4">
       <NJDeforestation jurisdiction={jurisdictionName} language={language} />

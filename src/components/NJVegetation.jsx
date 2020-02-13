@@ -12,7 +12,7 @@ import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_LAND = gql`
-  query getJurisdictionLand($name: String!) {
+  query getJurisdictionLand($name: String!, $languageCode: String!) {
     jurisdictionByName(name: $name) {
       id
       name
@@ -31,40 +31,18 @@ const GET_JURISDICTION_LAND = gql`
         protected
         unprotected
       }
+      vegetationComponents {
+        amount
+        percent
+        vegetationCategory {
+          vegetationCategoryTranslate(code: $languageCode) {
+            name
+          }
+        }
+      }
     }
   }
 `;
-
-const data3 = [
-  {
-    label: 'Forest',
-    value: 246856,
-    // color: '#ff69b4',
-  },
-  {
-    label: 'Pasture',
-    value: 100000,
-  },
-  {
-    label: 'Agriculture',
-    value: 20000,
-  },
-  {
-    label: 'Secondary',
-    value: 3000,
-  },
-  {
-    label: 'Other',
-    value: 456,
-  },
-];
-
-const dataSourceConfig3 = {
-  caption: 'Major Vegetation Types',
-  xAxisName: 'Vegetation Type',
-  yAxisName: 'Land Area (km²)',
-  numberSuffix: ' km²',
-};
 
 const VegetationGrid = styled.div`
   display: grid;
@@ -72,14 +50,14 @@ const VegetationGrid = styled.div`
   /* justify-items: center; */
 `;
 
-const NJVegetation = ({ jurisdiction }) => {
+const NJVegetation = ({ jurisdiction, language }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_LAND, {
-    variables: { name: jurisdiction },
+    variables: { name: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
-  const { forestArea, forestManagement, landArea } = data.jurisdictionByName;
+  const { forestArea, forestManagement, landArea, vegetationComponents } = data.jurisdictionByName;
 
   const landDistributionData = [
     {
@@ -118,10 +96,21 @@ const NJVegetation = ({ jurisdiction }) => {
     defaultCenterLabel: `Total:<br/><br/>${Math.round(forestManagementTotal).toLocaleString()} km²`,
   };
 
+  const vegetationData = vegetationComponents.map(component => {
+    return { label: component.vegetationCategory.vegetationCategoryTranslate.name, value: component.amount };
+  });
+
+  const vegetationDataSourceConfig = {
+    caption: 'Major Vegetation Types',
+    numberSuffix: ' km²',
+    xAxisName: 'Vegetation Type',
+    yAxisName: 'Land Area (km²)',
+  };
+
   return (
     <VegetationGrid>
       <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-      <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" percentOfTotalColumns={1} />
+      <PieChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="center" percentOfTotalColumns={1} />
       <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="center" percentOfTotalColumns={1} />
     </VegetationGrid>
   )
