@@ -48,15 +48,6 @@ const GET_JURISDICTION_DEMOGRAPHICS = gql`
   }
 `;
 
-const dataSourceConfig3 = {
-  caption: 'Ethnic Distribution',
-  // xAxisName: 'Vegetation Type',
-  // yAxisName: 'Land Area (km²)',
-  numberSuffix: ' people',
-  showLabels: '0',
-  showLegend: '1',
-};
-
 const DemographicsGrid = styled.div`
   display: grid;
   grid-template-rows: 1fr 0.5fr 1fr 0.6fr 5fr 6.25fr 0.75fr;
