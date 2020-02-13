@@ -125,6 +125,8 @@ const DeforestationTagListItem = styled.li`
   background-color: tomato;
   height: 50px;
   margin: 15px 0;
+  padding-top: 15px;
+  text-align: center;
   width: 90%;
 `;
 

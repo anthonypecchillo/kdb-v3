@@ -132,7 +132,8 @@ class NJHeader extends React.Component {
     // const mapContainerOpacity = 1 + 0.29 - Math.pow(pageYOffset / 340, 2);
 
     // Cubic Fade Formula: MaxOpacity + startYPositionForFade - (window.pageYOffset / endYPositionForFade)^3
-    const mapContainerOpacity = 1 + 0.02 - Math.pow(pageYOffset / 340, 3);
+    // const mapContainerOpacity = 1 + 0.02 - Math.pow(pageYOffset / 340, 3);
+    const mapContainerOpacity = 1 - Math.pow(pageYOffset / 340, 3);
 
     // Multiply this one by 3 so that container shadow fades at 3x rate as container itself
     const mapContainerShadowOpacity = 0.08 - Math.pow(pageYOffset / 340, 3) * 0.08 * 3;
