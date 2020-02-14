@@ -12,8 +12,8 @@ import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_LAND = gql`
-  query getJurisdictionLand($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionLand($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       name
       landArea {
@@ -50,9 +50,9 @@ const VegetationGrid = styled.div`
   /* justify-items: center; */
 `;
 
-const NJVegetation = ({ jurisdiction, language }) => {
+const NJVegetation = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_LAND, {
-    variables: { name: jurisdiction, languageCode: language },
+    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

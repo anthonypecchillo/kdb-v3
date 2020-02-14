@@ -13,8 +13,8 @@ import Avatar from '../assets/images/avatar.png';
 import William from '../assets/images/william-boyd.jpg';
 
 const GET_JURISDICTION_CONTACTS = gql`
-  query getJurisdictionByName($name: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionByName($nationName: String!, $jurisdictionName: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       name
       contacts {
@@ -118,9 +118,9 @@ const ContactsDetailsText = styled.div`
 //   grid-template-rows: 4fr 3fr 3fr;
 // `;
 
-const NJContacts = ({ jurisdiction }) => {
+const NJContacts = ({ jurisdiction, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_CONTACTS, {
-    variables: { name: jurisdiction },
+    variables: { nationName: nation, jurisdictionName: jurisdiction },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

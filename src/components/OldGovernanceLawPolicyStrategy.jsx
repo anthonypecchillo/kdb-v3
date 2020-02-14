@@ -11,8 +11,8 @@ import styled from 'styled-components';
 import Loading from './Loading';
 
 const GET_JURISDICTION_LAW_POLICY_STRATEGY = gql`
-  query getJurisdictionLawPolicyStrategy($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionLawPolicyStrategy($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       lawPolicyStrategy {
         id
@@ -37,7 +37,7 @@ const OldGovernanceLawPolicyStrategyStyled = styled.div`
 
 const OldGovernanceLawPolicyStrategy = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_LAW_POLICY_STRATEGY, {
-    variables: { name: jurisdiction, languageCode: language },
+    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

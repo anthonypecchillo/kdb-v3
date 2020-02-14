@@ -13,8 +13,8 @@ import LineChart from './LineChart';
 import Loading from './Loading';
 
 const GET_JURISDICTION_DEFORESTATION = gql`
-  query getJurisdictionDeforestation($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionDeforestation($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       name
       forestArea {
@@ -115,9 +115,9 @@ const DeforestationTagListItem = styled.li`
 `;
 
 // TODO: Use primary key from DB as uniqueID for props
-const NJDeforestation = ({ jurisdiction, language }) => {
+const NJDeforestation = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_DEFORESTATION, {
-    variables: { name: jurisdiction, languageCode: language },
+    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

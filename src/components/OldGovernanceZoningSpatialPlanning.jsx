@@ -11,8 +11,8 @@ import styled from 'styled-components';
 import Loading from './Loading';
 
 const GET_JURISDICTION_ZONING_SPATIAL_PLAN = gql`
-  query getJurisdictionZoningSpatialPlan($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionZoningSpatialPlan($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       zoningSpatialPlan {
         id
@@ -37,7 +37,7 @@ const OldGovernanceZoningSpatialPlanningStyled = styled.div`
 
 const OldGovernanceZoningSpatialPlanning = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_ZONING_SPATIAL_PLAN, {
-    variables: { name: jurisdiction, languageCode: language },
+    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

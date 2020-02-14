@@ -11,8 +11,8 @@ import styled from 'styled-components';
 import Loading from './Loading';
 
 const GET_JURISDICTION_FMMS = gql`
-  query getJurisdictionFMMS($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionFMMS($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       name
       contentJurisdictional {
@@ -52,9 +52,9 @@ const ForestMonitoringAndMeasurementSystemsContent = styled.div`
   overflow: scroll;
 `;
 
-const NJForestMonitoringAndMeasurementSystems = ({ jurisdiction, language }) => {
+const NJForestMonitoringAndMeasurementSystems = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_FMMS, {
-    variables: { name: jurisdiction, languageCode: language },
+    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

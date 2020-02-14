@@ -137,11 +137,32 @@ const NationalEconomics = ({ language, nation }) => {
 
   const { gdp, humanDevelopmentIndex, perCapitaIncome, region } = data.nationByName;
 
-  // TODO: Replace magic number with GWP with translateable units! (Store number in value_global)
-  const percentageOfGlobalGDP = (gdp.amount / 80270000000000) * 100;
+  let percentageOfGlobalGDP;
+  let PERCENTAGE_OF_GLOBAL_GDP;
+  if (gdp && gdp.amount) {
+    // TODO: Replace magic number with GWP with translateable units! (Store number in value_global)
+    percentageOfGlobalGDP = gdp.amount / 80270000000000 * 100;
+    PERCENTAGE_OF_GLOBAL_GDP = `${percentageOfGlobalGDP.toLocaleString()}% of Gross World Product`;
+  } else {
+    PERCENTAGE_OF_GLOBAL_GDP = 'Data Unavailable';
+  }
 
-  const humnDevelopmentIndexData = { target: null, value: humanDevelopmentIndex.amount };
+  const humnDevelopmentIndexData = humanDevelopmentIndex && humanDevelopmentIndex.amount ? { target: null, value: humanDevelopmentIndex.amount } : { target: null, value: null };
   const humanDevelopmentIndexDataSourceConfig = { caption: 'Human Development Index' };
+
+  let PER_CAPITA_INCOME;
+  if (perCapitaIncome && perCapitaIncome.amount && perCapitaIncome.units) {
+    PER_CAPITA_INCOME = `${Math.round(perCapitaIncome.amount).toLocaleString()} ${perCapitaIncome.units}`;
+  } else {
+    PER_CAPITA_INCOME = 'Data Unavailable';
+  }
+
+  let GDP;
+  if (gdp && gdp.amount && gdp.units) {
+    GDP = `${gdp.amount.toLocaleString()} ${gdp.units}`;
+  } else {
+    GDP = 'Data Unavailable';
+  }
 
   const { gdpComponents, majorExports } = region;
   const gdpBreakdownData = gdpComponents.map(gdpComponent => {
@@ -164,11 +185,11 @@ const NationalEconomics = ({ language, nation }) => {
       <EconomicsTotalTitle>Human Development Index</EconomicsTotalTitle>
       <BulletChart data={humnDevelopmentIndexData} dataSourceConfig={humanDevelopmentIndexDataSourceConfig} justify="center" percentOfTotalColumns={1} />
       <EconomicsTotalTitle>Per Capita Income</EconomicsTotalTitle>
-      <EconomicsTotalValue>{`${Math.round(perCapitaIncome.amount).toLocaleString()} ${perCapitaIncome.units}`}</EconomicsTotalValue>
+      <EconomicsTotalValue>{PER_CAPITA_INCOME}</EconomicsTotalValue>
       <EconomicsTotalNationalPercent>Annual</EconomicsTotalNationalPercent>
       <EconomicsTotalTitle>National GDP</EconomicsTotalTitle>
-      <EconomicsTotalValue>{`${gdp.amount.toLocaleString()} ${gdp.units}`}</EconomicsTotalValue>
-      <EconomicsTotalNationalPercent>{`${percentageOfGlobalGDP.toLocaleString()}% of Gross World Product`}</EconomicsTotalNationalPercent>
+      <EconomicsTotalValue>{GDP}</EconomicsTotalValue>
+      <EconomicsTotalNationalPercent>{PERCENTAGE_OF_GLOBAL_GDP}</EconomicsTotalNationalPercent>
       <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} width="370" percentOfTotalColumns={1} />
       <EconomicsTagListContainer>
         <EconomicsTotalTitle>Major Exports</EconomicsTotalTitle>

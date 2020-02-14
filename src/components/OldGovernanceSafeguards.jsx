@@ -11,8 +11,8 @@ import styled from 'styled-components';
 import Loading from './Loading';
 
 const GET_JURISDICTION_SAFEGUARDS = gql`
-  query getJurisdictionSafeguards($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionSafeguards($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       safeguard {
         id
@@ -37,7 +37,7 @@ const OldGovernanceSafeguardsStyled = styled.div`
 
 const OldGovernanceSafeguards = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_SAFEGUARDS, {
-    variables: { name: jurisdiction, languageCode: language },
+    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

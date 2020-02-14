@@ -14,8 +14,8 @@ import Avatar from '../assets/images/avatar.png';
 import Indonesia from '../assets/images/Indonesia.jpg';
 
 const GET_JURISDICTION_DESCRIPTION = gql`
-  query getJurisdictionDescription($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionDescription($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       name
       contentJurisdictional {
@@ -75,9 +75,9 @@ const DescriptionContent = styled.div`
   overflow: scroll;
 `;
 
-const NJDescription = ({ jurisdiction, language }) => {
+const NJDescription = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_DESCRIPTION, {
-    variables: { name: jurisdiction, languageCode: language },
+    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

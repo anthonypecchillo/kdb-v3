@@ -117,14 +117,14 @@ const NJMapConfig = {
       { id: 'Ucayali', value: '93927', link: '/peru/ucayali', showLabel: '1' },
     ],
   },
-  cotedivoire: {
+  ivorycoast: {
     entityDef: [
       { internalId: 'CI.LC', newId: 'Belier' },
       { internalId: 'CI.MV', newId: 'Cavally' },
     ],
     data: [
-      { id: 'Belier', value: '5', link: '/cotedivoire/belier', showLabel: '1' },
-      { id: 'Cavally', value: '5', link: '/cotedivoire/cavally', showLabel: '1' },
+      { id: 'Belier', value: '5', link: '/ivorycoast/belier', showLabel: '1' },
+      { id: 'Cavally', value: '5', link: '/ivorycoast/cavally', showLabel: '1' },
     ],
   },
   colombia: {
@@ -188,8 +188,9 @@ class MapDataSource {
 }
 
 const NJMap = ({ nationName, stateName }) => {
-  const chartType = nationName.toLowerCase();
-  const dataSource = new MapDataSource(chartType);
+  const nation = nationName.toLowerCase().split(' ').join('');
+  const chartType = nation === 'ivorycoast' ? 'cotedivoire' : nation;
+  const dataSource = new MapDataSource(nation);
 
   if (stateName) {
     const name = stateName || nationName;

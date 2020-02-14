@@ -125,15 +125,26 @@ const NationalDemographics = ({ nation }) => {
   if (error) return <p>ERROR</p>;
 
   const { population, region } = data.nationByName;
-  const { urbanPopulation, ruralPopulation } = region.urbanVsRural;
 
   const percentageOfGlobalPopulation = (population.amount / 7577130400) * 100;
 
-  const urbanVsRuralData = [
-    { label: 'Urban', value: Math.round((urbanPopulation * 0.01) * population.amount) },
-    { label: 'Rural', value: Math.round((ruralPopulation * 0.01) * population.amount) },
-  ];
-  const urbanVsRuralDataTotal = urbanVsRuralData.reduce((acc, { value }) => acc + value, 0).toLocaleString();
+  let urbanVsRuralData;
+  let urbanVsRuralDataTotal;
+  if (region.urbanVsRural) {
+    const { urbanPopulation, ruralPopulation } = region.urbanVsRural;
+    urbanVsRuralData = [
+      { label: 'Urban', value: Math.round((urbanPopulation * 0.01) * population.amount) },
+      { label: 'Rural', value: Math.round((ruralPopulation * 0.01) * population.amount) },
+    ];
+    urbanVsRuralDataTotal = urbanVsRuralData.reduce((acc, { value }) => acc + value, 0).toLocaleString();
+  } else {
+    urbanVsRuralData = [
+      { label: 'Urban', value: null },
+      { label: 'Rural', value: null },
+    ];
+    urbanVsRuralDataTotal = '';
+  }
+
   const urbanVsRuralDataSourceConfig = {
     caption: 'Population Distribution',
     centerLabel: '$label:<br/><br/>$value',

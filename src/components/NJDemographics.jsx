@@ -12,8 +12,8 @@ import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_DEMOGRAPHICS = gql`
-  query getJurisdictionDemographics($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionDemographics($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       name
       population {
@@ -113,12 +113,12 @@ class NJDemographics extends React.Component {
   }
 
   render() {
-    const { jurisdiction, language } = this.props;
+    const { jurisdiction, language, nation } = this.props;
     const { width } = this.state.dimensions;
 
     return (
       <DemographicsGrid ref={el => (this.container = el)}>
-        <Query query={GET_JURISDICTION_DEMOGRAPHICS} variables={{ name: jurisdiction, languageCode: language }}>
+        <Query query={GET_JURISDICTION_DEMOGRAPHICS} variables={{ nationName: nation, jurisdictionName: jurisdiction, languageCode: language }}>
           {({ loading, error, data }) => {
             if (loading) return <Loading/>;
             if (error) return <p>ERROR</p>;
@@ -127,7 +127,14 @@ class NJDemographics extends React.Component {
             const { urbanVsRural, socialGroupComponents } = region;
             const { urbanPopulation, ruralPopulation } = urbanVsRural;
 
-            const percentageOfNationalPopulation = (population.amount / nation.population.amount) * 100;
+            let percentageOfNationalPopulation;
+            let PERCENTAGE_OF_NATIONAL_POPULATION;
+            if (population && population.amount && nation.population && nation.population.amount) {
+              percentageOfNationalPopulation = (population.amount / nation.population.amount) * 100
+              PERCENTAGE_OF_NATIONAL_POPULATION = `${percentageOfNationalPopulation.toLocaleString()}% of National Population`;
+            } else {
+              PERCENTAGE_OF_NATIONAL_POPULATION = 'Data Unavailable';
+            }
 
             const urbanVsRuralData = [
               { label: 'Urban', value: Math.round((urbanPopulation * 0.01) * population.amount) },
@@ -157,7 +164,7 @@ class NJDemographics extends React.Component {
                 <DemographicsTitle>Demographics</DemographicsTitle>
                 <DemographicsTotalTitle>Total Population:</DemographicsTotalTitle>
                 <DemographicsTotalValue>{population.amount.toLocaleString()}</DemographicsTotalValue>
-                <DemographicsTotalNationalPercent>{`${percentageOfNationalPopulation.toLocaleString()}% of National Population`}</DemographicsTotalNationalPercent>
+                <DemographicsTotalNationalPercent>{PERCENTAGE_OF_NATIONAL_POPULATION}</DemographicsTotalNationalPercent>
                 <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
                 <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} percentOfTotalColumns={0.9} width={width * 0.9} />
                 <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>

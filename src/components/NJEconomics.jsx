@@ -13,8 +13,8 @@ import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_JURISDICTION_ECONOMICS = gql`
-  query getJurisdictionEconomics($name: String!, $languageCode: String!) {
-    jurisdictionByName(name: $name) {
+  query getJurisdictionEconomics($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
+    jurisdictionByName(nationName: $nationName, jurisdictionName: $jurisdictionName) {
       id
       name
       humanDevelopmentIndex {
@@ -154,43 +154,50 @@ class NJEconomics extends React.Component {
   }
 
   render() {
-    const { jurisdiction, language } = this.props;
+    const { jurisdiction, language, nation } = this.props;
     const { width } = this.state.dimensions;
 
     return (
       <EconomicsGrid ref={el => (this.container = el)}>
         <Query
           query={GET_JURISDICTION_ECONOMICS}
-          variables={{ name: jurisdiction, languageCode: language }}
-          >
-            {({ loading, error, data }) => {
-              if (loading) return <Loading />;
-              if (error) return <p>ERROR</p>;
+          variables={{ nationName: nation, jurisdictionName: jurisdiction, languageCode: language }}
+        >
+          {({ loading, error, data }) => {
+            if (loading) return <Loading />;
+            if (error) return <p>ERROR</p>;
 
-              const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, region } = data.jurisdictionByName;
+            const { gdp, humanDevelopmentIndex, nation, perCapitaIncome, region } = data.jurisdictionByName;
 
-              const percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;
+            let percentageOfNationalGDP;
+            let PERCENTAGE_OF_NATIONAL_GDP;
+            if (gdp && gdp.amount && nation.gdp && nation.gdp.amount) {
+              percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;
+              PERCENTAGE_OF_NATIONAL_GDP = `${percentageOfNationalGDP.toLocaleString()}% of National GDP`;
+            } else {
+              PERCENTAGE_OF_NATIONAL_GDP = 'Data Unavailable';
+            }
 
-              const humnDevelopmentIndexData = { target: null, value: humanDevelopmentIndex.amount };
-              const humanDevelopmentIndexDataSourceConfig = { caption: 'Human Development Index' };
+            const humnDevelopmentIndexData = humanDevelopmentIndex && humanDevelopmentIndex.amount ? { target: null, value: humanDevelopmentIndex.amount } : { target: null, value: null };
+            const humanDevelopmentIndexDataSourceConfig = { caption: 'Human Development Index' };
 
-              const { gdpComponents, majorExports } = region;
-              const gdpBreakdownData = gdpComponents.map(gdpComponent => {
-                return {
-                  label: gdpComponent.gdpCategory.gdpCategoryTranslate.name,
-                  value: gdpComponent.percent,
-                };
-              });
-
-              const gdpBreakdownDataSourceConfig = {
-                caption: 'GDP Breakdown',
-                numberSuffix: '%',
-                showLabels: '0',
-                showLegend: '1',
+            const { gdpComponents, majorExports } = region;
+            const gdpBreakdownData = gdpComponents.map(gdpComponent => {
+              return {
+                label: gdpComponent.gdpCategory.gdpCategoryTranslate.name,
+                value: gdpComponent.percent,
               };
+            });
 
-              return (
-                <>
+            const gdpBreakdownDataSourceConfig = {
+              caption: 'GDP Breakdown',
+              numberSuffix: '%',
+              showLabels: '0',
+              showLegend: '1',
+            };
+
+            return (
+              <>
                 <EconomicsTitle>Economics</EconomicsTitle>
                 <EconomicsTotalTitle>Human Development Index</EconomicsTotalTitle>
                 <BulletChart data={humnDevelopmentIndexData} dataSourceConfig={humanDevelopmentIndexDataSourceConfig} justify="center" percentOfTotalColumns={1} width={width} />
@@ -199,7 +206,7 @@ class NJEconomics extends React.Component {
                 <EconomicsTotalNationalPercent>Annual</EconomicsTotalNationalPercent>
                 <EconomicsTotalTitle>State GDP</EconomicsTotalTitle>
                 <EconomicsTotalValue>{`${gdp.amount.toLocaleString()} ${gdp.units}`}</EconomicsTotalValue>
-                <EconomicsTotalNationalPercent>{`${percentageOfNationalGDP.toLocaleString()}% of National GDP`}</EconomicsTotalNationalPercent>
+                <EconomicsTotalNationalPercent>{PERCENTAGE_OF_NATIONAL_GDP}</EconomicsTotalNationalPercent>
                 <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} width={width * 1} percentOfTotalColumns={1} />
                 <EconomicsTagListContainer>
                   <EconomicsTotalTitle>Major Exports</EconomicsTotalTitle>
