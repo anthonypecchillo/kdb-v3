@@ -14,7 +14,7 @@ export default {
       },
       map: {
         TITLE: 'GCF Task Force',
-        SUB_TITLE: '38 States and Provinces from 10 countries',
+        SUB_TITLE: '38 Member States and Provinces from 10 Countries',
         NAVIGATE_FULL_DATABASE: 'Navigate Full Database',
       },
       sellingPoints: {
@@ -48,7 +48,7 @@ export default {
       },
       map: {
         TITLE: 'GCF Task Force',
-        SUB_TITLE: '38 estados y provincias de 10 países',
+        SUB_TITLE: '38 Estados Miembros y Provincias de 10 Países',
         NAVIGATE_FULL_DATABASE: 'Navegar por la Base de Datos Completa',
       },
       sellingPoints: {
@@ -82,7 +82,7 @@ export default {
       },
       map: {
         TITLE: 'GCF Task Force',
-        SUB_TITLE: '38 États et provinces de 10 pays',
+        SUB_TITLE: '38 États Membres et Provinces de 10 Pays',
         NAVIGATE_FULL_DATABASE: 'Naviguer dans la Base de Données Complète',
       },
       sellingPoints: {
@@ -116,7 +116,7 @@ export default {
       },
       map: {
         TITLE: 'GCF Task Force',
-        SUB_TITLE: '38 Negara dan Provinsi dari 10 negara',
+        SUB_TITLE: '38 Negara Anggota dan Provinsi dari 10 Negara',
         NAVIGATE_FULL_DATABASE: 'Menavigasi Basis Data Lengkap',
       },
       sellingPoints: {
@@ -150,7 +150,7 @@ export default {
       },
       map: {
         TITLE: 'GCF Task Force',
-        SUB_TITLE: '38 estados e províncias de 10 países',
+        SUB_TITLE: '38 Estados-Membros e Províncias de 10 Países',
         NAVIGATE_FULL_DATABASE: 'Navegar no Banco de Dados Completo',
       },
       sellingPoints: {
