@@ -124,8 +124,7 @@ class NJDemographics extends React.Component {
             if (error) return <p>ERROR</p>;
 
             const { nation, population, region } = data.jurisdictionByName;
-            const { urbanVsRural, socialGroupComponents } = region;
-            const { urbanPopulation, ruralPopulation } = urbanVsRural;
+            const { socialGroupComponents } = region;
 
             let percentageOfNationalPopulation;
             let PERCENTAGE_OF_NATIONAL_POPULATION;
@@ -136,11 +135,23 @@ class NJDemographics extends React.Component {
               PERCENTAGE_OF_NATIONAL_POPULATION = 'Data Unavailable';
             }
 
-            const urbanVsRuralData = [
-              { label: 'Urban', value: Math.round((urbanPopulation * 0.01) * population.amount) },
-              { label: 'Rural', value: Math.round((ruralPopulation * 0.01) * population.amount) },
-            ];
-            const urbanVsRuralDataTotal = urbanVsRuralData.reduce((acc, { value }) => acc + value, 0).toLocaleString();
+            let urbanVsRuralData;
+            let urbanVsRuralDataTotal;
+            if (region.urbanVsRural) {
+              const { urbanPopulation, ruralPopulation } = region.urbanVsRural;
+              urbanVsRuralData = [
+                { label: 'Urban', value: Math.round((urbanPopulation * 0.01) * population.amount) },
+                { label: 'Rural', value: Math.round((ruralPopulation * 0.01) * population.amount) },
+              ];
+              urbanVsRuralDataTotal = urbanVsRuralData.reduce((acc, { value }) => acc + value, 0).toLocaleString();
+            } else {
+              urbanVsRuralData = [
+                { label: 'Urban', value: null },
+                { label: 'Rural', value: null },
+              ];
+              urbanVsRuralDataTotal = '';
+            }
+
             const urbanVsRuralDataSourceConfig = {
               caption: 'Population Distribution',
               centerLabel: '$label:<br/><br/>$value',
@@ -151,6 +162,7 @@ class NJDemographics extends React.Component {
             const socialGroupsData = socialGroupComponents.map(component => {
               return { label: component.socialGroupCategory.socialGroupCategoryTranslate.name, value: component.percent };
             });
+            console.log(socialGroupsData)
             const socialGroupsDataSourceConfig = {
               caption: 'Ethnic Distribution',
               // numberSuffix: ' people',
