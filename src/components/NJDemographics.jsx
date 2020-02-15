@@ -160,9 +160,14 @@ class NJDemographics extends React.Component {
             };
 
             const socialGroupsData = socialGroupComponents.map(component => {
+              if (!component.percent) {
+                const sumOfComponentAmounts = socialGroupComponents.reduce((acc, curr) => curr.amount + acc, 0);
+                const calculatedPercent = (component.amount / sumOfComponentAmounts) * 100;
+                return { label: component.socialGroupCategory.socialGroupCategoryTranslate.name, value: calculatedPercent };
+              }
               return { label: component.socialGroupCategory.socialGroupCategoryTranslate.name, value: component.percent };
             });
-            console.log(socialGroupsData)
+
             const socialGroupsDataSourceConfig = {
               caption: 'Ethnic Distribution',
               // numberSuffix: ' people',
