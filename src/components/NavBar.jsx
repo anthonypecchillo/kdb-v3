@@ -19,6 +19,7 @@ const NavBarGrid = styled.div`
 
   background-color: white;
   border-bottom: 3px solid #3e522d;
+  color: #3e522d;
   height: 75px;
   min-width: 320px;
   overflow: hidden;
@@ -86,11 +87,11 @@ const NavItemLink = styled(Link)`
   }
 
   &:link {
-    color: black;
+    color: #3e522d;
   }
 
   &:visited {
-    color: black;
+    color: #3e522d;
   }
 `;
 

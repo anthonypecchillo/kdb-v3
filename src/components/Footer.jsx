@@ -38,7 +38,7 @@ const FooterGrid = styled.div`
   ${'' /* background-color: #3e522d; */}
   background-color: white;
   border-top: 3px solid #3e522d;
-  color: black;
+  color: #3e522d;
   height: 352px;
 
   @media (max-width: 765px) {
@@ -126,7 +126,7 @@ const FooterNavListItemGrid = styled.div`
   display: grid;
   grid-template-columns: 30px auto 4fr;
 
-  color: black;
+  color: #3e522d;
   cursor: pointer;
   transition: color 0.4s ease 0.05s;
 
@@ -140,11 +140,11 @@ const FooterNavListItemGrid = styled.div`
   }
 
   &:link {
-    color: black;
+    color: #3e522d;
   }
 
   &:visited {
-    color: black;
+    color: #3e522d;
   }
 
   @media (max-width: 765px) {
@@ -175,7 +175,7 @@ const Icon = styled.i`
 const SocialIcon = styled.i`
   place-self: start;
 
-  color: black;
+  color: #3e522d;
   transition: color 0.6s ease 0s;
 
   &:hover {
