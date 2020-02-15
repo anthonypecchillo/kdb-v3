@@ -45,6 +45,7 @@ const NJMapConfig = {
       { internalId: '014', newId: 'Para' },
       { internalId: '022', newId: 'Rondonia' },
       { internalId: '023', newId: 'Roraima' },
+      { internalId: '027', newId: 'Tocantins' },
     ],
     data: [
       { id: 'Acre', value: '148125', link: '/brazil/acre', showLabel: '1' },
@@ -55,6 +56,7 @@ const NJMapConfig = {
       { id: 'Para', value: '861816', link: '/brazil/para', showLabel: '1' },
       { id: 'Rondonia', value: '123111', link: '/brazil/rondonia', showLabel: '1' },
       { id: 'Roraima', value: '147293', link: '/brazil/roraima', showLabel: '1' },
+      { id: 'Tocantins', value: '191073', link: '/brazil/tocantins', showLabel: '1' },
     ],
   },
   indonesia: {
@@ -123,8 +125,8 @@ const NJMapConfig = {
       { internalId: 'CI.MV', newId: 'Cavally' },
     ],
     data: [
-      { id: 'Belier', value: '5', link: '/ivorycoast/belier', showLabel: '1' },
-      { id: 'Cavally', value: '5', link: '/ivorycoast/cavally', showLabel: '1' },
+      { id: 'Belier', value: '826', link: '/ivorycoast/belier', showLabel: '1' },
+      { id: 'Cavally', value: '820', link: '/ivorycoast/cavally', showLabel: '1' },
     ],
   },
   colombia: {
@@ -137,7 +139,7 @@ const NJMapConfig = {
   },
   nigeria: {
     entityDef: [{ internalId: 'NG.CR', newId: 'Cross River' }],
-    data: [{ id: 'Cross River', value: '5', link: '/nigeria/crossriver', showLabel: '1' }],
+    data: [{ id: 'Cross River', value: '2070', link: '/nigeria/crossriver', showLabel: '1' }],
   },
 };
 
