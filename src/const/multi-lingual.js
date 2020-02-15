@@ -30,7 +30,7 @@ export default {
       ABOUT: ' About',
       SOURCES: ' Sources',
       CONTACTS: ' Contacts',
-      BACK_TO_MAIN_SITE: ' Back to Main Site',
+      BACK_TO_MAIN_SITE: ' GCF Task Force Home',
     },
   },
   es: {
@@ -64,7 +64,7 @@ export default {
       ABOUT: ' Acerca de',
       SOURCES: ' Fuentes',
       CONTACTS: ' Contactos',
-      BACK_TO_MAIN_SITE: ' Volver al Sitio Principal',
+      BACK_TO_MAIN_SITE: ' GCF Task Force Hogar',
     },
   },
   fr: {
@@ -98,7 +98,7 @@ export default {
       ABOUT: ' À Propos',
       SOURCES: ' Sources',
       CONTACTS: ' Contacts',
-      BACK_TO_MAIN_SITE: ' Retour au Site Principal',
+      BACK_TO_MAIN_SITE: ' GCF Task Force Accueil',
     },
   },
   id: {
@@ -132,7 +132,7 @@ export default {
       ABOUT: ' Tentang',
       SOURCES: ' Sumber',
       CONTACTS: ' Kontak',
-      BACK_TO_MAIN_SITE: ' Kembali ke Situs Utama',
+      BACK_TO_MAIN_SITE: ' GCF Task Force Rumah',
     },
   },
   pt: {
@@ -166,7 +166,7 @@ export default {
       ABOUT: ' Sobre',
       SOURCES: ' Fontes',
       CONTACTS: ' Contatos',
-      BACK_TO_MAIN_SITE: ' Voltar ao Site Principal',
+      BACK_TO_MAIN_SITE: ' GCF Task Force Casa',
     },
   },
 };
