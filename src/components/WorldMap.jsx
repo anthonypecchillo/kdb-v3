@@ -603,6 +603,21 @@ const chartConfigs = {
   dataFormat: 'json',
   dataSource,
   events: {
+    beforeRender(evt, args) {
+      evt.sender.configureLink({
+        overlayButton: {
+          message: '⬅',
+          // message: '← ⇦ ⬅ ⬲',
+          fontColor: '#3e522d',
+          bgColor: '#ffffff',
+          borderColor: '#ffffff',
+          fontSize: '48',
+          padding: '20',
+          // font:
+          // bold:
+        }
+      }, 0);
+    },
     entityClick(eventObj) {
       const outerMapTypes = [
         'usa',
@@ -630,7 +645,9 @@ const chartConfigs = {
 };
 
 const WorldMap = () => (
-  <ReactFC {...chartConfigs} />
+  <ReactFC
+    {...chartConfigs}
+  />
 );
 
 export default WorldMap;
