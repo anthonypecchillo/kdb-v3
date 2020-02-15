@@ -64,7 +64,7 @@ class OldGovernanceData extends React.Component {
 
     return (
       <OldGovernanceDataGrid>
-        <OldGovernanceDataTitle>Old Governance Data</OldGovernanceDataTitle>
+        <OldGovernanceDataTitle>Previous Governance Data</OldGovernanceDataTitle>
         <Tabs
           activeTab={activeTab}
           handleTabClick={this.handleTabClick}
