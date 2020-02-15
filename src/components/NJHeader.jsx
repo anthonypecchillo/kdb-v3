@@ -117,11 +117,16 @@ class NJHeader extends React.Component {
   }
 
   handleScroll() {
-    if (window.pageYOffset <= 340) {
+    // Commented this if out because, though it prevents unnecessary re-renders when NJHeader is
+    // no longer visible, if the user scrolls down really fast/hard, the opacity of NJMapContainer
+    // doesn't update properly. Probably because there was only one scroll event, though the page
+    // continues to scroll downward after the intial "force" by the user's finger. /shrug
+
+    // if (window.pageYOffset <= 340) {
       this.setState({
         pageYOffset: window.pageYOffset,
       });
-    }
+    // }
   }
 
   render() {
