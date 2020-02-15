@@ -15,7 +15,7 @@ import PNSLogo from '../assets/logos/PNS.png';
 import RBFLogo from '../assets/logos/RBF.png';
 import TCGLogo from '../assets/logos/TCG.png';
 
-const FACEBOOK_URL = 'https://www.facebook.com/gcf.taskforce';
+const FACEBOOK_URL = 'https://www.facebook.com/GCFTF';
 const CIFOR_URL = 'https://www.cifor.org';
 const EII_URL = 'https://www.earthinnovation.org';
 const GCFTF_URL = 'https://www.gcftf.org';
