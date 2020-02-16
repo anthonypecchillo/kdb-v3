@@ -49,7 +49,7 @@ const NJNavLink = styled(NavLink)`
     color: black;
   }
 
-  /* @media (max-width: 990px) {
+  /* @media (max-width: 1025px) {
     display: none;
   } */
 `;

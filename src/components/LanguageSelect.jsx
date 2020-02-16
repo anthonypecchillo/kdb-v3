@@ -53,7 +53,7 @@ const StyledSelect = styled.select`
     font-weight: normal;
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 1026px) {
     align-self: end;
     justify-self: start;
 

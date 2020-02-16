@@ -93,7 +93,7 @@ const NJMapContainer = styled.div`
   overflow: hidden;
   width: 100%;
 
-  @media (max-width: 990px) {
+  @media (max-width: 1025px) {
     display: none;
   }
 `;

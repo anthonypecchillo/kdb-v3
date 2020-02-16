@@ -26,7 +26,7 @@ const NavBarGrid = styled.div`
   width: 100%;
   z-index: 999;
 
-  @media (max-width: 990px) {
+  @media (max-width: 1025px) {
     grid-template-columns: 1fr 10fr 1fr;
     grid-template-areas: 'logo navtitle hamburger';
     justify-content: space-between;
@@ -42,7 +42,7 @@ const Logo = styled.div`
   margin-left: 10px;
   width: 75px;
 
-  @media (max-width: 990px) {
+  @media (max-width: 1025px) {
     margin-left: 38.25px;
   }
 
@@ -67,7 +67,7 @@ const NavTitle = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 990px) {
+  @media (max-width: 1025px) {
     text-align: center;
   }
 
@@ -110,7 +110,7 @@ const NavItem = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 990px) {
+  @media (max-width: 1025px) {
     display: none;
   }
 `;
@@ -123,7 +123,7 @@ const SearchBar = styled.div`
   min-width: 252px;
   width: 90%;
 
-  @media (max-width: 990px) {
+  @media (max-width: 1025px) {
     display: none;
   }
 `;
@@ -158,7 +158,8 @@ const SearchBarButton = styled.button`
 
 const HamburgerIcon = styled.i`
   grid-area: hamburger
-  place-self: center;
+  align-self: center;
+  justify-self: right;
 
   font-size: 36px;
   margin-right: 5vw;
@@ -171,11 +172,11 @@ const HamburgerIcon = styled.i`
     cursor: pointer;
   }
 
-  @media (min-width: 991px) {
+  @media (min-width: 1026px) {
     display: none;
   }
 
-  @media (max-width: 990px) {
+  @media (max-width: 1025px) {
     margin-right: 38.25px;
   }
 

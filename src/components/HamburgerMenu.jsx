@@ -43,7 +43,7 @@ const SearchBar = styled.div`
   min-width: 252px;
   text-align: center;
 
-  @media (min-width: 991px) {
+  @media (min-width: 1026px) {
     display: none;
   }
 `;
@@ -92,7 +92,7 @@ const NavLink = styled.div`
     cursor: pointer;
   }
 
-  @media (min-width: 991px) {
+  @media (min-width: 1026px) {
     display: none;
   }
 `;
