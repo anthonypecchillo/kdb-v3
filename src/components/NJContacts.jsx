@@ -10,7 +10,8 @@ import styled from 'styled-components';
 import Loading from './Loading';
 
 import Avatar from '../assets/images/avatar.png';
-import William from '../assets/images/william-boyd.jpg';
+import Bill from '../assets/images/bill-gates.jpg';
+import Michelle from '../assets/images/michelle-obama.jpg';
 
 const GET_JURISDICTION_CONTACTS = gql`
   query getJurisdictionByName($nationName: String!, $jurisdictionName: String!) {
@@ -132,6 +133,17 @@ const NJContacts = ({ jurisdiction, nation }) => {
     <ContactsGrid>
       <ContactsTitle>Contacts</ContactsTitle>
       {contacts.map(({ companyTitle, email, firstName, id, lastName }, index) => {
+
+        // TODO: Remove this and use actual contact photos
+        let photo;
+        if (index === 0) {
+          photo = Bill;
+        } else if (index === 1) {
+          photo = Michelle;
+        } else {
+          photo = null;
+        }
+
         const emailView = !email ? (
           <br />
         ) : (
@@ -143,7 +155,7 @@ const NJContacts = ({ jurisdiction, nation }) => {
           <ContactsCardGrid key={id}>
             <ContactsRoleTitle>{roles[index]}</ContactsRoleTitle>
             {/* TODO: Replace with actual contact images */}
-            <ContactsPhoto photo={William} />
+            <ContactsPhoto photo={photo} />
             <ContactsDetails>
               <ContactsDetailsText isName>{`${firstName} ${lastName}`}</ContactsDetailsText>
               <ContactsDetailsText>{companyTitle}</ContactsDetailsText>
