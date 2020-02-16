@@ -130,7 +130,7 @@ class NJHeader extends React.Component {
   }
 
   render() {
-    const { flags, fullName, headerImageURL, jurisdictionType, nationName, stateName } = this.props;
+    const { flags, fullName, headerImageURL, jurisdictionType, nationName, jurisdictionName } = this.props;
     const { pageYOffset } = this.state;
 
     // Linear Fade Formula: MaxOpacity + startYPositionForFade - window.pageYOffset / endYPositionForFade
@@ -143,7 +143,7 @@ class NJHeader extends React.Component {
     // Multiply this one by 3 so that container shadow fades at 3x rate as container itself
     const mapContainerShadowOpacity = 0.08 - Math.pow(pageYOffset / 340, 3) * 0.08 * 3;
 
-    return(
+    return (
       <NJHeaderGrid bannerURL={headerImageURL}>
         <NJHeaderTitle>{fullName}</NJHeaderTitle>
         <NJHeaderFlags>
@@ -152,7 +152,7 @@ class NJHeader extends React.Component {
         </NJHeaderFlags>
         <NJNav navLinkList={navLinkList} />
         <NJMapContainer opacity={mapContainerOpacity} shadowOpacity={mapContainerShadowOpacity}>
-          <NJMap jurisdictionType={jurisdictionType} nationName={nationName} stateName={stateName} />
+          <NJMap jurisdictionType={jurisdictionType} nationName={nationName} jurisdictionName={jurisdictionName} />
         </NJMapContainer>
       </NJHeaderGrid>
     );

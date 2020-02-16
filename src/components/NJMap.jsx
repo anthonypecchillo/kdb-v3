@@ -146,16 +146,17 @@ const NJMapConfig = {
 class MapDataSource {
   constructor(nation) {
     this.chart = {
-      entityFillHoverColor: '#cccccc',
+      entityFillHoverColor: '#87ceeb',
       entityToolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>",
       numberSuffix: ' km²',
       showLabels: '0',
       theme: 'fusion',
-      nullentitycolor: '#C3D2DA',
+      nullentitycolor: '#c3d2da',
       showLegend: false,
       chartRightMargin: 40,
       chartBottomMargin: 18,
       bgAlpha: '0',
+      baseFontColor: '#ffffff',
       // canvasBgAlpha: '1',
     };
 
@@ -189,19 +190,19 @@ class MapDataSource {
   }
 }
 
-const NJMap = ({ nationName, stateName }) => {
+const NJMap = ({ nationName, jurisdictionName }) => {
   const nation = nationName.toLowerCase().split(' ').join('');
   const chartType = nation === 'ivorycoast' ? 'cotedivoire' : nation;
   const dataSource = new MapDataSource(nation);
 
-  if (stateName) {
-    const name = stateName || nationName;
+  if (jurisdictionName) {
+    const name = jurisdictionName || nationName;
     const normalizedName = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
     dataSource.data = dataSource.data.map(entity => {
       if (entity.id === normalizedName) {
         const copy = { ...entity };
-        copy.color = '#87ceeb';
+        copy.color = '#2c516e';
         return copy;
       }
       return entity;
