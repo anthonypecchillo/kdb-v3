@@ -175,7 +175,7 @@ class NJEconomics extends React.Component {
               percentageOfNationalGDP = (gdp.amount / nation.gdp.amount) * 100;
               PERCENTAGE_OF_NATIONAL_GDP = `${percentageOfNationalGDP.toLocaleString()}% of National GDP`;
             } else {
-              PERCENTAGE_OF_NATIONAL_GDP = 'Data Unavailable';
+              PERCENTAGE_OF_NATIONAL_GDP = 'Data unavailable';
             }
 
             const humnDevelopmentIndexData = humanDevelopmentIndex && humanDevelopmentIndex.amount ? { target: null, value: humanDevelopmentIndex.amount } : { target: null, value: null };

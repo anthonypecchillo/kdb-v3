@@ -132,7 +132,7 @@ class NJDemographics extends React.Component {
               percentageOfNationalPopulation = (population.amount / nation.population.amount) * 100
               PERCENTAGE_OF_NATIONAL_POPULATION = `${percentageOfNationalPopulation.toLocaleString()}% of National Population`;
             } else {
-              PERCENTAGE_OF_NATIONAL_POPULATION = 'Data Unavailable';
+              PERCENTAGE_OF_NATIONAL_POPULATION = 'Data unavailable';
             }
 
             let urbanVsRuralData;
