@@ -12,7 +12,8 @@ import Tile from './Tile';
 
 const GovernanceGrid = styled.div`
   display: grid;
-  grid-gap: 2%;
+  grid-column-gap: 2%;
+  grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 80vh 80vh;
 
@@ -20,11 +21,11 @@ const GovernanceGrid = styled.div`
   width: 100%;
 `;
 
-const NJGovernancePage = ({ jurisdictionName, language, nationName }) => {
+const NJGovernancePage = ({ jurisdictionName, jurisdictionType, language, nationName }) => {
   return (
     <GovernanceGrid>
       <Tile>
-        <Programs jurisdiction={jurisdictionName} language={language} nation={nationName} />
+        <Programs jurisdiction={jurisdictionName} jurisdictionType={jurisdictionType} language={language} nation={nationName} />
       </Tile>
       <Tile>
         <Safeguards jurisdiction={jurisdictionName} language={language} nation={nationName} />
