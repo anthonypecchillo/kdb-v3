@@ -42,7 +42,7 @@ class DoughnutDataSource {
       decimals: '1',
       showLegend: '0',
       formatNumberScale: '0',
-      chartRightMargin: '-6',
+      chartRightMargin: '0',
       // palette: '1',
       // paletteColors: '#FF0000, #0372AB, #FF5904',
       // showZeroPies: '0',
@@ -100,6 +100,7 @@ class DoughnutChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
+    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -123,12 +124,12 @@ class DoughnutChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, gridColumn, gridRow, justify } = this.props;
+    const { align, data, dataSourceConfig, gridColumn, gridRow, justify, width } = this.props;
 
     const dataSource = new DoughnutDataSource(data, dataSourceConfig);
     const chartConfigs = {
       type: 'doughnut2d',
-      // width: '350',
+      width,
       height: '250',
       containerBackgroundOpacity: '0',
       dataFormat: 'json',

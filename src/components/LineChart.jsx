@@ -16,7 +16,7 @@ class LineDataSource {
   constructor(categories, data, { caption, numberSuffix, xAxisName, yAxisName }) {
     this.chart = {
       caption,
-      numberSuffix,
+      // numberSuffix,
       xAxisName,
       yAxisName,
       lineThickness: '2',
@@ -257,6 +257,7 @@ class LineChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
+    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -264,8 +265,11 @@ class LineChart extends React.Component {
   }
 
   resize = () => { 
-    if (this.state.chart) {
-      this.state.chart.resizeTo(this.state.chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * 0.6, this.state.chart.height);
+    const { percentOfTotalColumns } = this.props;
+    const { chart } = this.state;
+
+    if (chart) {
+      chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
     } 
   }
 
@@ -277,13 +281,14 @@ class LineChart extends React.Component {
   }
 
   render() {
-    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify } = this.props;
+    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, height = '400', width } = this.props;
 
     const dataSource = new LineDataSource(categories, data, dataSourceConfig);
     const chartConfigs = {
       type: 'line',
       // width: '700',
-      height: '400',
+      height,
+      width,
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
       dataSource,

@@ -139,6 +139,7 @@ class BulletChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
+    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
