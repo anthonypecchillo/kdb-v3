@@ -12,7 +12,7 @@ import Loading from './Loading';
 import PieChart from './PieChart';
 
 const GET_NATION_DEMOGRAPHICS = gql`
-  query getNationDemographics($name: String!) {
+  query getNationDemographics($name: String!, $languageCode: String!) {
     nationByName(name: $name) {
       id
       name
@@ -34,47 +34,19 @@ const GET_NATION_DEMOGRAPHICS = gql`
           ruralPopulation
           citation_id
         }
+        socialGroupComponents {
+          amount
+          percent
+          socialGroupCategory {
+            socialGroupCategoryTranslate(code: $languageCode) {
+              name
+            }
+          }
+        }
       }
     }
   }
 `;
-
-const data3 = [
-  {
-    label: 'Multi-ethnic',
-    value: 550037,
-    // color: '#ff69b4',
-  },
-  {
-    label: 'White',
-    value: 198279,
-  },
-  {
-    label: 'Black',
-    value: 48118,
-  },
-  {
-    label: 'Indigenous',
-    value: 18252,
-  },
-  {
-    label: 'Indigenous',
-    value: 18252,
-  },
-  {
-    label: 'Other',
-    value: 15762,
-  },
-];
-
-const dataSourceConfig3 = {
-  caption: 'Ethnic Distribution',
-  // xAxisName: 'Vegetation Type',
-  // yAxisName: 'Land Area (km²)',
-  numberSuffix: ' people',
-  showLabels: '0',
-  showLegend: '1',
-};
 
 const DemographicsGrid = styled.div`
   display: grid;
@@ -117,16 +89,18 @@ const DemographicsCitation = styled.div`
   padding: 0 1.25%;
 `;
 
-const NationalDemographics = ({ nation }) => {
+const NationalDemographics = ({ language, nation }) => {
   const { data, loading, error } = useQuery(GET_NATION_DEMOGRAPHICS, {
-    variables: { name: nation },
+    variables: { name: nation, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { population, region } = data.nationByName;
+  const { socialGroupComponents } = region;
 
-  const percentageOfGlobalPopulation = (population.amount / 7577130400) * 100;
+  const populationAmount = population ? population.amount.toLocaleString() : 'Data unavailable';
+  const percentageOfGlobalPopulation = population ? `${((population.amount / 7577130400) * 100).toLocaleString()}% of Global Population` : 'Data unavailable';
 
   let urbanVsRuralData;
   let urbanVsRuralDataTotal;
@@ -152,14 +126,34 @@ const NationalDemographics = ({ nation }) => {
     numberSuffix: ' people',
   };
 
+  let socialGroupsData;
+  if (socialGroupComponents) {
+    socialGroupsData = socialGroupComponents.map(component => {
+      if (!component.percent) {
+        const sumOfComponentAmounts = socialGroupComponents.reduce((acc, curr) => curr.amount + acc, 0);
+        const calculatedPercent = (component.amount / sumOfComponentAmounts) * 100;
+        return { label: component.socialGroupCategory.socialGroupCategoryTranslate.name, value: calculatedPercent };
+      }
+      return { label: component.socialGroupCategory.socialGroupCategoryTranslate.name, value: component.percent };
+    });
+  }
+
+  const socialGroupsDataSourceConfig = {
+    caption: 'Ethnic Distribution',
+    // numberSuffix: ' people',
+    numberSuffix: '%',
+    showLabels: '0',
+    showLegend: '1',
+  };
+
   return (
     <DemographicsGrid>
       <DemographicsTitle>Demographics</DemographicsTitle>
       <DemographicsTotalTitle>Total Population:</DemographicsTotalTitle>
-      <DemographicsTotalValue>{population.amount.toLocaleString()}</DemographicsTotalValue>
-      <DemographicsTotalNationalPercent>{`${percentageOfGlobalPopulation.toLocaleString()}% of Global Population`}</DemographicsTotalNationalPercent>
+      <DemographicsTotalValue>{populationAmount}</DemographicsTotalValue>
+      <DemographicsTotalNationalPercent>{percentageOfGlobalPopulation}</DemographicsTotalNationalPercent>
       <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-      <PieChart data={data3} dataSourceConfig={dataSourceConfig3} justify="center" height={'310'} width="370" percentOfTotalColumns={0.9} />
+      <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} width="370" percentOfTotalColumns={0.9} />
       <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
     </DemographicsGrid>
   );

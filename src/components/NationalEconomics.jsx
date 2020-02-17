@@ -144,7 +144,7 @@ const NationalEconomics = ({ language, nation }) => {
     percentageOfGlobalGDP = gdp.amount / 80270000000000 * 100;
     PERCENTAGE_OF_GLOBAL_GDP = `${percentageOfGlobalGDP.toLocaleString()}% of Gross World Product`;
   } else {
-    PERCENTAGE_OF_GLOBAL_GDP = 'Data Unavailable';
+    PERCENTAGE_OF_GLOBAL_GDP = 'Data unavailable';
   }
 
   const humnDevelopmentIndexData = humanDevelopmentIndex && humanDevelopmentIndex.amount ? { target: null, value: humanDevelopmentIndex.amount } : { target: null, value: null };
@@ -154,14 +154,14 @@ const NationalEconomics = ({ language, nation }) => {
   if (perCapitaIncome && perCapitaIncome.amount && perCapitaIncome.units) {
     PER_CAPITA_INCOME = `${Math.round(perCapitaIncome.amount).toLocaleString()} ${perCapitaIncome.units}`;
   } else {
-    PER_CAPITA_INCOME = 'Data Unavailable';
+    PER_CAPITA_INCOME = 'Data unavailable';
   }
 
   let GDP;
   if (gdp && gdp.amount && gdp.units) {
     GDP = `${gdp.amount.toLocaleString()} ${gdp.units}`;
   } else {
-    GDP = 'Data Unavailable';
+    GDP = 'Data unavailable';
   }
 
   const { gdpComponents, majorExports } = region;
