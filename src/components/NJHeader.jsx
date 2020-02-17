@@ -8,7 +8,26 @@ import styled from 'styled-components';
 import NJMap from './NJMap';
 import NJNav from './NJNav';
 
-const navLinkList = [
+const navLinkListNational = [
+  {
+    linkText: 'Overview',
+    urlText: 'overview',
+  },
+  {
+    linkText: 'Approaches',
+    urlText: 'approaches',
+  },
+  {
+    linkText: 'Governance',
+    urlText: 'governance',
+  },
+  {
+    linkText: 'Partnerships',
+    urlText: 'partnerships',
+  },
+];
+
+const navLinkListJurisdictional = [
   {
     linkText: 'Overview',
     urlText: 'overview',
@@ -132,6 +151,7 @@ class NJHeader extends React.Component {
   render() {
     const { flags, fullName, headerImageURL, jurisdictionType, nationName, jurisdictionName } = this.props;
     const { pageYOffset } = this.state;
+    const navLinkList = jurisdictionType === 'nation' ? navLinkListNational : navLinkListJurisdictional;
 
     // Linear Fade Formula: MaxOpacity + startYPositionForFade - window.pageYOffset / endYPositionForFade
     // const mapContainerOpacity = 1 + 0.29 - Math.pow(pageYOffset / 340, 2);

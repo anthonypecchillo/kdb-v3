@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import NationalOverviewPage from './NationalOverviewPage';
+import NationalApproachesPage from './NationalApproachesPage';
+import NationalGovernancePage from './NationalGovernancePage';
 import ScrollToTopOnMount from './ScrollToTopOnMount';
 
 import NJOverviewPage from './NJOverviewPage';
@@ -32,11 +34,11 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
       case 'overview':
         view = <NationalOverviewPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
-      case 'forests-and-land-use':
-        view = <NJForestAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+      case 'approaches':
+        view = <NationalApproachesPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
       case 'governance':
-        view = <NJGovernancePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        view = <NationalGovernancePage jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} nationName={nationName} language={language} />;
         break;
       case 'partnerships':
         view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
@@ -58,7 +60,7 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
         view = <NJForestAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
       case 'governance':
-        view = <NJGovernancePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        view = <NJGovernancePage jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} nationName={nationName} language={language} />;
         break;
       case 'partnerships':
         view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
