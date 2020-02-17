@@ -168,7 +168,13 @@ const NJDeforestation = ({ jurisdiction, language, nation }) => {
         justify="left"
         percentOfTotalColumns={0.33}
       />
-      <LineChart data={deforestationRatesData} dataSourceConfig={deforestationRatesDataSourceConfig} gridColumn="2/4" justify="center" />
+      <LineChart
+        data={deforestationRatesData}
+        dataSourceConfig={deforestationRatesDataSourceConfig}
+        gridColumn="2/4"
+        justify="center"
+        percentOfTotalColumns={0.66}
+      />
       <DeforestationText>
         {driversOfDeforestationHTML}
       </DeforestationText>
