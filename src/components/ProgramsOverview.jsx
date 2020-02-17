@@ -9,6 +9,8 @@ import overviewDiagramURL from '../assets/images/Acre-Programs-Overview.png';
 
 const content = (
   <div>
+    <h1 style={{ color: 'red', textAlign: 'center' }}>Stubbed From Mod Site</h1>
+    <h3 style={{ color: 'red', textAlign: 'center' }}>We don't actually have any content for this section in our current database!</h3>
     <p>
       <img alt="overview-diagram" src={overviewDiagramURL} width="100%" />
     </p>

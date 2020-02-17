@@ -7,6 +7,8 @@ import styled from 'styled-components';
 
 const content = (
   <div>
+    <h1 style={{ color: 'red', textAlign: 'center' }}>Stubbed From Mod Site</h1>
+    <h3 style={{ color: 'red', textAlign: 'center' }}>We don't actually have any content for this section in our current database!</h3>
     <p>
       <strong>Benefit sharing mechanisms</strong>
       <li>

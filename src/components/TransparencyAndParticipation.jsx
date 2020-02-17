@@ -6,7 +6,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const content = (
-  <div><p><strong>Transparency and participation mechanisms</strong></p>
+  <div>
+    <h1 style={{ color: 'red', textAlign: 'center' }}>Stubbed From Mod Site</h1>
+    <h3 style={{ color: 'red', textAlign: 'center' }}>We don't actually have any content for this section in our current database!</h3>
+    <p><strong>Transparency and participation mechanisms</strong></p>
   <p>&nbsp;</p>
   <p><strong>1. Actions taken to guarantee free, prior and informed consent</strong></p>
   <p>The draft Environmental Services Incentives System (SISA) law creates an institutional arrangement that includes a Hearing Body to receive claims and mediate conflicts. Another level of participation and social control is represented by the Commission for Validation and Monitoring (CEVA) formed by government and non-government representatives chosen among members of the 3 State Councils (Environment, Forest, and Rural Development).</p>
