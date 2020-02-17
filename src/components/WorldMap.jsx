@@ -184,6 +184,7 @@ const dataSource = {
       id: 'us',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'United States',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -230,6 +231,7 @@ const dataSource = {
       id: 'brazil',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Brazil',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -277,6 +279,7 @@ const dataSource = {
       id: 'indonesia',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Indonesia',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -330,6 +333,7 @@ const dataSource = {
       id: 'mexico',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Mexico',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -375,6 +379,7 @@ const dataSource = {
       id: 'peru',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Peru',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -420,6 +425,7 @@ const dataSource = {
       id: 'colombia',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Colombia',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -454,6 +460,7 @@ const dataSource = {
       id: 'ecuador',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Ecuador',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -488,6 +495,7 @@ const dataSource = {
       id: 'cotedivoire',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Ivory Coast',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -523,6 +531,7 @@ const dataSource = {
       id: 'nigeria',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Nigeria',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
@@ -558,6 +567,7 @@ const dataSource = {
       id: 'spain',
       linkedchart: {
         chart: {
+          baseFontColor: '#ffffff',
           caption: 'Spain',
           nullentitycolor: '#C3D2DA',
           entityFillHoverColor: '#87ceeb',
