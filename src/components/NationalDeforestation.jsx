@@ -7,7 +7,6 @@ import gql from 'graphql-tag';
 import React from 'react';
 import styled from 'styled-components';
 
-import LineChart from './LineChart';
 import CombinationStackedColumnAndLineChart from './CombinationStackedColumnAndLineChart';
 import Loading from './Loading';
 
@@ -82,13 +81,6 @@ const NationalDeforestation = ({ jurisdiction, language, nation }) => {
       value: rate.amount,
     };
   });
-  const deforestationRatesDataSourceConfig = {
-    // caption: 'Deforestation Rate',
-    numberSuffix: ' km²',
-    xAxisName: 'Year',
-    yAxisName: 'Deforested Area (km²)',
-  };
-
 
   const testDeforestationRateCategories = [{
     category: deforestationRatesData.map(rate => {

@@ -13,7 +13,7 @@ import ProgramsOverview from './ProgramsOverview';
 import Tabs from './Tabs';
 
 const JURISDICTION_PROGRAMS_TAB_LABELS = ['Overview', 'Laws & Regulations', 'Institutional Frameworks'];
-const NATION_PROGRAMS_TAB_LABELS = ['Laws & Regulations', 'Previous KDB Policies & Plans', 'Previous KDB Institutions'];
+const NATION_PROGRAMS_TAB_LABELS = ['Laws & Regulations', 'Policies & Plans', 'Institutions'];
 
 const ProgramsGrid = styled.div`
   display: grid;
@@ -58,10 +58,10 @@ class Programs extends React.Component {
         case 'Laws & Regulations':
           view = <LawList jurisdiction={jurisdiction} language={language} nation={nation} />;
           break;
-        case 'Previous KDB Policies & Plans':
+        case 'Policies & Plans':
           view = <NationalPoliciesAndPlans jurisdiction={jurisdiction} language={language} nation={nation} />;
           break;
-        case 'Previous KDB Institutions':
+        case 'Institutions':
           view = <NationalInstitutions jurisdiction={jurisdiction} language={language} nation={nation} />;
           break;
         default:

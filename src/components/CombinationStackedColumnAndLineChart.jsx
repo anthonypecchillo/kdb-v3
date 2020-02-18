@@ -243,6 +243,8 @@ class CombinationStackedColumnAndLineDataSource {
 }
 
 const CombinationStackedColumnAndLineChartStyled = styled.div`
+  grid-column: ${({ gridColumn }) => gridColumn || null};
+  grid-row: ${({ gridRow }) => gridRow || null};
   justify-self: ${({ justify }) => justify || 'center'};
 `;
 
@@ -293,7 +295,7 @@ class CombinationStackedColumnAndLineChart extends React.Component {
     };
 
     return (
-      <CombinationStackedColumnAndLineChartStyled justify={justify}>
+      <CombinationStackedColumnAndLineChartStyled gridColumn={gridColumn} gridRow={gridRow} justify={justify}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </CombinationStackedColumnAndLineChartStyled>
     );
