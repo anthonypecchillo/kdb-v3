@@ -5,7 +5,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import InstitutionalFrameworksList from './InstitutionalFrameworksList';
+import InstitutionalFrameworks from './InstitutionalFrameworks';
 import LawList from './LawList';
 import NationalInstitutions from './NationalInstitutions';
 import NationalPoliciesAndPlans from './NationalPoliciesAndPlans';
@@ -78,7 +78,7 @@ class Programs extends React.Component {
           view = <LawList jurisdiction={jurisdiction} language={language} nation={nation} />;
           break;
         case 'Institutional Frameworks':
-          view = <InstitutionalFrameworksList jurisdiction={jurisdiction} language={language} nation={nation} />;
+          view = <InstitutionalFrameworks jurisdiction={jurisdiction} language={language} nation={nation} />;
           break;
         default:
           view = null;

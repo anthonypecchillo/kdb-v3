@@ -60,7 +60,7 @@ const LawList = ({ jurisdiction, language, nation }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_LAWS, {
     variables: { name: region, languageCode: language },
   });
-  if (loading) return <Loading />;;
+  if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
 
   const { laws } = data.regionByName;
