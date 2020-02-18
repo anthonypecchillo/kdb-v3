@@ -31,14 +31,18 @@ const GET_JURISDICTION_DEFORESTATION = gql`
         year
         citation_id
       }
+      deforestationDrivers {
+        id
+        deforestationDriverTranslate(code: $languageCode) {
+          name
+        }
+      }
       contentJurisdictional {
         id
         contentJurisdictionalTranslate(code: $languageCode) {
           id
           languageCode
-          description
           driversOfDeforestation
-          forestMonitoringMeasurementSystems
         }
       }
       region {
@@ -53,19 +57,6 @@ const GET_JURISDICTION_DEFORESTATION = gql`
     }
   }
 `;
-
-const TAG_LIST = [
-  'Tag 1',
-  'Tag 2',
-  'Tag 3',
-  'Tag 4',
-  'Tag 5',
-  'Tag 6',
-  'Tag 7',
-  'Tag 8',
-  'Tag 9',
-  'Tag 10',
-];
 
 const DeforestationGrid = styled.div`
   display: grid;
@@ -125,7 +116,7 @@ const NJDeforestation = ({ jurisdiction, language, nation }) => {
   const { driversOfDeforestation } = data.jurisdictionByName.contentJurisdictional.contentJurisdictionalTranslate;
   const driversOfDeforestationHTML = ReactHtmlParser(driversOfDeforestation);
 
-  const { forestArea, originalForestArea } = data.jurisdictionByName;
+  const { deforestationDrivers, forestArea, originalForestArea } = data.jurisdictionByName;
   const totalDeforestationData = [
     {
       label: 'Still<br/>Forested',
@@ -181,8 +172,8 @@ const NJDeforestation = ({ jurisdiction, language, nation }) => {
       <div>
         <DeforestationDriversTitle>Drivers of Deforestation</DeforestationDriversTitle>
         <DeforestationTagList>
-          {TAG_LIST.map((tag, index) => (
-            <DeforestationTagListItem key={index}>{tag}</DeforestationTagListItem>
+          {deforestationDrivers.map(driver => (
+            <DeforestationTagListItem key={driver.id}>{driver.deforestationDriverTranslate.name}</DeforestationTagListItem>
           ))}
         </DeforestationTagList>
       </div>
