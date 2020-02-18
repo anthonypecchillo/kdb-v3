@@ -14,7 +14,7 @@ const TabStyled = styled.div`
     isActive &&
     css`
       color: #4a4a4a;
-      border-bottom: solid 3px #4a4a4a;
+      border-bottom: solid 3px #3e522d;
     `};
   text-transform: uppercase;
   transition: color 0.4s ease 0.05s;
