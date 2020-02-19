@@ -42,6 +42,12 @@ class PieDataSource {
       // centerLabel: '$label:<br/><br/>$value',
       formatNumberScale: '0',
       chartRightMargin: '-6',
+
+      enableSmartLabels: '1',
+      manageLabelOverflow: '1',
+      useEllipsesWhenOverflow: '1',
+      // isSmartLineSlanted: '0',
+
       // minimiseWrappingInLegend: '1',
       // doughnutRadius: '75%',
       // defaultCenterLabel: defaultCenterLabel,
