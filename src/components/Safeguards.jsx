@@ -5,12 +5,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BenefitsSharing from './BenefitsSharing';
-import RightsAndTenure from './RightsAndTenure';
+import OldGovernanceSafeguards from './OldGovernanceSafeguards';
+import OldGovernanceZoningSpatialPlanning from './OldGovernanceZoningSpatialPlanning';
 import Tabs from './Tabs';
-import TransparencyAndParticipation from './TransparencyAndParticipation';
 
-const SAFEGUARDS_TAB_LABELS = ['Rights & Tenure', 'Transparency & Partic.', 'Benefits Sharing'];
+const SAFEGUARDS_TAB_LABELS = ['Overview', 'Spatial Planning'];
 
 const SafeguardsGrid = styled.div`
   display: grid;
@@ -31,7 +30,7 @@ class Safeguards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 'Rights & Tenure',
+      activeTab: 'Overview',
     };
 
     this.handleTabClick = this.handleTabClick.bind(this);
@@ -44,18 +43,16 @@ class Safeguards extends React.Component {
   }
 
   render() {
+    const { jurisdiction, language, nation } = this.props;
     const { activeTab } = this.state;
     let view;
 
     switch (activeTab) {
-      case 'Rights & Tenure':
-        view = <RightsAndTenure />;
+      case 'Overview':
+        view = <OldGovernanceSafeguards jurisdiction={jurisdiction} language={language} nation={nation} />;
         break;
-      case 'Transparency & Partic.':
-        view = <TransparencyAndParticipation />;
-        break;
-      case 'Benefits Sharing':
-        view = <BenefitsSharing />;
+      case 'Spatial Planning':
+        view = <OldGovernanceZoningSpatialPlanning jurisdiction={jurisdiction} language={language} nation={nation} />;
         break;
       default:
         view = null;

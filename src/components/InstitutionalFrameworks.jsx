@@ -37,7 +37,7 @@ const InstitutionalFrameworksGrid = styled.div`
   grid-template-rows: 29px calc(100% - 5% - 15px);
 
   border-top: 3px solid #3e522d;
-  margin: 15px 0;
+  margin: 10px 0 15px 0;
   ${'' /* padding-top: 8px; */}
   overflow-y: scroll;
   width: 100%;

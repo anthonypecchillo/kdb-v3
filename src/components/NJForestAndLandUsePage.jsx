@@ -6,7 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import NJLand from './NJLand';
-import NJVegetation from './NJVegetation';
+import NJVegetation2 from './NJVegetation2';
 import NJCO2Emissions from './NJCO2Emissions';
 import NJDeforestation from './NJDeforestation';
 import Tile from './Tile';
@@ -16,25 +16,50 @@ const ForestAndLandUseGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 800px 800px 800px;
+  grid-template-rows: 800px 800px 800px 800px;
+  grid-template-areas:
+    'land land land .'
+    'deforestation deforestation deforestation deforestation'
+    'CO2 CO2 CO2 .'
+    'vegetation vegetation . .';
 
   height: 100%;
+
+  @media (max-width: 765px) {
+    grid-template-areas:
+      'land land land land'
+      'deforestation deforestation deforestation deforestation'
+      'CO2 CO2 CO2 CO2'
+      'vegetation vegetation vegetation vegetation';
+  }
+
+  @media (max-width: 460px) {
+    grid-template-areas:
+      'land land land land'
+      'deforestation deforestation deforestation deforestation'
+      'CO2 CO2 CO2 CO2'
+      'vegetation vegetation vegetation vegetation';
+  }
 `;
 
 const NJForestAndLandUsePage = ({ nationName, jurisdictionName, language }) => (
   <ForestAndLandUseGrid>
-    <Tile gridColumn="1/3" gridRow="1/2">
+    {/* <Tile gridColumn="1/4" gridRow="1/2"> */}
+    <Tile gridArea="land">
       <NJLand jurisdiction={jurisdictionName} language={language} nation={nationName} />
     </Tile>
-    <Tile gridColumn="2/5" gridRow="2/3">
-      <NJCO2Emissions jurisdiction={jurisdictionName} language={language} nation={nationName} />
-    </Tile>
-    <Tile gridColumn="1/2" gridRow="2/3">
-      <NJVegetation jurisdiction={jurisdictionName} language={language} nation={nationName} />
-    </Tile>
-    <Tile gridColumn="1/5" gridRow="3/4">
+    {/* <Tile gridColumn="1/5" gridRow="2/3"> */}
+    <Tile gridArea="deforestation">
       <NJDeforestation jurisdiction={jurisdictionName} language={language} nation={nationName} />
     </Tile>
+    {/* <Tile gridColumn="1/4" gridRow="3/4"> */}
+    <Tile gridArea="CO2">
+      <NJCO2Emissions jurisdiction={jurisdictionName} language={language} nation={nationName} />
+    </Tile>
+    {/* <Tile gridColumn="1/3" gridRow="4/5"> */}
+    <Tile gridArea="vegetation">
+    <NJVegetation2 jurisdiction={jurisdictionName} language={language} nation={nationName} />
+  </Tile>
   </ForestAndLandUseGrid>
 );
 

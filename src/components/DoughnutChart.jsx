@@ -88,6 +88,7 @@ const DoughnutChartStyled = styled.div`
   grid-row: ${({ gridRow }) => gridRow || null};
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
+  ${'' /* width: ${({ width }) => width}; */}
 `;
 
 class DoughnutChart extends React.Component {

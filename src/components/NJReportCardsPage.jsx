@@ -20,7 +20,7 @@ const ReportCardsGrid = styled.div`
 
 const NJReportCardsPage = () => (
   <ReportCardsGrid>
-    <Tile height="600px" width="1000px">
+    <Tile height="600px" maxWidth="1000px">
       <LottieControl />
       <center>
         <h1>Under Construction!</h1>

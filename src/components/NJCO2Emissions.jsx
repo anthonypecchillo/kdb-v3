@@ -106,7 +106,7 @@ const data4 = [
 ];
 
 const dataSourceConfig4 = {
-  caption: 'CO₂ Emissions from Deforestation vs Time',
+  caption: 'CO₂ Emissions from Deforestation',
   numberSuffix: ' MtC',
   xAxisName: 'Year',
   yAxisName: 'CO₂ Mass (Million Tonnes, MtC)',

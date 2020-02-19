@@ -16,7 +16,7 @@ const Tile = styled.div`
   height: ${({ height }) => height || '100%'};
   margin: ${({ margin }) => margin || '0'};
   max-width: ${({ maxWidth }) => maxWidth || null};
-  padding: 2.5%;
+  padding: 20px 2.5%;
   width: ${({ width }) => width || '100%'};
 `;
 

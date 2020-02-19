@@ -10,7 +10,7 @@ import OldGovernanceSafeguards from './OldGovernanceSafeguards';
 import OldGovernanceZoningSpatialPlanning from './OldGovernanceZoningSpatialPlanning';
 import Tabs from './Tabs';
 
-const OLD_GOVERNANCE_DATA_TAB_LABELS = ['Safeguards', 'Zoning & Spatial Planning', 'Laws, Policy, Strategy'];
+const OLD_GOVERNANCE_DATA_TAB_LABELS = ['Laws, Policy, Strategy'];
 
 const OldGovernanceDataGrid = styled.div`
   display: grid;
@@ -31,7 +31,7 @@ class OldGovernanceData extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 'Safeguards',
+      activeTab: 'Laws, Policy, Strategy',
     };
 
     this.handleTabClick = this.handleTabClick.bind(this);
@@ -49,12 +49,6 @@ class OldGovernanceData extends React.Component {
     let view;
 
     switch (activeTab) {
-      case 'Safeguards':
-        view = <OldGovernanceSafeguards jurisdiction={jurisdiction} language={language} nation={nation} />;
-        break;
-      case 'Zoning & Spatial Planning':
-        view = <OldGovernanceZoningSpatialPlanning jurisdiction={jurisdiction} language={language} nation={nation} />;
-        break;
       case 'Laws, Policy, Strategy':
         view = <OldGovernanceLawPolicyStrategy jurisdiction={jurisdiction} language={language} nation={nation} />;
         break;
@@ -64,7 +58,7 @@ class OldGovernanceData extends React.Component {
 
     return (
       <OldGovernanceDataGrid>
-        <OldGovernanceDataTitle>Previous Governance Data</OldGovernanceDataTitle>
+        <OldGovernanceDataTitle>Laws & Policies</OldGovernanceDataTitle>
         <Tabs
           activeTab={activeTab}
           handleTabClick={this.handleTabClick}

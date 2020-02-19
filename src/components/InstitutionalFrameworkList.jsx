@@ -25,7 +25,7 @@ const InstitutionalFrameworkList = ({ activeList, frameworks }) => {
     return (
       <InstitutionalFrameworkListStyled>
         <h2>{activeList}</h2>
-        <p style={{margin: '35px 0', textAlign: 'center'}}>There are no Institutional Frameworks to display for this category at this time.</p>
+        <div style={{margin: '35px 0', textAlign: 'center', fontSize: '14px'}}>There are no Institutional Frameworks to display for this category at this time.</div>
       </InstitutionalFrameworkListStyled>
     )
   }
@@ -48,8 +48,8 @@ const InstitutionalFrameworkList = ({ activeList, frameworks }) => {
     );
   }
 
-  let nationalFrameworks = <p style={{margin: '35px 0', textAlign: 'center'}}>There are no Institutional Frameworks to display for this category at this time.</p>
-  let stateFrameworks = <p style={{margin: '35px 0', textAlign: 'center'}}>There are no Institutional Frameworks to display for this category at this time.</p>
+  let nationalFrameworks = <div style={{margin: '35px 0', textAlign: 'center', fontSize: '14px'}}>There are no Institutional Frameworks to display for this category at this time.</div>
+  let stateFrameworks = <div style={{margin: '35px 0', textAlign: 'center', fontSize: '14px'}}>There are no Institutional Frameworks to display for this category at this time.</div>
 
   if (frameworks.national.length) {
     nationalFrameworks = frameworks.national.map(framework => (

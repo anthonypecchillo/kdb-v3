@@ -35,7 +35,7 @@ const GET_JURISDICTION_DESCRIPTION = gql`
 
 const DescriptionGrid = styled.div`
   display: grid;
-  grid-gap: 3%;
+  grid-gap: 5px;
   grid-template-rows: auto 1fr;
 
   height: 100%;
@@ -72,7 +72,7 @@ const DescriptionPhoto = styled.div`
 const DescriptionContent = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  ${'' /* overflow: scroll; */}
 `;
 
 const NJDescription = ({ jurisdiction, language, nation }) => {

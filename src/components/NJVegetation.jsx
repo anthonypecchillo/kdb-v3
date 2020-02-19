@@ -47,7 +47,18 @@ const GET_JURISDICTION_LAND = gql`
 const VegetationGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  /* justify-items: center; */
+  grid-template-rows: auto 1fr 1fr 1fr;
+  ${'' /* justify-items: center; */}
+
+  width: 100%;
+
+`;
+
+const VegetationTitle = styled.h3`
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  width: 100%;
 `;
 
 const NJVegetation = ({ jurisdiction, language, nation }) => {
@@ -109,6 +120,7 @@ const NJVegetation = ({ jurisdiction, language, nation }) => {
 
   return (
     <VegetationGrid>
+      <VegetationTitle>Land (Alternate)</VegetationTitle>
       <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} />
       <PieChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="center" percentOfTotalColumns={1} />
       <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="center" percentOfTotalColumns={1} />

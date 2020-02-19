@@ -407,3 +407,8 @@ p {
   font-size: 14px;
   text-indent: 20px;
 }
+
+ul {
+  font-size: 14px;
+  list-style-position: outside;
+}

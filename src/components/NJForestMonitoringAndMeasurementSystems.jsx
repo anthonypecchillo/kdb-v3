@@ -32,7 +32,7 @@ const GET_JURISDICTION_FMMS = gql`
 
 const ForestMonitoringAndMeasurementSystemsGrid = styled.div`
   display: grid;
-  grid-gap: 3%;
+  grid-gap: 5px;
   grid-template-rows: auto 1fr;
 
   height: 100%;
@@ -49,7 +49,7 @@ const NJForestMonitoringAndMeasurementSystemsTitle = styled.h3`
 const ForestMonitoringAndMeasurementSystemsContent = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  ${'' /* overflow: scroll; */}
 `;
 
 const NJForestMonitoringAndMeasurementSystems = ({ jurisdiction, language, nation }) => {
