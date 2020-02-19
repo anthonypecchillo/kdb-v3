@@ -16,33 +16,26 @@ const OverviewGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 400px 400px 1000px 400px 550px;
+  grid-template-rows: 400px 400px;
   grid-template-areas:
     'nadma nadma nadfd nadfd'
-    'commitments commitments globalperspective globalperspective'
-    '. . . .'
-    '. . . .'
-    '. . . .';
+    'commitments commitments globalperspective globalperspective';
 
   height: 100%;
 
   @media (max-width: 765px) {
     grid-template-areas:
       'nadma nadma nadfd nadfd'
-      'commitments commitments globalperspective globalperspective'
-      '. . . .'
-      '. . . .'
-      '. . . .';
+      'commitments commitments globalperspective globalperspective';
   }
 
   @media (max-width: 460px) {
+    grid-template-rows: 800px 800px 800px 800px;
     grid-template-areas:
       'nadma nadma nadma nadma'
       'nadfd nadfd nadfd nadfd'
       'commitments commitments commitments commitments'
-      'globalperspective globalperspective globalperspective globalperspective'
-      '. . . .';
-    grid-template-rows: 800px 800px 800px 800px 1000px;
+      'globalperspective globalperspective globalperspective globalperspective';
   }
 `;
 

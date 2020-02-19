@@ -10,7 +10,11 @@ import NJHeader from './NJHeader';
 import NJBody from './NJBody';
 
 const NJPageGrid = styled.div`
-  height: 6000px;
+  display: grid;
+  grid-template-rows: 460px auto;
+
+  background-color: #e5e5e5;
+  height: auto;
   padding-top: 75px;
   width: 100%;
 `;

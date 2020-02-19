@@ -19,11 +19,19 @@ import NJPartnershipsPage from './NJPartnershipsPage';
 import NJReportCardsPage from './NJReportCardsPage';
 
 const NJBodyStyled = styled.div`
+  justify-self: center;
+
   background-color: #e5e5e5;
   /* background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); */
   height: calc(100% - 110px);
   padding: 2.5% 1.25%;
-  width: 100%;
+  width: 90%;
+  max-width: 1480px;
+
+  @media (max-width: 1025px) {
+    width: 100%;
+    max-width: none;
+  }
 `;
 
 const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) => {

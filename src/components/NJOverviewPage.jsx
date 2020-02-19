@@ -17,7 +17,7 @@ const OverviewGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 800px 800px 1000px 400px 550px;
+  grid-template-rows: 800px 800px 1000px 400px;
   grid-template-areas:
     'description description description description'
     'fmms fmms demographics demographics'
