@@ -24,6 +24,7 @@ const GET_JURISDICTION_CONTACTS = gql`
         lastName
         companyTitle
         email
+        contactType
         nation {
           id
           name
@@ -132,18 +133,7 @@ const NJContacts = ({ jurisdiction, nation }) => {
   return (
     <ContactsGrid>
       <ContactsTitle>Contacts</ContactsTitle>
-      {contacts.map(({ companyTitle, email, firstName, id, lastName }, index) => {
-
-        // TODO: Remove this and use actual contact photos
-        let photo;
-        if (index === 0) {
-          photo = Bill;
-        } else if (index === 1) {
-          photo = Michelle;
-        } else {
-          photo = null;
-        }
-
+      {contacts.map(({ companyTitle, contactType, email, firstName, id, lastName }, index) => {
         const emailView = !email ? (
           <br />
         ) : (
@@ -153,9 +143,8 @@ const NJContacts = ({ jurisdiction, nation }) => {
         );
         return (
           <ContactsCardGrid key={id}>
-            <ContactsRoleTitle>{roles[index]}</ContactsRoleTitle>
-            {/* TODO: Replace with actual contact images */}
-            <ContactsPhoto photo={photo} />
+            <ContactsRoleTitle>{contactType}</ContactsRoleTitle>
+            <ContactsPhoto />
             <ContactsDetails>
               <ContactsDetailsText isName>{`${firstName} ${lastName}`}</ContactsDetailsText>
               <ContactsDetailsText>{companyTitle}</ContactsDetailsText>
