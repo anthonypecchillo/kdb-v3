@@ -7,7 +7,8 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import NationalOverviewPage from './NationalOverviewPage';
-import NationalApproachesPage from './NationalApproachesPage';
+// import NationalApproachesPage from './NationalApproachesPage';
+import NationalForestsAndLandUsePage from './NationalForestsAndLandUsePage';
 import NationalGovernancePage from './NationalGovernancePage';
 import ScrollToTopOnMount from './ScrollToTopOnMount';
 
@@ -34,8 +35,9 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
       case 'overview':
         view = <NationalOverviewPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
-      case 'approaches':
-        view = <NationalApproachesPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+      case 'forests-and-land-use':
+        // view = <NationalApproachesPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        view = <NationalForestsAndLandUsePage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
       case 'governance':
         view = <NationalGovernancePage jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} nationName={nationName} language={language} />;

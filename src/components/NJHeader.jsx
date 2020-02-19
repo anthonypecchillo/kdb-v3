@@ -14,8 +14,8 @@ const navLinkListNational = [
     urlText: 'overview',
   },
   {
-    linkText: 'Approaches',
-    urlText: 'approaches',
+    linkText: 'Forest & Land Use',
+    urlText: 'forests-and-land-use',
   },
   {
     linkText: 'Governance',
