@@ -89,7 +89,7 @@ const NJDescription = ({ jurisdiction, language, nation }) => {
     <DescriptionGrid>
       <DescriptionTitle>Description</DescriptionTitle>
       <DescriptionContent>
-        <DescriptionPhoto photo={Indonesia} />
+        {/* <DescriptionPhoto photo={Indonesia} /> */}
         {descriptionHTML}
       </DescriptionContent>
 
