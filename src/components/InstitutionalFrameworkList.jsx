@@ -19,12 +19,13 @@ const InstitutionalFrameworkListStyled = styled.div`
 const InstitutionalFrameworkList = ({ activeList, frameworks }) => {
   if (
     (activeList === 'National' && !frameworks.national.length) ||
-    (activeList === 'State' && !frameworks.national.length) ||
+    (activeList === 'State' && !frameworks.state.length) ||
     (activeList === 'All' && !frameworks.national.length && !frameworks.state.length)
   ) {
     return (
       <InstitutionalFrameworkListStyled>
-        <p style={{marginTop: '35px'}}>There are no Institutional Frameworks to display for this category at this time.</p>
+        <h2>{activeList}</h2>
+        <p style={{margin: '35px 0', textAlign: 'center'}}>There are no Institutional Frameworks to display for this category at this time.</p>
       </InstitutionalFrameworkListStyled>
     )
   }
@@ -32,7 +33,8 @@ const InstitutionalFrameworkList = ({ activeList, frameworks }) => {
   if (activeList !== 'All') {
     return (
       <InstitutionalFrameworkListStyled>
-        {frameworks.map(framework => (
+        <h2>{activeList}</h2>
+        {frameworks[activeList.toLowerCase()].map(framework => (
           <InstitutionalFrameworkListItem
             description={framework.institutionalFrameworkTranslate.description}
             key={framework.id}
@@ -46,32 +48,42 @@ const InstitutionalFrameworkList = ({ activeList, frameworks }) => {
     );
   }
 
+  let nationalFrameworks = <p style={{margin: '35px 0', textAlign: 'center'}}>There are no Institutional Frameworks to display for this category at this time.</p>
+  let stateFrameworks = <p style={{margin: '35px 0', textAlign: 'center'}}>There are no Institutional Frameworks to display for this category at this time.</p>
+
+  if (frameworks.national.length) {
+    nationalFrameworks = frameworks.national.map(framework => (
+      <InstitutionalFrameworkListItem
+        description={framework.institutionalFrameworkTranslate.description}
+        key={framework.id}
+        nameLong={framework.institutionalFrameworkTranslate.nameLong}
+        nameShort={framework.nameShort}
+        politicalScope={framework.politicalScope}
+        url={framework.url}
+      />
+    ));
+  }
+
+  if (frameworks.state.length) {
+    stateFrameworks = frameworks.state.map(framework => (
+      <InstitutionalFrameworkListItem
+        description={framework.institutionalFrameworkTranslate.description}
+        key={framework.id}
+        nameLong={framework.institutionalFrameworkTranslate.nameLong}
+        nameShort={framework.nameShort}
+        politicalScope={framework.politicalScope}
+        url={framework.url}
+      />
+    ));
+  }
+
   return (
     <InstitutionalFrameworkListStyled>
+      <h2>State</h2>
+      {stateFrameworks}
 
       <h2>National</h2>
-      {frameworks.national.map(framework => (
-        <InstitutionalFrameworkListItem
-          description={framework.institutionalFrameworkTranslate.description}
-          key={framework.id}
-          nameLong={framework.institutionalFrameworkTranslate.nameLong}
-          nameShort={framework.nameShort}
-          politicalScope={framework.politicalScope}
-          url={framework.url}
-        />
-      ))}
-
-      <h2>State</h2>
-      {frameworks.state.map(framework => (
-        <InstitutionalFrameworkListItem
-          description={framework.institutionalFrameworkTranslate.description}
-          key={framework.id}
-          nameLong={framework.institutionalFrameworkTranslate.nameLong}
-          nameShort={framework.nameShort}
-          politicalScope={framework.politicalScope}
-          url={framework.url}
-        />
-      ))}
+      {nationalFrameworks}
     </InstitutionalFrameworkListStyled>
   );
 }
