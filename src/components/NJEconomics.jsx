@@ -134,31 +134,39 @@ class NJEconomics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: {
-        width: 0,
-        // height: 0,
-      },
+      // dimensions: {
+      //   width: 0,
+      //   // height: 0,
+      // },
     };
   }
 
-  componentDidMount() {
-    const width = this.container.offsetWidth;
-    // const height = this.container.offsetHeight;
+  // componentDidMount() {
+  //   const width = this.container.offsetWidth;
+  //   // const height = this.container.offsetHeight;
+  //
+  //   this.setState({
+  //     dimensions: {
+  //       width: width,
+  //       // height: height,
+  //     },
+  //   });
+  // }
 
-    this.setState({
-      dimensions: {
-        width: width,
-        // height: height,
-      },
-    });
-  }
+  // handleRender = (component) => {
+  //   if (!this.state.dimensions.width !== this.container.offsetWidth) {
+  //     this.setState({
+  //       dimensions: { width: this.container.offsetWidth }
+  //     });
+  //   }
+  // }
 
   render() {
     const { jurisdiction, language, nation } = this.props;
-    const { width } = this.state.dimensions;
+    // const { width } = this.state.dimensions;
 
     return (
-      <EconomicsGrid ref={el => (this.container = el)}>
+      <EconomicsGrid>
         <Query
           query={GET_JURISDICTION_ECONOMICS}
           variables={{ nationName: nation, jurisdictionName: jurisdiction, languageCode: language }}
@@ -200,14 +208,14 @@ class NJEconomics extends React.Component {
               <>
                 <EconomicsTitle>Economics</EconomicsTitle>
                 <EconomicsTotalTitle>Human Development Index</EconomicsTotalTitle>
-                <BulletChart data={humnDevelopmentIndexData} dataSourceConfig={humanDevelopmentIndexDataSourceConfig} justify="center" percentOfTotalColumns={1} width={width} />
+                <BulletChart data={humnDevelopmentIndexData} dataSourceConfig={humanDevelopmentIndexDataSourceConfig} justify="center" percentOfTotalColumns={1} />
                 <EconomicsTotalTitle>Per Capita Income</EconomicsTotalTitle>
                 <EconomicsTotalValue>{`${Math.round(perCapitaIncome.amount).toLocaleString()} ${perCapitaIncome.units}`}</EconomicsTotalValue>
                 <EconomicsTotalNationalPercent>Annual</EconomicsTotalNationalPercent>
                 <EconomicsTotalTitle>State GDP</EconomicsTotalTitle>
                 <EconomicsTotalValue>{`${gdp.amount.toLocaleString()} ${gdp.units}`}</EconomicsTotalValue>
                 <EconomicsTotalNationalPercent>{PERCENTAGE_OF_NATIONAL_GDP}</EconomicsTotalNationalPercent>
-                <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} width={width * 1} percentOfTotalColumns={1} />
+                <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} percentOfTotalColumns={1} />
                 <EconomicsTagListContainer>
                   <EconomicsTotalTitle>Major Exports</EconomicsTotalTitle>
                   <DeforestationTagList>

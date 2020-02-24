@@ -94,6 +94,7 @@ const PieChartStyled = styled.div`
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
   ${'' /* width: ${({ width }) => width}; */}
+  width: 100%;
 `;
 
 class PieChart extends React.Component {
@@ -140,7 +141,7 @@ class PieChart extends React.Component {
       dataFormat: 'json',
       dataSource,
       height,
-      width,
+      width: '99%',
     };
 
     return (

@@ -127,6 +127,7 @@ const BulletChartStyled = styled.div`
   grid-row: ${({ gridRow }) => gridRow || null};
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
+  width: 100%;
 `;
 
 class BulletChart extends React.Component {
@@ -158,7 +159,6 @@ class BulletChart extends React.Component {
   handleRender = (chart) => {
     if (!this.state.chart) {
       this.setState({ chart }, this.resize);
-
     }
   }
 
@@ -172,7 +172,7 @@ class BulletChart extends React.Component {
       dataFormat: 'json',
       dataSource,
       height,
-      width,
+      width: '99%',
     };
 
     return (

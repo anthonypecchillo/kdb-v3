@@ -100,17 +100,17 @@ class NJDemographics extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const width = this.container.offsetWidth;
-    // const height = this.container.offsetHeight;
-
-    this.setState({
-      dimensions: {
-        width: width,
-        // height: height,
-      },
-    });
-  }
+  // componentDidMount() {
+  //   const width = this.container.offsetWidth;
+  //   // const height = this.container.offsetHeight;
+  //
+  //   this.setState({
+  //     dimensions: {
+  //       width: width,
+  //       // height: height,
+  //     },
+  //   });
+  // }
 
   render() {
     const { jurisdiction, language, nation } = this.props;
@@ -183,7 +183,7 @@ class NJDemographics extends React.Component {
                 <DemographicsTotalValue>{population.amount.toLocaleString()}</DemographicsTotalValue>
                 <DemographicsTotalNationalPercent>{PERCENTAGE_OF_NATIONAL_POPULATION}</DemographicsTotalNationalPercent>
                 <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-                <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} percentOfTotalColumns={0.9} width={width * 0.9} />
+                <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} percentOfTotalColumns={1} width={width * 1} />
                 <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
               </>
             );
