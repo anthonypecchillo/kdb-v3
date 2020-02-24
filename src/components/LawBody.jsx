@@ -3,13 +3,14 @@
  */
 
 import React from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
 
 const LawBodyGrid = styled.div`
   display: grid;
   grid-row-gap: 10px;
-  grid-template-columns: 0.788fr 0.212fr;
-  grid-template-rows: 0.265fr 0.265fr minmax(0.469fr, auto);
+  grid-template-columns: auto auto;
+  grid-template-rows: ${({ isOpen }) => isOpen && 'auto auto auto 64px'};
 
   background-color: #e5e5e5;
   min-height: ${({ isOpen }) => isOpen && '250px'};
@@ -36,6 +37,8 @@ const LawBodyLogo = styled.div`
 const LawBodySummary = styled.div`
   grid-column: 1/2;
   grid-row: 2/5;
+
+  height: 100%;
 `;
 
 const LawBodySummaryTitle = styled.div`
@@ -47,19 +50,29 @@ const LawBodySummaryText = styled.div`
   font-size: 14px;
 `;
 
+const LawCitationList = styled.div`
+  grid-column: 2/3;
+  grid-row: 4/5;
+
+  align: bottom;
+  direction: rtl;
+  width: 100%;
+`;
+
 const Icon2 = styled.a`
   align-self: end;
   justify-self: right;
+  margin-right: 5px;
 `;
 
-const LawBody = ({ coatOfArmsUrl, isOpen, summary, title, url }) => {
+const LawBody = ({ citations, coatOfArmsUrl, isOpen, summary, title }) => {
   // TODO: Conditional Here! If summary is an array, dynamically render list.
   //                         Else, render as paragraph tag.
   if (!isOpen) {
     return <LawBodyGrid isOpen={isOpen} />;
   }
 
-  summary = summary || 'Summary Unavailable';
+  summary = ReactHtmlParser(summary) || 'Summary Unavailable';
 
   return (
     <LawBodyGrid isOpen={isOpen}>
@@ -69,12 +82,20 @@ const LawBody = ({ coatOfArmsUrl, isOpen, summary, title, url }) => {
         <LawBodySummaryTitle>Summary:</LawBodySummaryTitle>
         <LawBodySummaryText>{summary}</LawBodySummaryText>
       </LawBodySummary>
-      <Icon2
-        className="far fa-file-pdf fa-4x"
-        href={url}
-        rel="noopener noreferrer"
-        target="_blank"
-      />
+      <LawCitationList>
+        {citations.map(citation => {
+          const iconSize = citations.length < 3 ? '4x' : '1x';
+          return (
+            <Icon2
+              className={`far fa-file-pdf fa-${iconSize}`}
+              href={citation.url}
+              key={citation.id}
+              rel="noopener noreferrer"
+              target="_blank"
+            />
+          )
+        })}
+      </LawCitationList>
     </LawBodyGrid>
   );
 };

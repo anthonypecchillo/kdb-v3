@@ -71,6 +71,7 @@ const LawTag = styled.div`
   flex: 0 0 auto;
   /* border: 1px solid black;
   border-radius: 10px; */
+  direction: ltr;
   height: 70%;
   line-height: 31px;
   margin: 0 10px;
@@ -100,13 +101,16 @@ class LawListItem extends React.Component {
     const { isOpen } = this.state;
 
     const chevronClass = isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
-    const pubDate = law.pubDate ? format(new Date(law.pubDate), 'MMMM do, yyyy') : 'Date Unavailable';
+    const lawNumber = law.lawNumber || '';
+    const pubDate = law.pubDate ? format(new Date(law.pubDate), 'MMMM do, yyyy') : 'Date unavailable';
     const { coatOfArmsUrl } = law.region;
+
+    const citations = law.citations.length ? law.citations : [];
 
     return (
       <LawListItemGrid index={index} isOpen={isOpen} lastIndex={lawListLength - 1}>
         <LawHeader onClick={this.handleChevronClick}>
-          <LawTitle>{`${law.lawTranslate.lawType} ${law.lawNumber}`}</LawTitle>
+          <LawTitle>{`${law.lawTranslate.lawType} ${lawNumber}`}</LawTitle>
           <LawDate>{pubDate}</LawDate>
           <Icon className={chevronClass} />
         </LawHeader>
@@ -115,7 +119,7 @@ class LawListItem extends React.Component {
           isOpen={isOpen}
           summary={law.lawTranslate.summary}
           title={law.lawTranslate.name}
-          url={law.citation.url}
+          citations={citations}
         />
         <LawTagList isOpen={isOpen}>
           {law.lawTags.map((lawTag, index) => (

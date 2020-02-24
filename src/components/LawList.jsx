@@ -10,8 +10,8 @@ import styled from 'styled-components';
 import LawListItem from './LawListItem';
 import Loading from './Loading';
 
-const GET_JURISDICTION_LAWS = gql`
-  query getJurisdictionLaws($name: String!, $languageCode: String!) {
+const GET_REGION_LAWS = gql`
+  query getRegionLaws($name: String!, $languageCode: String!) {
     regionByName(name: $name) {
       id
       laws {
@@ -21,7 +21,7 @@ const GET_JURISDICTION_LAWS = gql`
         region {
           coatOfArmsUrl
         }
-        citation {
+        citations {
           id
           filename
           url
@@ -57,7 +57,7 @@ const LawListStyled = styled.div`
 
 const LawList = ({ jurisdiction, language, nation }) => {
   const region = jurisdiction || nation;
-  const { data, loading, error } = useQuery(GET_JURISDICTION_LAWS, {
+  const { data, loading, error } = useQuery(GET_REGION_LAWS, {
     variables: { name: region, languageCode: language },
   });
   if (loading) return <Loading />;
@@ -68,7 +68,13 @@ const LawList = ({ jurisdiction, language, nation }) => {
   return (
     <LawListStyled>
       {laws.map((law, index) => (
-        <LawListItem index={index} key={law.id} law={law} lawListLength={laws.length} />
+        <LawListItem
+          index={index}
+          key={law.id}
+          language={language}
+          law={law}
+          lawListLength={laws.length}
+        />
       ))}
     </LawListStyled>
   );
