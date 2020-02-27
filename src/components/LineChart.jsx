@@ -245,6 +245,7 @@ const LineChartStyled = styled.div`
   grid-column: ${({ gridColumn }) => gridColumn || null};
   grid-row: ${({ gridRow }) => gridRow || null};
   justify-self: ${({ justify }) => justify || 'center'};
+  width: 100%;
 `;
 
 class LineChart extends React.Component {
@@ -281,14 +282,14 @@ class LineChart extends React.Component {
   }
 
   render() {
-    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, height = '400', width } = this.props;
+    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, height = '400' } = this.props;
 
     const dataSource = new LineDataSource(categories, data, dataSourceConfig);
     const chartConfigs = {
       type: 'line',
       // width: '700',
       height,
-      width,
+      width: '99%',
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
       dataSource,

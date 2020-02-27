@@ -163,7 +163,7 @@ class BulletChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '100', justify, width } = this.props;
+    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '100', justify } = this.props;
 
     const dataSource = new BulletDataSource(data, dataSourceConfig);
     const chartConfigs = {

@@ -243,6 +243,7 @@ class StackedColumnDataSource {
 
 const StackedColumnChartStyled = styled.div`
   justify-self: ${({ justify }) => justify || 'center'};
+  width: 100%;
 `;
 
 class StackedColumnChart extends React.Component {
@@ -280,7 +281,7 @@ class StackedColumnChart extends React.Component {
     const dataSource = new StackedColumnDataSource(categories, data, dataSourceConfig);
     const chartConfigs = {
       type: 'stackedcolumn2d',
-      // width: '700',
+      width: '99%',
       height: '400',
       containerBackgroundOpacity: '0',
       dataFormat: 'json',

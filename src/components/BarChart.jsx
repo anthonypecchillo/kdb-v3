@@ -244,6 +244,7 @@ class BarDataSource {
 const BarChartStyled = styled.div`
   grid-column: 1/3;
   justify-self: ${({ justify }) => justify || 'center'};
+  width: 100%;
 `;
 
 class BarChart extends React.Component {
@@ -285,6 +286,7 @@ class BarChart extends React.Component {
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
       height: '490',
+      width: '99%',
       type: 'column2d',
       // width: '700',
     };

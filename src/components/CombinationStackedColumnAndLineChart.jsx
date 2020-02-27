@@ -246,6 +246,7 @@ const CombinationStackedColumnAndLineChartStyled = styled.div`
   grid-column: ${({ gridColumn }) => gridColumn || null};
   grid-row: ${({ gridRow }) => gridRow || null};
   justify-self: ${({ justify }) => justify || 'center'};
+  width: 100%;
 `;
 
 class CombinationStackedColumnAndLineChart extends React.Component {
@@ -282,13 +283,13 @@ class CombinationStackedColumnAndLineChart extends React.Component {
   }
 
   render() {
-    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, height = '400', width } = this.props;
+    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, height = '400' } = this.props;
 
     const dataSource = new CombinationStackedColumnAndLineDataSource(categories, data, dataSourceConfig);
     const chartConfigs = {
       type: 'stackedcolumn2dline',
       height,
-      width,
+      width: '99%',
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
       dataSource,
