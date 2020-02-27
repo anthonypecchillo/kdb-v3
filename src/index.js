@@ -47,6 +47,13 @@ const link = ApolloLink.from([retryLink, errorLink, requestLink]);
 const client = new ApolloClient({
   cache,
   link,
+  defaultOptions: {
+    query: {
+      // fetchPolicy: 'network-only',
+      errorPolicy: 'all',
+      partialRefetch: true,
+    },
+  },
 });
 
 ReactDOM.render(
