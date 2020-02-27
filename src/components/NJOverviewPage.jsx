@@ -50,19 +50,19 @@ const OverviewGrid = styled.div`
 const NJOverviewPage = ({ nationName, jurisdictionName, language }) => (
   <OverviewGrid>
     <Tile gridArea="description">
-      <NJDescription jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NJDescription jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     <Tile gridArea="fmms">
-      <NJForestMonitoringAndMeasurementSystems jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NJForestMonitoringAndMeasurementSystems jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
-    <Tile gridArea="demographics" height="800px" align="start" >
-      <NJDemographics jurisdiction={jurisdictionName} language={language} nation={nationName} />
+    <Tile gridArea="demographics" height="800px" align="start">
+      <NJDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     <Tile gridArea="contacts">
-      <NJContacts jurisdiction={jurisdictionName} nation={nationName} />
+      <NJContacts jurisdictionName={jurisdictionName} nationName={nationName} />
     </Tile>
     <Tile gridArea="economics">
-      <NJEconomics jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NJEconomics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
   </OverviewGrid>
 );

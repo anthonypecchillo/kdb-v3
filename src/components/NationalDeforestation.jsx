@@ -65,9 +65,9 @@ const DeforestationTitle = styled.h3`
   width: 100%;
 `;
 
-const NationalDeforestation = ({ jurisdiction, language, nation }) => {
+const NationalDeforestation = ({ language, nationName }) => {
   const { data, loading, error } = useQuery(GET_NATION_DEFORESTATION, {
-    variables: { name: nation },
+    variables: { name: nationName },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

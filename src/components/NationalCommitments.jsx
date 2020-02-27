@@ -73,9 +73,9 @@ const CommitmentsContent = styled.div`
   overflow: scroll;
 `;
 
-const NationalCommitments = ({ language, nation }) => {
+const NationalCommitments = ({ language, nationName }) => {
   // const { data, loading, error } = useQuery(GET_NATIONAL_Commitments, {
-  //   variables: { nationName: nation, languageCode: language },
+  //   variables: { nationName: nationName, languageCode: language },
   // });
   // if (loading) return <Loading />;
   // if (error) return <p>ERROR</p>;

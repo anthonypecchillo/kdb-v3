@@ -32,9 +32,9 @@ const NationalPoliciesAndPlansStyled = styled.div`
   width: 100%;
 `;
 
-const NationalPoliciesAndPlans = ({ jurisdiction, language, nation }) => {
+const NationalPoliciesAndPlans = ({ language, nationName }) => {
   const { data, loading, error } = useQuery(GET_NATION_POLICIES_AND_PLANS, {
-    variables: { name: nation, languageCode: language },
+    variables: { name: nationName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

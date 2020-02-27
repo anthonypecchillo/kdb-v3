@@ -86,12 +86,12 @@ class NJVegetation extends React.Component {
   }
 
   render() {
-    const { jurisdiction, language, nation } = this.props;
+    const { jurisdictionName, language, nationName } = this.props;
     const { width } = this.state.dimensions;
 
     return (
       <VegetationGrid ref={el => (this.container = el)}>
-        <Query query={GET_JURISDICTION_LAND} variables={{ nationName: nation, jurisdictionName: jurisdiction, languageCode: language }}>
+        <Query query={GET_JURISDICTION_LAND} variables={{ nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language }}>
           {({ loading, error, data }) => {
             if (loading) return <Loading/>;
             if (error) return <p>ERROR</p>;

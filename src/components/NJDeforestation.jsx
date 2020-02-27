@@ -106,9 +106,9 @@ const DeforestationTagListItem = styled.li`
 `;
 
 // TODO: Use primary key from DB as uniqueID for props
-const NJDeforestation = ({ jurisdiction, language, nation }) => {
+const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_DEFORESTATION, {
-    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
+    variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

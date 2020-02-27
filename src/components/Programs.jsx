@@ -48,7 +48,7 @@ class Programs extends React.Component {
 
   render() {
     const { activeTab } = this.state;
-    const { jurisdiction, jurisdictionType, language, nation } = this.props;
+    const { jurisdictionName, jurisdictionType, language, nationName } = this.props;
     let view;
     let tabLabels;
 
@@ -56,13 +56,13 @@ class Programs extends React.Component {
       tabLabels = NATION_PROGRAMS_TAB_LABELS;
       switch (activeTab) {
         case 'Laws & Regulations':
-          view = <LawList jurisdiction={jurisdiction} language={language} nation={nation} />;
+          view = <LawList jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
           break;
         case 'Policies & Plans':
-          view = <NationalPoliciesAndPlans jurisdiction={jurisdiction} language={language} nation={nation} />;
+          view = <NationalPoliciesAndPlans jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
           break;
         case 'Institutions':
-          view = <NationalInstitutions jurisdiction={jurisdiction} language={language} nation={nation} />;
+          view = <NationalInstitutions jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
           break;
         default:
           view = null;
@@ -75,10 +75,10 @@ class Programs extends React.Component {
           view = <ProgramsOverview />;
           break;
         case 'Laws & Regulations':
-          view = <LawList jurisdiction={jurisdiction} language={language} nation={nation} />;
+          view = <LawList jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
           break;
         case 'Institutional Frameworks':
-          view = <InstitutionalFrameworks jurisdiction={jurisdiction} language={language} nation={nation} />;
+          view = <InstitutionalFrameworks jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
           break;
         default:
           view = null;

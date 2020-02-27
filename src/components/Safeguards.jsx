@@ -43,16 +43,16 @@ class Safeguards extends React.Component {
   }
 
   render() {
-    const { jurisdiction, language, nation } = this.props;
+    const { jurisdictionName, language, nationName } = this.props;
     const { activeTab } = this.state;
     let view;
 
     switch (activeTab) {
       case 'Overview':
-        view = <OldGovernanceSafeguards jurisdiction={jurisdiction} language={language} nation={nation} />;
+        view = <OldGovernanceSafeguards jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
         break;
       case 'Spatial Planning':
-        view = <OldGovernanceZoningSpatialPlanning jurisdiction={jurisdiction} language={language} nation={nation} />;
+        view = <OldGovernanceZoningSpatialPlanning jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
         break;
       default:
         view = null;

@@ -42,16 +42,16 @@ const OverviewGrid = styled.div`
 const NationalForestsAndLandUsePage = ({ nationName, jurisdictionName, language }) => (
   <OverviewGrid>
     <Tile gridArea="nadma">
-      <NationalApproachesToDeforestationMonitoringAndAccounting jurisdiction={jurisdictionName} language={language} />
+      <NationalApproachesToDeforestationMonitoringAndAccounting jurisdictionName={jurisdictionName} language={language} />
     </Tile>
     <Tile gridArea="nadfd">
-      <NationalApproachesToDeforestationAndForestDegradation jurisdiction={jurisdictionName} language={language} />
+      <NationalApproachesToDeforestationAndForestDegradation jurisdictionName={jurisdictionName} language={language} />
     </Tile>
     <Tile gridArea="commitments">
-      <NationalCommitments jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NationalCommitments jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     <Tile gridArea="globalperspective">
-      <NationalGlobalPerspective jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NationalGlobalPerspective jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
   </OverviewGrid>
 );

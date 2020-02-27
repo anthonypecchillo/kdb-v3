@@ -44,16 +44,16 @@ const OverviewGrid = styled.div`
 const NationalOverviewPage = ({ nationName, jurisdictionName, language }) => (
   <OverviewGrid>
     <Tile gridArea="land">
-      <NationalLand nation={nationName} language={language} />
+      <NationalLand nationName={nationName} language={language} />
     </Tile>
     <Tile gridArea="demographics" height="800px" align="start">
-      <NationalDemographics jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NationalDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     <Tile gridArea="economics">
-      <NationalEconomics jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NationalEconomics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     <Tile gridArea="deforestation">
-      <NationalDeforestation nation={nationName} language={language} />
+      <NationalDeforestation nationName={nationName} language={language} />
     </Tile>
   </OverviewGrid>
 );

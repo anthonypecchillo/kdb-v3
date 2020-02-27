@@ -25,13 +25,13 @@ const NJGovernancePage = ({ jurisdictionName, jurisdictionType, language, nation
   return (
     <GovernanceGrid>
       <Tile>
-        <Programs jurisdiction={jurisdictionName} jurisdictionType={jurisdictionType} language={language} nation={nationName} />
+        <Programs jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} language={language} nationName={nationName} />
       </Tile>
       <Tile>
-        <Safeguards jurisdiction={jurisdictionName} language={language} nation={nationName} />
+        <Safeguards jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
       </Tile>
       <Tile gridColumn="1/3" gridRow="2/3">
-        <OldGovernanceData jurisdiction={jurisdictionName} language={language} nation={nationName} />
+        <OldGovernanceData jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
       </Tile>
     </GovernanceGrid>
   );

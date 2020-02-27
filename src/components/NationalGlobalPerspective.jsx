@@ -73,9 +73,9 @@ const GlobalPerspectiveContent = styled.div`
   overflow: scroll;
 `;
 
-const NationalGlobalPerspective = ({ language, nation }) => {
+const NationalGlobalPerspective = ({ language, nationName }) => {
   // const { data, loading, error } = useQuery(GET_NATIONAL_GLOBAL_PERSPECTIVE, {
-  //   variables: { nationName: nation, languageCode: language },
+  //   variables: { nationName: nationName, languageCode: language },
   // });
   // if (loading) return <Loading />;
   // if (error) return <p>ERROR</p>;

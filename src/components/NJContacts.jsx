@@ -120,9 +120,9 @@ const ContactsDetailsText = styled.div`
 //   grid-template-rows: 4fr 3fr 3fr;
 // `;
 
-const NJContacts = ({ jurisdiction, nation }) => {
+const NJContacts = ({ jurisdictionName, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_CONTACTS, {
-    variables: { nationName: nation, jurisdictionName: jurisdiction },
+    variables: { nationName: nationName, jurisdictionName: jurisdictionName },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

@@ -73,9 +73,9 @@ const NADMAContent = styled.div`
   overflow: scroll;
 `;
 
-const NationalApproachesToDeforestationMonitoringAndAccounting = ({ language, nation }) => {
+const NationalApproachesToDeforestationMonitoringAndAccounting = ({ language, nationName }) => {
   // const { data, loading, error } = useQuery(GET_NATIONAL_ADMA, {
-  //   variables: { nationName: nation, languageCode: language },
+  //   variables: { nationName: nationName, languageCode: language },
   // });
   // if (loading) return <Loading />;
   // if (error) return <p>ERROR</p>;

@@ -55,8 +55,8 @@ const LawListStyled = styled.div`
   width: 100%;
 `;
 
-const LawList = ({ jurisdiction, language, nation }) => {
-  const region = jurisdiction || nation;
+const LawList = ({ jurisdictionName, language, nationName }) => {
+  const region = jurisdictionName || nationName;
   const { data, loading, error } = useQuery(GET_REGION_LAWS, {
     variables: { name: region, languageCode: language },
   });

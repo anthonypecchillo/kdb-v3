@@ -89,9 +89,9 @@ const DemographicsCitation = styled.div`
   padding: 0 1.25%;
 `;
 
-const NationalDemographics = ({ language, nation }) => {
+const NationalDemographics = ({ language, nationName }) => {
   const { data, loading, error } = useQuery(GET_NATION_DEMOGRAPHICS, {
-    variables: { name: nation, languageCode: language },
+    variables: { name: nationName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

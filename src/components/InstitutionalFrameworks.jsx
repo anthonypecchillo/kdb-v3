@@ -60,7 +60,7 @@ class InstitutionalFrameworks extends React.Component {
   }
 
   render() {
-    const { jurisdiction, language, nation } = this.props;
+    const { jurisdictionName, language, nationName } = this.props;
     const { activeTab } = this.state;
     let scopedInstitutionalFrameworks;
     let activeView;
@@ -69,7 +69,7 @@ class InstitutionalFrameworks extends React.Component {
       <InstitutionalFrameworksGrid>
         <Query
           query={GET_JURISDICTION_INSTITUTIONAL_FRAMEWORKS}
-          variables={{ jurisdictionName: jurisdiction, languageCode: language, nationName: nation }}
+          variables={{ jurisdictionName: jurisdictionName, languageCode: language, nationName: nationName }}
         >
           {({ loading, error, data }) => {
             if (loading) return <Loading />;

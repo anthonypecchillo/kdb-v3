@@ -46,19 +46,19 @@ const NJForestAndLandUsePage = ({ nationName, jurisdictionName, language }) => (
   <ForestAndLandUseGrid>
     {/* <Tile gridColumn="1/4" gridRow="1/2"> */}
     <Tile gridArea="land">
-      <NJLand jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NJLand jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     {/* <Tile gridColumn="1/5" gridRow="2/3"> */}
     <Tile gridArea="deforestation">
-      <NJDeforestation jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NJDeforestation jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     {/* <Tile gridColumn="1/4" gridRow="3/4"> */}
     <Tile gridArea="CO2">
-      <NJCO2Emissions jurisdiction={jurisdictionName} language={language} nation={nationName} />
+      <NJCO2Emissions jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     {/* <Tile gridColumn="1/3" gridRow="4/5"> */}
     <Tile gridArea="vegetation">
-    <NJVegetation2 jurisdiction={jurisdictionName} language={language} nation={nationName} />
+    <NJVegetation2 jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
   </Tile>
   </ForestAndLandUseGrid>
 );

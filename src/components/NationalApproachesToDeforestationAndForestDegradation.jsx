@@ -75,7 +75,7 @@ const NADFDContent = styled.div`
 
 const NationalApproachesToDeforestationAndForestDegradation = ({ language, nation }) => {
   // const { data, loading, error } = useQuery(GET_NATIONAL_NADFD, {
-  //   variables: { nationName: nation, languageCode: language },
+  //   variables: { nationName: nationName, languageCode: language },
   // });
   // if (loading) return <Loading />;
   // if (error) return <p>ERROR</p>;

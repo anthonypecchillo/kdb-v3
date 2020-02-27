@@ -35,9 +35,9 @@ const OldGovernanceLawPolicyStrategyStyled = styled.div`
   width: 100%;
 `;
 
-const OldGovernanceLawPolicyStrategy = ({ jurisdiction, jurisdictionType, language, nation }) => {
+const OldGovernanceLawPolicyStrategy = ({ jurisdictionName, jurisdictionType, language, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_LAW_POLICY_STRATEGY, {
-    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
+    variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

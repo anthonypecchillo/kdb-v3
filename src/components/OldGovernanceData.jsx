@@ -45,12 +45,12 @@ class OldGovernanceData extends React.Component {
 
   render() {
     const { activeTab } = this.state;
-    const { jurisdiction, language, nation } = this.props;
+    const { jurisdictionName, language, nationName } = this.props;
     let view;
 
     switch (activeTab) {
       case 'Laws, Policy, Strategy':
-        view = <OldGovernanceLawPolicyStrategy jurisdiction={jurisdiction} language={language} nation={nation} />;
+        view = <OldGovernanceLawPolicyStrategy jurisdictionName={jurisdictionName} language={language} nationName={nationName} />;
         break;
       default:
         view = null;

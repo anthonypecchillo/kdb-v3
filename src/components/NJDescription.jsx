@@ -75,12 +75,12 @@ const DescriptionContent = styled.div`
   ${'' /* overflow: scroll; */}
 `;
 
-const NJDescription = ({ jurisdiction, language, nation }) => {
+const NJDescription = ({ jurisdictionName, language, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_DESCRIPTION, {
-    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
+    variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },
   });
   if (loading) return <Loading />;
-  if (error) return <p>ERROR</p>;
+  if (error) { return <p>ERROR</p> };
 
   const { description } = data.jurisdictionByName.contentJurisdictional.contentJurisdictionalTranslate;
   const descriptionHTML = ReactHtmlParser(description);

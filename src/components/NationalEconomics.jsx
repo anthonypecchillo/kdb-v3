@@ -128,9 +128,9 @@ const DeforestationTagListItem = styled.li`
   width: 90%;
 `;
 
-const NationalEconomics = ({ language, nation }) => {
+const NationalEconomics = ({ language, nationName }) => {
   const { data, loading, error } = useQuery(GET_NATION_ECONOMICS, {
-    variables: { name: nation, languageCode: language },
+    variables: { name: nationName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

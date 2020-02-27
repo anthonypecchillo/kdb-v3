@@ -35,9 +35,9 @@ const OldGovernanceSafeguardsStyled = styled.div`
   width: 100%;
 `;
 
-const OldGovernanceSafeguards = ({ jurisdiction, language, nation }) => {
+const OldGovernanceSafeguards = ({ jurisdictionName, language, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_SAFEGUARDS, {
-    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
+    variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

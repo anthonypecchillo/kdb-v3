@@ -32,9 +32,9 @@ const NationalInstitutionsStyled = styled.div`
   width: 100%;
 `;
 
-const NationalInstitutions = ({ jurisdiction, language, nation }) => {
+const NationalInstitutions = ({ language, nationName }) => {
   const { data, loading, error } = useQuery(GET_NATION_INSTITUTIONS, {
-    variables: { name: nation, languageCode: language },
+    variables: { name: nationName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

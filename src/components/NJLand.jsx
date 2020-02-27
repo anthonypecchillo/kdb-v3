@@ -60,9 +60,9 @@ const LandTitle = styled.h3`
   width: 100%;
 `;
 
-const NJLand = ({ jurisdiction, language, nation }) => {
+const NJLand = ({ jurisdictionName, language, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_LAND, {
-    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
+    variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;

@@ -93,10 +93,10 @@ class NJDemographics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dimensions: {
-        width: 0,
-        // height: 0,
-      },
+      // dimensions: {
+      //   width: 0,
+      //   // height: 0,
+      // },
     };
   }
 
@@ -113,12 +113,14 @@ class NJDemographics extends React.Component {
   // }
 
   render() {
-    const { jurisdiction, language, nation } = this.props;
-    const { width } = this.state.dimensions;
+    const { jurisdictionName, language, nationName } = this.props;
 
     return (
       <DemographicsGrid ref={el => (this.container = el)}>
-        <Query query={GET_JURISDICTION_DEMOGRAPHICS} variables={{ nationName: nation, jurisdictionName: jurisdiction, languageCode: language }}>
+        <Query
+          query={GET_JURISDICTION_DEMOGRAPHICS}
+          variables={{ nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language }}
+        >
           {({ loading, error, data }) => {
             if (loading) return <Loading/>;
             if (error) return <p>ERROR</p>;
@@ -182,8 +184,19 @@ class NJDemographics extends React.Component {
                 <DemographicsTotalTitle>Total Population:</DemographicsTotalTitle>
                 <DemographicsTotalValue>{population.amount.toLocaleString()}</DemographicsTotalValue>
                 <DemographicsTotalNationalPercent>{PERCENTAGE_OF_NATIONAL_POPULATION}</DemographicsTotalNationalPercent>
-                <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-                <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} percentOfTotalColumns={1} width={width * 1} />
+                <DoughnutChart
+                  data={urbanVsRuralData}
+                  dataSourceConfig={urbanVsRuralDataSourceConfig}
+                  justify="center"
+                  percentOfTotalColumns={1}
+                />
+                <PieChart
+                  data={socialGroupsData}
+                  dataSourceConfig={socialGroupsDataSourceConfig}
+                  justify="center"
+                  height={'310'}
+                  percentOfTotalColumns={1}
+                />
                 <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
               </>
             );

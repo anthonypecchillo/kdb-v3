@@ -23,7 +23,7 @@ const GovernanceGrid = styled.div`
 const NationalGovernancePage = ({ nationName, jurisdictionName, jurisdictionType, language }) => (
   <GovernanceGrid>
     <Tile margin="0 auto" maxWidth="1100px" width="90%">
-      <Programs jurisdiction={jurisdictionName} jurisdictionType={jurisdictionType} language={language} nation={nationName} />
+      <Programs jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} language={language} nationName={nationName} />
     </Tile>
   </GovernanceGrid>
 );

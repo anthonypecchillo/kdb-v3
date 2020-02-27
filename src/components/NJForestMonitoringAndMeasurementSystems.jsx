@@ -52,9 +52,9 @@ const ForestMonitoringAndMeasurementSystemsContent = styled.div`
   ${'' /* overflow: scroll; */}
 `;
 
-const NJForestMonitoringAndMeasurementSystems = ({ jurisdiction, language, nation }) => {
+const NJForestMonitoringAndMeasurementSystems = ({ jurisdictionName, language, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_FMMS, {
-    variables: { nationName: nation, jurisdictionName: jurisdiction, languageCode: language },
+    variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
