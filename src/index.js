@@ -31,8 +31,8 @@ const requestLink = new HttpLink({
 //   if (networkError) logoutUser();
 // });
 
-const errorLink = onError(({ graphqlErrors, networkError }) => {
-  if (graphqlErrors) console.log('GRAPHQL ERROR: ', graphqlErrors);
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) console.log('GRAPHQL ERROR: ', graphQLErrors);
   if (networkError) console.log('NETWORK ERROR: ', networkError);
 });
 
