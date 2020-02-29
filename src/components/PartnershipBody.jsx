@@ -21,7 +21,7 @@ const PartnershipBodyGrid = styled.div`
 const PartnershipBodyMiniGrid = styled.div`
   display: grid;
   grid-template-columns: minmax(122px, 1fr) 3fr;
-  grid-template-rows: repeat(4, 1fr) 2fr;
+  grid-template-rows: repeat(3, 1fr) 2fr;
   grid-row-gap: 10px;
   align-items: center;
 
@@ -51,30 +51,23 @@ const PartnershipDescription = styled.div`
 `;
 
 const PartnershipTagList = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
 
   border-radius: 0 0 5px 5px;
   height: 100%;
-  overflow-x: auto;
-  /* -webkit-overflow-scrolling: touch;   For Momentum Scroll on Mobile */
   padding-right: 2.5%;
   width: 100%;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const PartnershipTag = styled.div`
-  flex: 0 0 auto;
-
   background-color: white;
   border: 1px solid black;
   border-radius: 10px;
   height: 34px;
   line-height: 34.5px;
-  margin: 0 10px;
+  margin: 10px 5px;
   padding: 0 10px;
   text-align: center;
 `;
@@ -99,13 +92,11 @@ const PartnershipBody = ({ isOpen }) => {
         <PartnershipLabel>Partners:</PartnershipLabel>
         <PartnershipTagList>
           <PartnershipTag>IBAM</PartnershipTag>
+          <PartnershipTag>SEMA</PartnershipTag>
           <PartnershipTag>INPE</PartnershipTag>
-          <PartnershipTag>INPE</PartnershipTag>
-          <PartnershipTag>INPE</PartnershipTag>
-          <PartnershipTag>INPE</PartnershipTag>
+          <PartnershipTag>ABCD</PartnershipTag>
+          <PartnershipTag>EFGHIJK</PartnershipTag>
         </PartnershipTagList>
-
-        <PartnershipStatusStepper activeStep={2} />
       </PartnershipBodyMiniGrid>
       <PartnershipDescription>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in mauris quam. In
@@ -121,6 +112,7 @@ const PartnershipBody = ({ isOpen }) => {
         volutpat dui. Pellentesque at cursus arcu. Pellentesque consequat aliquet faucibus. Lorem
         ipsum dolor sit amet, consectetur adipiscing elit.
       </PartnershipDescription>
+      <PartnershipStatusStepper activeStep={2} />
     </PartnershipBodyGrid>
   );
 };
