@@ -412,3 +412,7 @@ ul {
   font-size: 14px;
   list-style-position: outside;
 }
+
+li {
+  margin-bottom: 14px;
+}
