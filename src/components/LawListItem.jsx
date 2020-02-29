@@ -28,8 +28,9 @@ const LawHeader = styled.div`
   grid-template-columns: 8fr minmax(200px, 3fr) minmax(40px, 1fr);
   justify-items: center;
 
-  background-color: skyblue;
+  background-color: #3e522d;
   border-radius: 5px 5px 0 0;
+  color: #ffffff;
   width: 100%;
 `;
 
