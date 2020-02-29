@@ -88,18 +88,28 @@ const NJLand = ({ jurisdictionName, language, nationName }) => {
     numberSuffix: ' km²',
   };
 
-  const forestManagementData = [
-    {
-      label: 'Protected',
-      value: Math.round(forestManagement.protected),
-      // color: '#ff69b4',
-    },
-    {
-      label: 'Unprotected',
-      value: Math.round(forestManagement.unprotected),
-    },
-  ];
-  const forestManagementTotal = forestManagementData.reduce((acc, { value }) => acc + value, 0);
+  let forestManagementData;
+  let forestManagementTotal;
+  if (forestManagement) {
+    forestManagementData = [
+      {
+        label: 'Protected',
+        value: Math.round(forestManagement.protected),
+      },
+      {
+        label: 'Unprotected',
+        value: Math.round(forestManagement.unprotected),
+      },
+    ];
+    forestManagementTotal = forestManagementData.reduce((acc, { value }) => acc + value, 0);
+  } else {
+    forestManagementData = [
+      { label: 'Protected', value: null },
+      { label: 'Unprotected', value: null },
+    ];
+    forestManagementTotal = '';
+  }
+
   const forestManagementDataSourceConfig = {
     caption: 'Forest Management',
     centerLabel: '$label:<br/><br/>$value',
