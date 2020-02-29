@@ -24,9 +24,21 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  icon: {
+    // This one sets the inactive color:
+    // color: theme.palette.secondary.main,
+    "&$activeIcon": {
+      color: '#3e522d',
+    },
+    "&$completedIcon": {
+      color: '#3e522d',
+    }
+  },
+  activeIcon: {},
+  completedIcon: {},
 }));
 
-const getSteps = () => ['Contract', 'Planned', 'Implement', 'Complete'];
+const getSteps = () => ['Pending', 'Contracted', 'In Development', 'In Progress', 'Completed'];
 
 const PartnershipStatusStepper = ({ activeStep }) => {
   const classes = useStyles();
@@ -40,7 +52,7 @@ const PartnershipStatusStepper = ({ activeStep }) => {
       <Stepper className={classes.stepper} alternativeLabel activeStep={activeStep}>
         {steps.map(label => (
           <Step key={label}>
-            <StepLabel>{label}</StepLabel>
+            <StepLabel StepIconProps={{ classes:{ root: classes.icon, active: classes.activeIcon, completed: classes.completedIcon } }}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
