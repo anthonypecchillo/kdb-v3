@@ -18,6 +18,8 @@ import NJGovernancePage from './NJGovernancePage';
 import NJPartnershipsPage from './NJPartnershipsPage';
 import NJReportCardsPage from './NJReportCardsPage';
 
+import TempIconList from './TempIconList';
+
 const NJBodyStyled = styled.div`
   justify-self: center;
 
@@ -53,9 +55,6 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
       case 'partnerships':
         view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
-      case 'report-cards':
-        view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
-        break;
       default:
         view = null;
     }
@@ -76,7 +75,8 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
         view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
       case 'report-cards':
-        view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        // view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        view = <TempIconList />
         break;
       default:
         view = null;
