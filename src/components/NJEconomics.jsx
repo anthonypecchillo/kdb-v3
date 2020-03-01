@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BulletChart from './BulletChart';
+import ExportsList from './ExportsList';
 import Loading from './Loading';
 import PieChart from './PieChart';
 
@@ -55,6 +56,7 @@ const GET_JURISDICTION_ECONOMICS = gql`
         }
        	majorExports {
           id
+          faIconClass
           majorExportTranslate(code: $languageCode) {
             languageCode
             name
@@ -67,7 +69,7 @@ const GET_JURISDICTION_ECONOMICS = gql`
 
 const EconomicsGrid = styled.div`
   display: grid;
-  grid-template-rows: 1fr 0.5fr 2fr 0.5fr 1fr 0.6fr 0.5fr 1fr 0.6fr 6.25fr 2fr 0.75fr;
+  grid-template-rows: 1fr 0.5fr 2fr 0.5fr 1fr 0.6fr 0.5fr 1fr 0.6fr 6.25fr auto 2fr 0.75fr;
   justify-items: center;
 
   height: 100%;
@@ -85,6 +87,7 @@ const EconomicsTotalTitle = styled.div`
   align-self: end;
 
   font-weight: 600;
+  margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
   text-align: center;
 `;
 
@@ -109,9 +112,11 @@ const EconomicsCitation = styled.div`
 const EconomicsTagListContainer = styled.div`
   height: 100%;
   width: 100%;
+
+  overflow-x: scroll;
 `;
 
-const DeforestationTagList = styled.ul`
+const EconomicsTagList = styled.ul`
   list-style-type: none;
   overflow: hidden;
   overflow-y: scroll;
@@ -119,7 +124,7 @@ const DeforestationTagList = styled.ul`
   width: 100%;
 `;
 
-const DeforestationTagListItem = styled.li`
+const EconomicsTagListItem = styled.li`
   border: 1px solid black;
   background-color: tomato;
   height: 50px;
@@ -188,13 +193,14 @@ const NJEconomics = ({ jurisdictionName, language, nationName }) => {
         height={'310'}
         percentOfTotalColumns={1}
       />
+      <EconomicsTotalTitle marginBottom="10px">Major Exports</EconomicsTotalTitle>
       <EconomicsTagListContainer>
-        <EconomicsTotalTitle>Major Exports</EconomicsTotalTitle>
-        <DeforestationTagList>
+        {/* <EconomicsTagList>
           {majorExports.map((majorExport, index) => (
-            <DeforestationTagListItem key={index}>{majorExport.majorExportTranslate.name}</DeforestationTagListItem>
+            <EconomicsTagListItem key={index}>{majorExport.majorExportTranslate.name}</EconomicsTagListItem>
           ))}
-        </DeforestationTagList>
+        </EconomicsTagList> */}
+        <ExportsList majorExports={majorExports} />
       </EconomicsTagListContainer>
       <EconomicsCitation>IBGE. 2012. Censo Demográfico 2010</EconomicsCitation>
     </EconomicsGrid>
