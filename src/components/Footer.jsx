@@ -271,25 +271,25 @@ const Footer = ({ content }) => {
         <FooterNavListItemLink to="/about">
           <FooterNavListItemGrid>
             <Icon className="fas fa-info" />
-            <span className="menu-text">{ABOUT}</span>
+            <span>{ABOUT}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/sources">
           <FooterNavListItemGrid>
             <Icon className="far fa-file-pdf" />
-            <span className="menu-text">{SOURCES}</span>
+            <span>{SOURCES}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/contact">
           <FooterNavListItemGrid>
             <Icon className="far fa-address-book" />
-            <span className="menu-text">{CONTACTS}</span>
+            <span>{CONTACTS}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <BackToMainSiteLink href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
           <FooterNavListItemGrid>
             <Icon className="fas fa-home" />
-            <span className="menu-text">{BACK_TO_MAIN_SITE}</span>
+            <span>{BACK_TO_MAIN_SITE}</span>
           </FooterNavListItemGrid>
         </BackToMainSiteLink>
       </FooterNavListGrid>
@@ -341,7 +341,7 @@ const Footer = ({ content }) => {
       <BackToMainSiteLink2 href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
         <FooterNavListItemGrid>
           <Icon className="fas fa-home" />
-          <span className="menu-text">{BACK_TO_MAIN_SITE}</span>
+          <span>{BACK_TO_MAIN_SITE}</span>
         </FooterNavListItemGrid>
       </BackToMainSiteLink2>
 
