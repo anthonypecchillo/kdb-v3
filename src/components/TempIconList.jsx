@@ -69,9 +69,41 @@ const iconMap = {
 	'Paper': ['scroll', 'paper-plane', 'copy', 'file', 'file-alt'],
 };
 
+const iconMap2 = {
+  'Small-scale cattle ranching': ['cow'],
+  'Large-scale cattle ranching': ['cow'],
+  'Small-scale agriculture': ['tractor', 'farm'],
+  'Large-scale agriculture': ['tractor', 'farm'],
+  'Land speculation': ['sign', 'house', 'house-lg-alt', 'home', 'home-alt', 'home-lg', 'city'],
+  'Transportation infrastructure': ['train', 'subway', 'car-bus'],
+  'Large-scale illegal timber extraction': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe'],
+  'Small-scale illegal timber extraction': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe'],
+  'Illegal land speculation': ['sign', 'house', 'house-lg-alt', 'home', 'home-alt', 'home-lg', 'city', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'Illicit crop cultivation': ['cannabis', 'joint', 'pills', 'capsules', 'times-octagon', 'time-hexagon', 'times-square', 'smoking-ban', 'do-not-enter'],
+  'Artisanal and industrial mining': ['digging', 'shovel', 'atom', 'gem', 'construction', 'coin', 'coins', 'ring', 'hard-hat', 'dice-d10', 'dice-d12', 'dice-d20', 'dice-d8'],
+  'Illegal small-scale gold mining': ['digging', 'shovel', 'atom', 'gem', 'construction', 'coin', 'coins', 'ring', 'hard-hat', 'dice-d10', 'dice-d12', 'dice-d20', 'dice-d8', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'Industrial mining': ['digging', 'shovel', 'atom', 'gem', 'construction', 'coin', 'coins', 'ring', 'hard-hat', 'dice-d10', 'dice-d12', 'dice-d20', 'dice-d8'],
+  'Large-scale legal mining': ['digging', 'shovel', 'atom', 'gem', 'construction', 'coin', 'coins', 'ring', 'hard-hat', 'dice-d10', 'dice-d12', 'dice-d20', 'dice-d8'],
+  'Transportation and other infrastructure': ['train', 'subway', 'car-bus'],
+  'Infrastructure development': ['city'],
+  'Fisheries': ['fish'],
+  'Large-scale legal logging': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe'],
+  'Small-scale illegal timber harvest': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'New settlements': ['campground', 'house', 'house-lg-alt', 'home', 'home-alt', 'home-lg', 'city'],
+  'Small-scale illegal logging': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'Illicit coca production': ['times-octagon', 'time-hexagon', 'times-square', 'smoking-ban', 'do-not-enter', 'cannabis', 'joint', 'pills', 'capsules'],
+  'Illegal artisanal mining': ['digging', 'shovel', 'atom', 'gem', 'construction', 'coin', 'coins', 'ring', 'hard-hat', 'dice-d10', 'dice-d12', 'dice-d20', 'dice-d8', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'Fire': ['burn', 'fire'],
+  'Illegal logging': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'Small-scale illegal logging': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'Large-scale illegal mining': ['digging', 'shovel', 'atom', 'gem', 'construction', 'coin', 'coins', 'ring', 'hard-hat', 'dice-d10', 'dice-d12', 'dice-d20', 'dice-d8', 'times-octagon', 'time-hexagon', 'times-square', 'do-not-enter'],
+  'Large-scale timber extraction': ['tree', 'trees', 'tree-large', 'tree-alt', 'tree-palm', 'axe'],
+};
+
 const TempIconListGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
 
   background-color: white;
   height: auto;
@@ -83,6 +115,11 @@ const TempIconListGrid = styled.div`
 `;
 
 const Title = styled.h1`
+  text-align: center;
+  margin-bottom: 40px;
+`;
+
+const SubTitle = styled.h2`
   text-align: center;
   margin-bottom: 40px;
 `;
@@ -137,14 +174,27 @@ const IconList = ({ icons }) => (
 const TempIconList = () => (
   <>
     <ScrollToTopOnMount />
+
     <TempIconListGrid>
+			<Title>Major Exports Icons</Title>
       {Object.keys(iconMap).map(category  => (
         <>
-          <Title>{category}</Title>
+          <SubTitle>{category}</SubTitle>
           <IconList icons={iconMap[category]} />
         </>
       ))}
     </TempIconListGrid>
+
+		<TempIconListGrid>
+			<Title>Drivers of Deforestation Icons</Title>
+      {Object.keys(iconMap2).map(category  => (
+        <>
+          <SubTitle>{category}</SubTitle>
+          <IconList icons={iconMap2[category]} />
+        </>
+      ))}
+    </TempIconListGrid>
+
   </>
 );
 
