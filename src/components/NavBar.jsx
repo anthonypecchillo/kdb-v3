@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import LanguageSelect from './LanguageSelect';
 
-import GCFTFLogo from '../assets/logos/GCFTF.png';
+const GCFTF_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/GCFTF.png'
 
 const NavBarGrid = styled.div`
   display: grid;
@@ -37,7 +37,7 @@ const Logo = styled.div`
   grid-area: logo;
   place-self: center;
 
-  background: no-repeat center/100% url(${GCFTFLogo});
+  background: no-repeat center/100% url(${GCFTF_LOGO_URL});
   height: 75px;
   margin-left: 10px;
   width: 75px;
