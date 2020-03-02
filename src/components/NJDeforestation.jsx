@@ -8,6 +8,7 @@ import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
 
+import DeforestationDriversList from './DeforestationDriversList';
 import DoughnutChart from './DoughnutChart';
 import LineChart from './LineChart';
 import Loading from './Loading';
@@ -33,6 +34,7 @@ const GET_JURISDICTION_DEFORESTATION = gql`
       }
       deforestationDrivers {
         id
+        faIconClass
         deforestationDriverTranslate(code: $languageCode) {
           name
         }
@@ -61,7 +63,7 @@ const GET_JURISDICTION_DEFORESTATION = gql`
 const DeforestationGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 5fr 5fr;
+  grid-template-rows: 1fr 5fr auto 4.5fr;
   /* justify-items: center; */
   height: 100%;
   width: 100%;
@@ -78,15 +80,27 @@ const DeforestationTitle = styled.h3`
 
 const DeforestationText = styled.div`
   grid-column: 1/3;
+  grid-row: 3/5;
   overflow: scroll;
   padding: 0 5%;
   width: 100%;
 `;
 
 const DeforestationDriversTitle = styled.div`
+  grid-row: 3/4;
+
   align-self: end;
   font-weight: 600;
+  margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
   text-align: center;
+`;
+
+const DeforestationTagListContainer = styled.div`
+  grid-row: 4/5;
+  height: 100%;
+  width: 100%;
+
+  overflow-x: scroll;
 `;
 
 const DeforestationTagList = styled.ul`
@@ -169,14 +183,15 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
       <DeforestationText>
         {driversOfDeforestationHTML}
       </DeforestationText>
-      <div>
-        <DeforestationDriversTitle>Drivers of Deforestation</DeforestationDriversTitle>
-        <DeforestationTagList>
+      <DeforestationDriversTitle marginBottom="10px">Drivers of Deforestation</DeforestationDriversTitle>
+      <DeforestationTagListContainer>
+        {/* <DeforestationTagList>
           {deforestationDrivers.map(driver => (
             <DeforestationTagListItem key={driver.id}>{driver.deforestationDriverTranslate.name}</DeforestationTagListItem>
           ))}
-        </DeforestationTagList>
-      </div>
+        </DeforestationTagList> */}
+        <DeforestationDriversList deforestationDrivers={deforestationDrivers} />
+      </DeforestationTagListContainer>
     </DeforestationGrid>
   )
 };

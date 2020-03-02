@@ -26,7 +26,7 @@ const ExportsListGrid = styled.div`
 const ExportsList = ({ majorExports }) => (
   <ExportsListGrid>
     {majorExports.map(majorExport => (
-      <ExportsListItem majorExport={majorExport} />
+      <ExportsListItem key={majorExport.id} majorExport={majorExport} />
     ))}
   </ExportsListGrid>
 );

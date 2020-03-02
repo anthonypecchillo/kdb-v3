@@ -5,7 +5,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ExportsListItemGrid = styled.div`
+const DeforestationDriversListItemGrid = styled.div`
   display: grid;
   grid-template-columns: 30px 1fr;
 
@@ -21,16 +21,16 @@ const ExportListItemText = styled.span`
   align-self: center;
 `;
 
-const ExportsListItem = ({ majorExport }) => {
-  console.log(majorExport);
+const DeforestationDriversListItem = ({ deforestationDriver }) => {
+  console.log(deforestationDriver);
   return (
-    <ExportsListItemGrid>
-      <Icon className={majorExport.faIconClass} />
+    <DeforestationDriversListItemGrid>
+      <Icon className={deforestationDriver.faIconClass} />
       <ExportListItemText className="menu-text">
-        {majorExport.majorExportTranslate.name}
+        {deforestationDriver.deforestationDriverTranslate.name}
       </ExportListItemText>
-    </ExportsListItemGrid>
+    </DeforestationDriversListItemGrid>
   );
 };
 
-export default ExportsListItem;
+export default DeforestationDriversListItem;
