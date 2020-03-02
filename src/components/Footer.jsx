@@ -6,14 +6,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import CIFORLogo from '../assets/logos/CIFOR.png';
-import EIILogo from '../assets/logos/EII.png';
-import GFWLogo from '../assets/logos/GFW.png';
-import MDALogo from '../assets/logos/MDA.png';
-import NORADLogo from '../assets/logos/NORAD.png';
-import PNSLogo from '../assets/logos/PNS.png';
-import RBFLogo from '../assets/logos/RBF.png';
-import TCGLogo from '../assets/logos/TCG.png';
+const CIFOR_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/CIFOR.png';
+const EII_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/EII.png';
+const GFW_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/GFW.png';
+const MDA_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/MDA.png';
+const NORAD_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/NORAD.png';
+const PNS_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/PNS.png';
+const RBF_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/RBF.png';
+const TCG_LOGO_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/logos/TCG.png';
 
 const FACEBOOK_URL = 'https://www.facebook.com/GCFTF';
 const CIFOR_URL = 'https://www.cifor.org';
@@ -296,28 +296,28 @@ const Footer = ({ content }) => {
 
       <AcknowledgementsGrid>
         <LogoLink href={NORAD_URL} rel="noopener noreferrer" target="_blank" row={0}>
-          <Logo logo={NORADLogo} />
+          <Logo logo={NORAD_LOGO_URL} />
         </LogoLink>
         <LogoLink href={RBF_URL} rel="noopener noreferrer" target="_blank" row={0}>
-          <Logo logo={RBFLogo} />
+          <Logo logo={RBF_LOGO_URL} />
         </LogoLink>
         <LogoLink href={CIFOR_URL} rel="noopener noreferrer" target="_blank" row={0}>
-          <Logo logo={CIFORLogo} />
+          <Logo logo={CIFOR_LOGO_URL} />
         </LogoLink>
         <LogoLink href={GFW_URL} rel="noopener noreferrer" target="_blank" row={0}>
-          <Logo logo={GFWLogo} />
+          <Logo logo={GFW_LOGO_URL} />
         </LogoLink>
         <LogoLink href={PNS_URL} rel="noopener noreferrer" target="_blank" row={1}>
-          <Logo logo={PNSLogo} />
+          <Logo logo={PNS_LOGO_URL} />
         </LogoLink>
         <LogoLink href={MDA_URL} rel="noopener noreferrer" target="_blank" row={1}>
-          <Logo logo={MDALogo} />
+          <Logo logo={MDA_LOGO_URL} />
         </LogoLink>
         <LogoLink href={EII_URL} rel="noopener noreferrer" target="_blank" row={1}>
-          <Logo logo={EIILogo} />
+          <Logo logo={EII_LOGO_URL} />
         </LogoLink>
         <LogoLink href={TCG_URL} rel="noopener noreferrer" target="_blank" row={1}>
-          <Logo logo={TCGLogo} />
+          <Logo logo={TCG_LOGO_URL} />
         </LogoLink>
       </AcknowledgementsGrid>
 

@@ -5,14 +5,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import JumbotronBackgroundImage from '../assets/images/LandingBannerCropped.jpg';
+const JUMBOTRON_IMAGE_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/images/LandingBannerCropped.jpg';
 
 const JumbotronGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
   background-attachment: fixed;
-  background-image: url(${JumbotronBackgroundImage});
+  background-image: url(${JUMBOTRON_IMAGE_URL});
   background-position: top left;
   background-repeat: no-repeat;
   background-size: cover;

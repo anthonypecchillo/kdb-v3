@@ -10,9 +10,6 @@ import styled from 'styled-components';
 
 // import Loading from './Loading';
 
-import Avatar from '../assets/images/avatar.png';
-import Indonesia from '../assets/images/Indonesia.jpg';
-
 // const GET_NATIONAL_GLOBAL_PERSPECTIVE = gql`
 //   query getNationGlobalPerspective($nationName: String!, $languageCode: String!) {
 //     nationByName(nationName: $nationName) {
@@ -47,25 +44,25 @@ const GlobalPerspectiveTitle = styled.h3`
   width: 100%;
 `;
 
-const GlobalPerspectivePhoto = styled.div`
-  background: no-repeat center/100% url(${Avatar});
-  background: ${({ photo }) => photo && `no-repeat center/200% url(${photo})`};
-  background-position: top left;
-  float: right;
-  height: 300px;
-  max-height: 300px;
-  max-width: 48%;
-  margin: 10px;
-  width: 100%;
-
-  @media (max-width: 765px) {
-    display: block;
-    float: none;
-    min-height: 300px;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-`;
+// const GlobalPerspectivePhoto = styled.div`
+//   background: no-repeat center/100% url(${defaultImage});
+//   background: ${({ photo }) => photo && `no-repeat center/200% url(${photo})`};
+//   background-position: top left;
+//   float: right;
+//   height: 300px;
+//   max-height: 300px;
+//   max-width: 48%;
+//   margin: 10px;
+//   width: 100%;
+//
+//   @media (max-width: 765px) {
+//     display: block;
+//     float: none;
+//     min-height: 300px;
+//     max-width: 100%;
+//     margin: 0 auto;
+//   }
+// `;
 
 const GlobalPerspectiveContent = styled.div`
   height: 100%;

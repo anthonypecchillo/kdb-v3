@@ -9,9 +9,7 @@ import styled from 'styled-components';
 
 import Loading from './Loading';
 
-import Avatar from '../assets/images/avatar.png';
-import Bill from '../assets/images/bill-gates.jpg';
-import Michelle from '../assets/images/michelle-obama.jpg';
+const AVATAR_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/images/avatar.png';
 
 const GET_JURISDICTION_CONTACTS = gql`
   query getJurisdictionByName($nationName: String!, $jurisdictionName: String!) {
@@ -90,7 +88,7 @@ const ContactsPhoto = styled.div`
   width: 150px;
   z-index: 3;
   &:after {
-    background: no-repeat center/110% url(${Avatar});
+    background: no-repeat center/110% url(${AVATAR_URL});
     background: ${({ photo }) => photo && `no-repeat center/110% url(${photo})`};
     border-radius: 50%;
     content: '';

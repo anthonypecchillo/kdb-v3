@@ -7,24 +7,24 @@ import styled from 'styled-components';
 
 import Carousel from './Carousel';
 
-import ForestCarbonURL from '../assets/images/Forest-Carbon.jpg';
-import SquareKilometersForestURL from '../assets/images/Square-Kilometers-Forest.jpg';
-import TropicalForestURL from '../assets/images/Tropical-Forest.jpg';
+const FOREST_CARBON_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/images/Forest-Carbon.jpg';
+const SQUARE_KILOMETERS_FOREST_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/images/Square-Kilometers-Forest.jpg';
+const TROPICAL_FOREST_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.com/images/Tropical-Forest.jpg';
 
 const carouselSlidesData = [
   {
     content: 'MILLION SQUARE KILOMETERS OF TROPICAL FOREST',
-    imageURL: SquareKilometersForestURL,
+    imageURL: SQUARE_KILOMETERS_FOREST_URL,
     value: '4.9',
   },
   {
     content: 'BILLION TONNES OF FOREST CARBON',
-    imageURL: ForestCarbonURL,
+    imageURL: FOREST_CARBON_URL,
     value: '55',
   },
   {
     content: "WORLD's TROPICAL FORESTS",
-    imageURL: TropicalForestURL,
+    imageURL: TROPICAL_FOREST_URL,
     value: '1/3',
   },
 ];

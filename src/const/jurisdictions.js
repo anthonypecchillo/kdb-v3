@@ -1,15 +1,16 @@
-import BrazilHeaderImageURL from '../assets/images/Brazil.jpg';
-import IndonesiaHeaderImageURL from '../assets/images/Indonesia.jpg';
-import MexicoHeaderImageURL from '../assets/images/Mexico.jpg';
-import PeruHeaderImageURL from '../assets/images/Peru.jpg';
-import IvoryCoastHeaderImageURL from '../assets/images/IvoryCoast.jpg';
-import ColombiaHeaderImageURL from '../assets/images/Colombia.jpg';
-import EcuadorHeaderImageURL from '../assets/images/Ecuador.jpg';
-import NigeriaHeaderImageURL from '../assets/images/Nigeria.jpg';
-
 import IndonesiaFlagURL from '../assets/flags/Indonesia.png';
 import EastKalimantanFlagURL from '../assets/flags/East_Kalimantan.png';
 import WestKalimantanFlagURL from '../assets/flags/West_Kalimantan.png';
+
+const BrazilHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/Brazil.jpg';
+const IndonesiaHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/Indonesia.jpg';
+const MexicoHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/Mexico.jpg';
+const PeruHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/Peru.jpg';
+const IvoryCoastHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/IvoryCoast.jpg';
+const ColombiaHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/Colombia.jpg';
+const EcuadorHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/Ecuador.jpg';
+const NigeriaHeaderImageURL = 'https://region-assets.s3-us-west-1.amazonaws.com/banners/Nigeria.jpg';
+
 
 export default [
   null,
