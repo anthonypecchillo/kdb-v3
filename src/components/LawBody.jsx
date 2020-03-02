@@ -59,7 +59,7 @@ const LawCitationList = styled.div`
   width: 100%;
 `;
 
-const Icon2 = styled.a`
+const Icon2 = styled.i`
   align-self: end;
   justify-self: right;
   margin-right: 5px;
@@ -86,13 +86,13 @@ const LawBody = ({ citations, coatOfArmsUrl, isOpen, summary, title }) => {
         {citations.map(citation => {
           const iconSize = citations.length < 3 ? '4x' : '1x';
           return (
-            <Icon2
-              className={`far fa-file-pdf fa-${iconSize}`}
-              href={citation.url}
-              key={citation.id}
-              rel="noopener noreferrer"
-              target="_blank"
-            />
+            <a href={citation.url} rel="noopener noreferrer" target="_blank">
+              <Icon2
+                className={`far fa-file-pdf fa-${iconSize}`}
+                key={citation.id}
+              />
+            </a>
+
           )
         })}
       </LawCitationList>
