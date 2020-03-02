@@ -92,7 +92,6 @@ const LawBody = ({ citations, coatOfArmsUrl, isOpen, summary, title }) => {
                 key={citation.id}
               />
             </a>
-
           )
         })}
       </LawCitationList>
