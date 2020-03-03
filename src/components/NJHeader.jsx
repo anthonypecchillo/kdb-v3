@@ -62,6 +62,7 @@ const NJHeaderGrid = styled.div`
   background-size: contain;
   background-position: top left;
   background-attachment: fixed;
+  box-shadow: 6px 18px 18px rgba(0,0,0,0.08), -6px 18px 18px rgba(0,0,0,0.08);
 
   height: 460px;
   position: sticky;
