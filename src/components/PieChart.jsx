@@ -119,7 +119,6 @@ class PieChart extends React.Component {
 
     if (chart) {
       // TODO: Change the first argument to this.props.width???
-      console.log(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns);
       chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
     } 
   }

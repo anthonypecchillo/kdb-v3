@@ -22,7 +22,6 @@ const ExportListItemText = styled.span`
 `;
 
 const ExportsListItem = ({ majorExport }) => {
-  console.log(majorExport);
   return (
     <ExportsListItemGrid>
       <Icon className={majorExport.faIconClass} />
