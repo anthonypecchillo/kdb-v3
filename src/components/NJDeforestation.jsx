@@ -63,15 +63,15 @@ const GET_JURISDICTION_DEFORESTATION = gql`
 const DeforestationGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 5fr auto 4.5fr;
-  /* justify-items: center; */
+  grid-template-rows: auto auto 32px auto;
+  
   height: 100%;
   width: 100%;
 `;
 
 const DeforestationTitle = styled.h3`
   grid-column: 1/4;
-  height: 100%;
+  ${'' /* height: 100%; */}
   /* padding-top: 20px; */
   margin: 0;
   text-align: center;
@@ -80,13 +80,24 @@ const DeforestationTitle = styled.h3`
 
 const DeforestationText = styled.div`
   grid-column: 1/3;
-  grid-row: 3/5;
+  grid-row: 2/3;
   overflow: scroll;
-  padding: 0 5%;
+  padding: 0 2.5%;
   width: 100%;
 `;
 
+const DeforestationRateTitle = styled.div`
+  grid-column: 1/3;
+  grid-row: 3/4;
+
+  align-self: end;
+  font-weight: 600;
+  margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
+  text-align: center;
+`;
+
 const DeforestationDriversTitle = styled.div`
+  grid-column: 3/4;
   grid-row: 3/4;
 
   align-self: end;
@@ -96,27 +107,14 @@ const DeforestationDriversTitle = styled.div`
 `;
 
 const DeforestationTagListContainer = styled.div`
+  grid-column: 3/4;
   grid-row: 4/5;
+
   height: 100%;
+  margin-top: 10px;
   width: 100%;
 
   overflow-x: scroll;
-`;
-
-const DeforestationTagList = styled.ul`
-  list-style-type: none;
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 250px;
-  width: 100%;
-`;
-
-const DeforestationTagListItem = styled.li`
-  border: 1px solid black;
-  background-color: tomato;
-  height: 50px;
-  margin: 15px 0;
-  width: 90%;
 `;
 
 // TODO: Use primary key from DB as uniqueID for props
@@ -166,30 +164,30 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   return (
     <DeforestationGrid>
       <DeforestationTitle>Deforestation</DeforestationTitle>
-      <DoughnutChart
-        data={totalDeforestationData}
-        dataSourceConfig={totalDeforestationDataSourceConfig}
-        gridColumn="1/2"
-        justify="left"
-        percentOfTotalColumns={0.33}
-      />
-      <LineChart
-        data={deforestationRatesData}
-        dataSourceConfig={deforestationRatesDataSourceConfig}
-        gridColumn="2/4"
-        justify="center"
-        percentOfTotalColumns={0.66}
-      />
       <DeforestationText>
         {driversOfDeforestationHTML}
       </DeforestationText>
-      <DeforestationDriversTitle marginBottom="10px">Drivers of Deforestation</DeforestationDriversTitle>
+      <DoughnutChart
+        align="top"
+        data={totalDeforestationData}
+        dataSourceConfig={totalDeforestationDataSourceConfig}
+        gridColumn="3/4"
+        gridRow="2/3"
+        justify="center"
+        maxWidth={350}
+        percentOfTotalColumns={0.33}
+      />
+      {/* <DeforestationRateTitle marginBottom="10px">Deforestation Rate</DeforestationRateTitle> */}
+      <LineChart
+        data={deforestationRatesData}
+        dataSourceConfig={deforestationRatesDataSourceConfig}
+        gridColumn="1/4"
+        gridRow="3/5"
+        justify="center"
+        percentOfTotalColumns={0.66}
+      />
+      <DeforestationDriversTitle>Drivers of Deforestation</DeforestationDriversTitle>
       <DeforestationTagListContainer>
-        {/* <DeforestationTagList>
-          {deforestationDrivers.map(driver => (
-            <DeforestationTagListItem key={driver.id}>{driver.deforestationDriverTranslate.name}</DeforestationTagListItem>
-          ))}
-        </DeforestationTagList> */}
         <DeforestationDriversList deforestationDrivers={deforestationDrivers} />
       </DeforestationTagListContainer>
     </DeforestationGrid>
