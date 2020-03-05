@@ -143,9 +143,25 @@ const NJMapConfig = {
   },
 };
 
+const mapMargins = {
+  brazil:     { chartTopMargin: -10, chartRightMargin: -35, chartBottomMargin: 5, chartLeftMargin: 1 },
+  indonesia:  { chartTopMargin: 0, chartRightMargin: 10, chartBottomMargin: 18, chartLeftMargin: 10 },
+  mexico:     { chartTopMargin: 0, chartRightMargin: 2, chartBottomMargin: 0, chartLeftMargin: -12 },
+  peru:       { chartTopMargin: 5, chartRightMargin: 0, chartBottomMargin: 10, chartLeftMargin: 0 },
+  ivorycoast: { chartTopMargin: 5, chartRightMargin: 0, chartBottomMargin: 10, chartLeftMargin: 0 },
+  colombia:   { chartTopMargin: 5, chartRightMargin: 0, chartBottomMargin: 10, chartLeftMargin: 0 },
+  ecuador:    { chartTopMargin: 5, chartRightMargin: 0, chartBottomMargin: 10, chartLeftMargin: 0 },
+  nigeria:    { chartTopMargin: 0, chartRightMargin: 3, chartBottomMargin: 0, chartLeftMargin: -3 },
+};
+
 class MapDataSource {
   constructor(nation) {
+    const { chartTopMargin, chartRightMargin, chartBottomMargin, chartLeftMargin } = mapMargins[nation];
     this.chart = {
+      chartTopMargin,
+      chartRightMargin,
+      chartBottomMargin,
+      chartLeftMargin,
       entityFillHoverColor: '#87ceeb',
       entityToolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>",
       numberSuffix: ' km²',
@@ -153,8 +169,6 @@ class MapDataSource {
       theme: 'fusion',
       nullentitycolor: '#c3d2da',
       showLegend: false,
-      chartRightMargin: 40,
-      chartBottomMargin: 18,
       bgAlpha: '0',
       baseFontColor: '#ffffff',
       // canvasBgAlpha: '1',
@@ -212,7 +226,7 @@ const NJMap = ({ nationName, jurisdictionName }) => {
   const chartConfigs = {
     type: chartType,
     containerBackgroundOpacity: '0',
-    width: '120%',
+    width: '100%',
     height: '330',
     dataFormat: 'json',
     dataSource,
