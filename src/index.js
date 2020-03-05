@@ -56,6 +56,12 @@ const client = new ApolloClient({
   },
 });
 
+// Enable FusionChart instances to render in all browsers
+// Source: https://stackoverflow.com/questions/25713345/fusioncharts-not-rendering-properly-when-base-tag-included-in-html-head
+window.eve.on('raphael.new', function () {
+  this.raphael._url = this.raphael._g.win.location.href.replace(/#.*?$/, '');
+});
+
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
