@@ -89,6 +89,7 @@ const DoughnutChartStyled = styled.div`
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
   width: 100%;
+  max-width: ${({ maxWidth }) => `${maxWidth}px` || null};
 `;
 
 class DoughnutChart extends React.Component {
@@ -109,11 +110,12 @@ class DoughnutChart extends React.Component {
   }
 
   resize = () => { 
-    const { percentOfTotalColumns } = this.props;
+    const { maxWidth, percentOfTotalColumns } = this.props;
     const { chart } = this.state;
 
     if (chart) {
-      chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
+      const newWidth = Math.min(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, maxWidth);
+      chart.resizeTo(newWidth, chart.height);
     } 
   }
 
@@ -125,7 +127,7 @@ class DoughnutChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '250', justify } = this.props;
+    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '250', justify, maxWidth } = this.props;
 
     const dataSource = new DoughnutDataSource(data, dataSourceConfig);
     const chartConfigs = {
@@ -138,7 +140,7 @@ class DoughnutChart extends React.Component {
     };
 
     return (
-      <DoughnutChartStyled gridColumn={gridColumn} gridRow={gridRow} align={align} justify={justify}>
+      <DoughnutChartStyled gridColumn={gridColumn} gridRow={gridRow} align={align} justify={justify} maxWidth={maxWidth}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </DoughnutChartStyled>
     );
