@@ -22,7 +22,6 @@ const ExportListItemText = styled.span`
 `;
 
 const DeforestationDriversListItem = ({ deforestationDriver }) => {
-  console.log(deforestationDriver);
   return (
     <DeforestationDriversListItemGrid>
       <Icon className={deforestationDriver.faIconClass} />

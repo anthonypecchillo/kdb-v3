@@ -14,13 +14,7 @@ const DeforestationDriversListGrid = styled.div`
   ${'' /* grid-gap: 10px; */}
   justify-content: space-evenly;
 
-  height: 100%;
   margin: 0 auto;
-  width: 100%;
-
-  @media (max-width: 460px) {
-    grid-template-columns: repeat(2, auto);
-  }
 `;
 
 const DeforestationDriversList = ({ deforestationDrivers }) => (
