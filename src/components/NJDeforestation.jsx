@@ -4,7 +4,7 @@
 
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
 
@@ -62,11 +62,21 @@ const GET_JURISDICTION_DEFORESTATION = gql`
 
 const DeforestationGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 350px;
   grid-template-rows: auto auto 32px auto;
-  
+
   height: 100%;
   width: 100%;
+
+  @media (max-width: 1025px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 32px auto auto;
+  }
+
+  @media (max-width: 460px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 32px auto auto;
+  }
 `;
 
 const DeforestationTitle = styled.h3`
@@ -76,14 +86,36 @@ const DeforestationTitle = styled.h3`
   margin: 0;
   text-align: center;
   width: 100%;
+
+  @media (max-width: 1025px) {
+    grid-column: 1/3;
+  }
+
+  @media (max-width: 460px) {
+    grid-column: 1/2;
+  }
 `;
 
 const DeforestationText = styled.div`
-  grid-column: 1/3;
+  grid-column: 1/4;
   grid-row: 2/3;
-  overflow: scroll;
-  padding: 0 2.5%;
+  ${'' /* overflow: scroll; */}
+  padding: 0 0 0 2.5%;
   width: 100%;
+
+  @media (max-width: 1025px) {
+    grid-column: 1/3;
+    grid-row: 2/3;
+
+    padding: 0 2.5%;
+  }
+
+  @media (max-width: 460px) {
+    grid-column: 1/2;
+    grid-row: 2/3;
+
+    padding: 0 2.5%;
+  }
 `;
 
 const DeforestationRateTitle = styled.div`
@@ -94,6 +126,11 @@ const DeforestationRateTitle = styled.div`
   font-weight: 600;
   margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
   text-align: center;
+
+  ${'' /* @media (max-width: 1025px) {
+    grid-column: 1/3;
+    grid-row: 2/3;
+  } */}
 `;
 
 const DeforestationDriversTitle = styled.div`
@@ -104,26 +141,144 @@ const DeforestationDriversTitle = styled.div`
   font-weight: 600;
   margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
   text-align: center;
+
+  @media (max-width: 1025px) {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+
+  @media (max-width: 460px) {
+    grid-column: 1/2;
+    grid-row: 4/5;
+  }
 `;
 
 const DeforestationTagListContainer = styled.div`
   grid-column: 3/4;
   grid-row: 4/5;
 
-  height: 100%;
-  margin-top: 10px;
-  width: 100%;
+  align-self: start;
+  justify-self: center;
 
-  overflow-x: scroll;
+  margin: 10px 0;
+  ${'' /* width: 100%; */}
+
+  @media (max-width: 1025px) {
+    grid-column: 2/3;
+    grid-row: 4/5;
+
+    align-self: center;
+  }
+
+  @media (max-width: 460px) {
+    grid-column: 1/2;
+    grid-row: 5/6;
+
+    align-self: center;
+  }
 `;
+
+const TotalDeforestationChartContainer = styled.div`
+  ${'' /* grid-column: 1/4;
+  grid-row: 2/3; */}
+  float: right;
+  width: 312px;
+
+  @media (max-width: 1025px) {
+    grid-column: 1/2;
+    grid-row: 3/5;
+
+    justify-self: center;
+    float: none;
+  }
+
+  @media (max-width: 460px) {
+    grid-column: 1/2;
+    grid-row: 3/4;
+
+    float: none;
+  }
+`;
+
+const DeforestaionRatesChartContainer = styled.div`
+  grid-column: 1/3;
+  grid-row: 3/5;
+
+  @media (max-width: 1025px) {
+    grid-column: 1/3;
+    grid-row: 5/6;
+  }
+
+  @media (max-width: 460px) {
+    grid-column: 1/2;
+    grid-row: 6/7;
+  }
+`;
+
+// Hook for keeping track of window size
+// Source: https://usehooks.com/useWindowSize/
+function useWindowSize() {
+  const isClient = typeof window === 'object';
+
+  function getSize() {
+    return {
+      width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined
+    };
+  }
+
+  const [windowSize, setWindowSize] = useState(getSize);
+
+  useEffect(() => {
+    if (!isClient) {
+      return false;
+    }
+
+    function handleResize() {
+      setWindowSize(getSize());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+
+  return windowSize;
+}
 
 // TODO: Use primary key from DB as uniqueID for props
 const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
+  const windowSize = useWindowSize();
   const { data, loading, error } = useQuery(GET_JURISDICTION_DEFORESTATION, {
     variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },
   });
   if (loading) return <Loading />;
   if (error) return <p>ERROR</p>;
+
+
+  let totalDeforestationColumn = '1/4';
+  let totalDeforestationRow = '2/3';
+  let totalDeforestationPercentOfTotalColumns = '0.33';
+
+  let deforestationRatesColumn = '1/3';
+  let deforestationRatesRow = '3/5';
+  let deforestationRatesPercentOfTotalColumns = '0.66';
+
+  if (windowSize.width > 460 && windowSize.width <= 1025) {
+    totalDeforestationColumn = '1/2';
+    totalDeforestationRow = '3/5';
+    totalDeforestationPercentOfTotalColumns = '0.5';
+    deforestationRatesColumn = '1/3';
+    deforestationRatesRow = '5/6';
+    deforestationRatesPercentOfTotalColumns = '1';
+  }
+  if (windowSize.width <= 460) {
+    totalDeforestationColumn = '1/2';
+    totalDeforestationRow = '3/4';
+    totalDeforestationPercentOfTotalColumns = '1';
+    deforestationRatesColumn = '1/2';
+    deforestationRatesRow = '6/7';
+    deforestationRatesPercentOfTotalColumns = '1';
+  }
 
   const { driversOfDeforestation } = data.jurisdictionByName.contentJurisdictional.contentJurisdictionalTranslate;
   const driversOfDeforestationHTML = ReactHtmlParser(driversOfDeforestation);
@@ -161,31 +316,49 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
     numberSuffix: ' km²',
   };
 
+  const totalPopulationChartWideViewport = windowSize.width > 1025 ? (
+    <TotalDeforestationChartContainer>
+      <DoughnutChart
+        align="center"
+        data={totalDeforestationData}
+        dataSourceConfig={totalDeforestationDataSourceConfig}
+        width={312}
+        percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
+      />
+    </TotalDeforestationChartContainer>
+  ) : null;
+
+  const totalPopulationChartNarrowViewport = windowSize.width <= 1025 ? (
+    <TotalDeforestationChartContainer>
+      <DoughnutChart
+        align="center"
+        data={totalDeforestationData}
+        dataSourceConfig={totalDeforestationDataSourceConfig}
+        // justify="right"
+        width={312}
+        percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
+      />
+    </TotalDeforestationChartContainer>
+  ) : null;
+
   return (
     <DeforestationGrid>
       <DeforestationTitle>Deforestation</DeforestationTitle>
       <DeforestationText>
+        {totalPopulationChartWideViewport}
         {driversOfDeforestationHTML}
       </DeforestationText>
-      <DoughnutChart
-        align="top"
-        data={totalDeforestationData}
-        dataSourceConfig={totalDeforestationDataSourceConfig}
-        gridColumn="3/4"
-        gridRow="2/3"
-        justify="center"
-        maxWidth={350}
-        percentOfTotalColumns={0.33}
-      />
       {/* <DeforestationRateTitle marginBottom="10px">Deforestation Rate</DeforestationRateTitle> */}
-      <LineChart
-        data={deforestationRatesData}
-        dataSourceConfig={deforestationRatesDataSourceConfig}
-        gridColumn="1/4"
-        gridRow="3/5"
-        justify="center"
-        percentOfTotalColumns={0.66}
-      />
+      {totalPopulationChartNarrowViewport}
+      <DeforestaionRatesChartContainer>
+        <LineChart
+          data={deforestationRatesData}
+          dataSourceConfig={deforestationRatesDataSourceConfig}
+          justify="center"
+          percentOfTotalColumns={deforestationRatesPercentOfTotalColumns}
+        />
+      </DeforestaionRatesChartContainer>
+
       <DeforestationDriversTitle>Drivers of Deforestation</DeforestationDriversTitle>
       <DeforestationTagListContainer>
         <DeforestationDriversList deforestationDrivers={deforestationDrivers} />
