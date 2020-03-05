@@ -16,7 +16,7 @@ const ForestAndLandUseGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 800px 800px 800px 800px;
+  grid-template-rows: 800px auto 800px 800px;
   grid-template-areas:
     'land land land .'
     'deforestation deforestation deforestation deforestation'
