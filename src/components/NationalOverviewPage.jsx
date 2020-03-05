@@ -11,6 +11,8 @@ import NationalEconomics from './NationalEconomics';
 import NationalDeforestation from './NationalDeforestation';
 import Tile from './Tile';
 
+import About from './About';
+
 const OverviewGrid = styled.div`
   display: grid;
   grid-column-gap: 2%;
@@ -42,20 +44,21 @@ const OverviewGrid = styled.div`
 `;
 
 const NationalOverviewPage = ({ nationName, jurisdictionName, language }) => (
-  <OverviewGrid>
-    <Tile gridArea="land">
-      <NationalLand nationName={nationName} language={language} />
-    </Tile>
-    <Tile gridArea="demographics" height="800px" align="start">
-      <NationalDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-    </Tile>
-    <Tile gridArea="economics">
-      <NationalEconomics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-    </Tile>
-    <Tile gridArea="deforestation">
-      <NationalDeforestation nationName={nationName} language={language} />
-    </Tile>
-  </OverviewGrid>
+  <About />
+  // <OverviewGrid>
+  //   <Tile gridArea="land">
+  //     <NationalLand nationName={nationName} language={language} />
+  //   </Tile>
+  //   <Tile gridArea="demographics" height="800px" align="start">
+  //     <NationalDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
+  //   </Tile>
+  //   <Tile gridArea="economics">
+  //     <NationalEconomics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
+  //   </Tile>
+  //   <Tile gridArea="deforestation">
+  //     <NationalDeforestation nationName={nationName} language={language} />
+  //   </Tile>
+  // </OverviewGrid>
 );
 
 export default NationalOverviewPage;
