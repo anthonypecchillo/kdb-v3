@@ -189,6 +189,7 @@ class NJDemographics extends React.Component {
                   dataSourceConfig={urbanVsRuralDataSourceConfig}
                   justify="center"
                   percentOfTotalColumns={1}
+                  width={312}
                 />
                 <PieChart
                   data={socialGroupsData}
