@@ -114,12 +114,16 @@ class PieChart extends React.Component {
   }
 
   resize = () => { 
-    const { percentOfTotalColumns } = this.props;
+    const { percentOfTotalColumns, width } = this.props;
     const { chart } = this.state;
 
     if (chart) {
-      // TODO: Change the first argument to this.props.width???
-      chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
+      let newWidth = chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns;
+      if (width) {
+        newWidth = Math.min(newWidth, width);
+      }
+
+      chart.resizeTo(newWidth, chart.height);
     } 
   }
 
@@ -130,7 +134,7 @@ class PieChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, justify, height = '250', percentOfTotalColumns } = this.props;
+    const { align, data, dataSourceConfig, justify, height = '250', percentOfTotalColumns, width } = this.props;
 
     const dataSource = new PieDataSource(data, dataSourceConfig);
     const chartConfigs = {
@@ -143,7 +147,7 @@ class PieChart extends React.Component {
     };
 
     return (
-      <PieChartStyled align={align} justify={justify}>
+      <PieChartStyled align={align} justify={justify} width={width}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </PieChartStyled>
     );

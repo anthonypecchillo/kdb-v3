@@ -88,8 +88,9 @@ const DoughnutChartStyled = styled.div`
   grid-row: ${({ gridRow }) => gridRow || null};
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
-  width: 100%;
-  max-width: ${({ maxWidth }) => `${maxWidth}px` || null};
+  ${'' /* width: 100%; */}
+  width: ${({ width }) => `${width}px` || '100%'};
+  ${'' /* max-width: ${({ maxWidth }) => `${maxWidth}px` || null}; */}
 `;
 
 class DoughnutChart extends React.Component {
@@ -110,12 +111,13 @@ class DoughnutChart extends React.Component {
   }
 
   resize = () => { 
-    const { maxWidth, percentOfTotalColumns } = this.props;
+    // const { maxWidth, percentOfTotalColumns } = this.props;
+    const { width, percentOfTotalColumns } = this.props;
     const { chart } = this.state;
 
     if (chart) {
-      const newWidth = Math.min(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, maxWidth);
-      chart.resizeTo(newWidth, chart.height);
+      const newWidth = Math.min(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, width);
+      chart.resizeTo(width, chart.height);
     } 
   }
 
@@ -127,7 +129,7 @@ class DoughnutChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '250', justify, maxWidth } = this.props;
+    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '250', justify, width } = this.props;
 
     const dataSource = new DoughnutDataSource(data, dataSourceConfig);
     const chartConfigs = {
@@ -140,7 +142,7 @@ class DoughnutChart extends React.Component {
     };
 
     return (
-      <DoughnutChartStyled gridColumn={gridColumn} gridRow={gridRow} align={align} justify={justify} maxWidth={maxWidth}>
+      <DoughnutChartStyled gridColumn={gridColumn} gridRow={gridRow} align={align} justify={justify} width={width}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </DoughnutChartStyled>
     );

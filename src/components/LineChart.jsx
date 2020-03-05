@@ -270,7 +270,8 @@ class LineChart extends React.Component {
     const { chart } = this.state;
 
     if (chart) {
-      chart.resizeTo(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, chart.height);
+      const newWidth = Math.min(window.innerWidth * 0.92, chart.container.parentElement.parentElement.getBoundingClientRect().width);
+      chart.resizeTo(newWidth, chart.height);
     } 
   }
 
