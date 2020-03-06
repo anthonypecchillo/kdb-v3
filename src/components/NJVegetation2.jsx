@@ -161,9 +161,9 @@ class NJVegetation extends React.Component {
             return (
               <>
                 <VegetationTitle>Land (Alternate/Mobile)</VegetationTitle>
-                <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} width={width * 1} />
-                <PieChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="center" percentOfTotalColumns={1} width={width * 1} />
-                <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="center" percentOfTotalColumns={1} width={width * 1} />
+                <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={350} />
+                <PieChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={370} />
+                <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={350} />
               </>
             );
           }}

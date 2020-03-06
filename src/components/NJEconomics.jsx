@@ -94,6 +94,10 @@ const EconomicsTotalTitle = styled.div`
 const EconomicsTotalValue = styled.h1`
   align-self: end;
   margin: 0;
+
+  @media (max-width: 460px) {
+    font-size: 24px;
+  }
 `;
 
 const EconomicsTotalNationalPercent = styled.div`
@@ -192,14 +196,10 @@ const NJEconomics = ({ jurisdictionName, language, nationName }) => {
         justify="center"
         height={'310'}
         percentOfTotalColumns={1}
+        maxWidth={370}
       />
       <EconomicsTotalTitle marginBottom="10px">Major Exports</EconomicsTotalTitle>
       <EconomicsTagListContainer>
-        {/* <EconomicsTagList>
-          {majorExports.map((majorExport, index) => (
-            <EconomicsTagListItem key={index}>{majorExport.majorExportTranslate.name}</EconomicsTagListItem>
-          ))}
-        </EconomicsTagList> */}
         <ExportsList majorExports={majorExports} />
       </EconomicsTagListContainer>
       <EconomicsCitation>IBGE. 2012. Censo Demográfico 2010</EconomicsCitation>

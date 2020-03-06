@@ -95,6 +95,10 @@ const EconomicsTotalTitle = styled.div`
 const EconomicsTotalValue = styled.h1`
   align-self: end;
   margin: 0;
+
+  @media (max-width: 460px) {
+    font-size: 24px;
+  }
 `;
 
 const EconomicsTotalNationalPercent = styled.div`
@@ -193,7 +197,7 @@ const NationalEconomics = ({ language, nationName }) => {
       <EconomicsTotalTitle>National GDP</EconomicsTotalTitle>
       <EconomicsTotalValue>{GDP}</EconomicsTotalValue>
       <EconomicsTotalNationalPercent>{PERCENTAGE_OF_GLOBAL_GDP}</EconomicsTotalNationalPercent>
-      <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} width="370" percentOfTotalColumns={1} />
+      <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'310'} maxWidth={370} percentOfTotalColumns={1} />
       <EconomicsTotalTitle marginBottom="10px">Major Exports</EconomicsTotalTitle>
       <EconomicsTagListContainer>
         {/* <EconomicsTagList>

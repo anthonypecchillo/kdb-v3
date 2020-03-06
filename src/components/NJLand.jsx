@@ -131,8 +131,8 @@ const NJLand = ({ jurisdictionName, language, nationName }) => {
   return (
     <LandGrid>
       <LandTitle>Land</LandTitle>
-      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="left" percentOfTotalColumns={0.5} width={350} />
-      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="right" percentOfTotalColumns={0.5} width={350} />
+      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="left" percentOfTotalColumns={0.5} maxWidth={350} />
+      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="right" percentOfTotalColumns={0.5} maxWidth={350} />
       <BarChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="left" />
     </LandGrid>
   )

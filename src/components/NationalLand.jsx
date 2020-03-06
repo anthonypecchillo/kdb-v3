@@ -93,9 +93,15 @@ const NationalLand = ({ language, nationName }) => {
   return (
     <LandGrid>
       <LandTitle>Land Distribution</LandTitle>
-      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={0.9} />
+      <DoughnutChart
+        data={landDistributionData}
+        dataSourceConfig={landDistributionDataSourceConfig}
+        justify="center"
+        percentOfTotalColumns={1}
+        maxWidth={350}
+      />
     </LandGrid>
-  )
+  );
 };
 
 export default NationalLand;

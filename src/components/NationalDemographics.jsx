@@ -152,8 +152,8 @@ const NationalDemographics = ({ language, nationName }) => {
       <DemographicsTotalTitle>Total Population:</DemographicsTotalTitle>
       <DemographicsTotalValue>{populationAmount}</DemographicsTotalValue>
       <DemographicsTotalNationalPercent>{percentageOfGlobalPopulation}</DemographicsTotalNationalPercent>
-      <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} />
-      <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} width="370" percentOfTotalColumns={0.9} />
+      <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={312}/>
+      <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} maxWidth={370} percentOfTotalColumns={0.9} />
       <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
     </DemographicsGrid>
   );

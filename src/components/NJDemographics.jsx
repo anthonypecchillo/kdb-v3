@@ -189,7 +189,7 @@ class NJDemographics extends React.Component {
                   dataSourceConfig={urbanVsRuralDataSourceConfig}
                   justify="center"
                   percentOfTotalColumns={1}
-                  width={312}
+                  maxWidth={312}
                 />
                 <PieChart
                   data={socialGroupsData}
@@ -197,7 +197,9 @@ class NJDemographics extends React.Component {
                   justify="center"
                   height={'310'}
                   percentOfTotalColumns={1}
+                  maxWidth={370}
                 />
+                <div/>
                 <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
               </>
             );
