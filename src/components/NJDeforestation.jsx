@@ -64,6 +64,11 @@ const DeforestationGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 350px;
   grid-template-rows: auto auto 32px auto;
+  grid-template-areas:
+    'deforestation-title deforestation-title deforestation-title'
+    'deforestation-text deforestation-text deforestation-text'
+    'deforestation-rate-plot deforestation-rate-plot drivers-of-deforestation-title'
+    'deforestation-rate-plot deforestation-rate-plot drivers-of-deforestation-list';
 
   height: 100%;
   width: 100%;
@@ -71,18 +76,30 @@ const DeforestationGrid = styled.div`
   @media (max-width: 1025px) {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto 32px auto auto;
+    grid-template-areas:
+      'deforestation-title deforestation-title'
+      'deforestation-text deforestation-text'
+      'total-deforestation-plot drivers-of-deforestation-title'
+      'total-deforestation-plot drivers-of-deforestation-list'
+      'deforestation-rate-plot deforestation-rate-plot';
   }
 
   @media (max-width: 460px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto 32px auto auto;
+    grid-template-areas:
+      'deforestation-title'
+      'deforestation-text'
+      'total-deforestation-plot'
+      'drivers-of-deforestation-title'
+      'drivers-of-deforestation-list'
+      'deforestation-rate-plot';
   }
 `;
 
 const DeforestationTitle = styled.h3`
-  grid-column: 1/4;
-  ${'' /* height: 100%; */}
-  /* padding-top: 20px; */
+  grid-area: deforestation-title;
+
   margin: 0;
   text-align: center;
   width: 100%;
@@ -97,9 +114,7 @@ const DeforestationTitle = styled.h3`
 `;
 
 const DeforestationText = styled.div`
-  grid-column: 1/4;
-  grid-row: 2/3;
-  ${'' /* overflow: scroll; */}
+  grid-area: deforestation-text;
   padding: 0 0 0 2.5%;
   width: 100%;
 
@@ -119,23 +134,16 @@ const DeforestationText = styled.div`
 `;
 
 const DeforestationRateTitle = styled.div`
-  grid-column: 1/3;
-  grid-row: 3/4;
-
+  ${'' /* grid-area: deforestation-rate-title; */}
   align-self: end;
+
   font-weight: 600;
   margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
   text-align: center;
-
-  ${'' /* @media (max-width: 1025px) {
-    grid-column: 1/3;
-    grid-row: 2/3;
-  } */}
 `;
 
 const DeforestationDriversTitle = styled.div`
-  grid-column: 3/4;
-  grid-row: 3/4;
+  grid-area: drivers-of-deforestation-title;
 
   align-self: end;
   font-weight: 600;
@@ -154,8 +162,7 @@ const DeforestationDriversTitle = styled.div`
 `;
 
 const DeforestationTagListContainer = styled.div`
-  grid-column: 3/4;
-  grid-row: 4/5;
+  grid-area: drivers-of-deforestation-list;
 
   align-self: start;
   justify-self: center;
@@ -175,43 +182,6 @@ const DeforestationTagListContainer = styled.div`
     grid-row: 5/6;
 
     align-self: center;
-  }
-`;
-
-const TotalDeforestationChartContainer = styled.div`
-  ${'' /* grid-column: 1/4;
-  grid-row: 2/3; */}
-  float: right;
-  width: 312px;
-
-  @media (max-width: 1025px) {
-    grid-column: 1/2;
-    grid-row: 3/5;
-
-    justify-self: center;
-    float: none;
-  }
-
-  @media (max-width: 460px) {
-    grid-column: 1/2;
-    grid-row: 3/4;
-
-    float: none;
-  }
-`;
-
-const DeforestaionRatesChartContainer = styled.div`
-  grid-column: 1/3;
-  grid-row: 3/5;
-
-  @media (max-width: 1025px) {
-    grid-column: 1/3;
-    grid-row: 5/6;
-  }
-
-  @media (max-width: 460px) {
-    grid-column: 1/2;
-    grid-row: 6/7;
   }
 `;
 
@@ -266,7 +236,7 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   if (windowSize.width > 460 && windowSize.width <= 1025) {
     totalDeforestationColumn = '1/2';
     totalDeforestationRow = '3/5';
-    totalDeforestationPercentOfTotalColumns = '0.5';
+    totalDeforestationPercentOfTotalColumns = '0.4';
     deforestationRatesColumn = '1/3';
     deforestationRatesRow = '5/6';
     deforestationRatesPercentOfTotalColumns = '1';
@@ -292,7 +262,6 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
     {
       label: 'Deforested',
       value: Math.round(originalForestArea.amount - forestArea.amount),
-      // color: '#ff69b4',
     },
   ];
   const totalDeforestationDataSourceConfig = {
@@ -317,28 +286,25 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   };
 
   const totalPopulationChartWideViewport = windowSize.width > 1025 ? (
-    <TotalDeforestationChartContainer>
-      <DoughnutChart
-        align="center"
-        data={totalDeforestationData}
-        dataSourceConfig={totalDeforestationDataSourceConfig}
-        width={312}
-        percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
-      />
-    </TotalDeforestationChartContainer>
+    <DoughnutChart
+      align="center"
+      data={totalDeforestationData}
+      dataSourceConfig={totalDeforestationDataSourceConfig}
+      maxWidth={312}
+      percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
+      float={'right'}
+    />
   ) : null;
 
   const totalPopulationChartNarrowViewport = windowSize.width <= 1025 ? (
-    <TotalDeforestationChartContainer>
-      <DoughnutChart
-        align="center"
-        data={totalDeforestationData}
-        dataSourceConfig={totalDeforestationDataSourceConfig}
-        // justify="right"
-        width={312}
-        percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
-      />
-    </TotalDeforestationChartContainer>
+    <DoughnutChart
+      align="center"
+      data={totalDeforestationData}
+      dataSourceConfig={totalDeforestationDataSourceConfig}
+      maxWidth={312}
+      percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
+      gridArea="total-deforestation-plot"
+    />
   ) : null;
 
   return (
@@ -350,15 +316,13 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
       </DeforestationText>
       {/* <DeforestationRateTitle marginBottom="10px">Deforestation Rate</DeforestationRateTitle> */}
       {totalPopulationChartNarrowViewport}
-      <DeforestaionRatesChartContainer>
-        <LineChart
-          data={deforestationRatesData}
-          dataSourceConfig={deforestationRatesDataSourceConfig}
-          justify="center"
-          percentOfTotalColumns={deforestationRatesPercentOfTotalColumns}
-        />
-      </DeforestaionRatesChartContainer>
-
+      <LineChart
+        data={deforestationRatesData}
+        dataSourceConfig={deforestationRatesDataSourceConfig}
+        justify="center"
+        percentOfTotalColumns={deforestationRatesPercentOfTotalColumns}
+        gridArea="deforestation-rate-plot"
+      />
       <DeforestationDriversTitle>Drivers of Deforestation</DeforestationDriversTitle>
       <DeforestationTagListContainer>
         <DeforestationDriversList deforestationDrivers={deforestationDrivers} />
