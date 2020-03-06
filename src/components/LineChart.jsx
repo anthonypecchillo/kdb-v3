@@ -60,6 +60,7 @@ class LineDataSource {
 }
 
 const LineChartStyled = styled.div`
+  grid-area:  ${({ gridArea }) => gridArea || null};
   grid-column: ${({ gridColumn }) => gridColumn || null};
   grid-row: ${({ gridRow }) => gridRow || null};
   justify-self: ${({ justify }) => justify || 'center'};
@@ -76,7 +77,6 @@ class LineChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
-    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -96,25 +96,24 @@ class LineChart extends React.Component {
   handleRender = (chart) => {
     if (!this.state.chart) {
       this.setState({ chart }, this.resize);
-
     }
   }
 
   render() {
-    const { categories, data, dataSourceConfig, gridColumn, gridRow, justify, height = '380' } = this.props;
+    const { categories, data, dataSourceConfig, gridArea, gridColumn, gridRow, justify, height = '380' } = this.props;
 
     const dataSource = new LineDataSource(categories, data, dataSourceConfig);
     const chartConfigs = {
       type: 'line',
       height,
-      width: '99%',
+      width: '90%',
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
       dataSource,
     };
 
     return (
-      <LineChartStyled gridColumn={gridColumn} gridRow={gridRow} justify={justify}>
+      <LineChartStyled gridArea={gridArea} gridColumn={gridColumn} gridRow={gridRow} justify={justify}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </LineChartStyled>
     );

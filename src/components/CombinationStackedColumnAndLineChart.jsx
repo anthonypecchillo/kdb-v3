@@ -78,7 +78,6 @@ class CombinationStackedColumnAndLineChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
-    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -97,7 +96,6 @@ class CombinationStackedColumnAndLineChart extends React.Component {
   handleRender = (chart) => {
     if (!this.state.chart) {
       this.setState({ chart }, this.resize);
-
     }
   }
 
@@ -108,7 +106,7 @@ class CombinationStackedColumnAndLineChart extends React.Component {
     const chartConfigs = {
       type: 'stackedcolumn2dline',
       height,
-      width: '99%',
+      width: '90%',
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
       dataSource,

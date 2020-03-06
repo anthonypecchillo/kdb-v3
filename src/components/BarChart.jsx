@@ -71,7 +71,6 @@ class BarChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
-    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -87,7 +86,6 @@ class BarChart extends React.Component {
   handleRender = (chart) => {
     if (!this.state.chart) {
       this.setState({ chart }, this.resize);
-
     }
   }
 
@@ -100,9 +98,8 @@ class BarChart extends React.Component {
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
       height: '490',
-      width: '99%',
+      width: '90%',
       type: 'column2d',
-      // width: '700',
     };
 
     return (

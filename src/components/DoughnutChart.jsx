@@ -50,13 +50,14 @@ class DoughnutDataSource {
 }
 
 const DoughnutChartStyled = styled.div`
+  grid-area: ${({ gridArea }) => gridArea || null};
   grid-column: ${({ gridColumn }) => gridColumn || null};
   grid-row: ${({ gridRow }) => gridRow || null};
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
-  ${'' /* width: 100%; */}
-  width: ${({ width }) => `${width}px` || '100%'};
-  ${'' /* max-width: ${({ maxWidth }) => `${maxWidth}px` || null}; */}
+  width: 100%;
+  max-width: ${({ maxWidth }) => `${maxWidth}px` || null};
+  float: ${({ float }) => float || null };
 `;
 
 class DoughnutChart extends React.Component {
@@ -69,7 +70,6 @@ class DoughnutChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
-    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -77,12 +77,11 @@ class DoughnutChart extends React.Component {
   }
 
   resize = () => { 
-    // const { maxWidth, percentOfTotalColumns } = this.props;
-    const { width, percentOfTotalColumns } = this.props;
+    const { maxWidth, percentOfTotalColumns } = this.props;
     const { chart } = this.state;
 
     if (chart) {
-      const newWidth = Math.min(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, width);
+      const width = Math.min(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, maxWidth);
       chart.resizeTo(width, chart.height);
     } 
   }
@@ -90,17 +89,15 @@ class DoughnutChart extends React.Component {
   handleRender = (chart) => {
     if (!this.state.chart) {
       this.setState({ chart }, this.resize);
-
     }
   }
 
   render() {
-    const { align, data, dataSourceConfig, gridColumn, gridRow, height = '250', justify, width } = this.props;
-
+    const { align, data, dataSourceConfig, float, gridArea, gridColumn, gridRow, height = '250', justify, maxWidth } = this.props;
     const dataSource = new DoughnutDataSource(data, dataSourceConfig);
     const chartConfigs = {
       type: 'doughnut2d',
-      width: '99%',
+      width: '90%',
       height,
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
@@ -108,7 +105,7 @@ class DoughnutChart extends React.Component {
     };
 
     return (
-      <DoughnutChartStyled gridColumn={gridColumn} gridRow={gridRow} align={align} justify={justify} width={width}>
+      <DoughnutChartStyled gridArea={gridArea} gridColumn={gridColumn} gridRow={gridRow} align={align} justify={justify} maxWidth={maxWidth} float={float}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </DoughnutChartStyled>
     );

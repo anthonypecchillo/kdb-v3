@@ -77,7 +77,6 @@ class BulletChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
-    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -109,7 +108,7 @@ class BulletChart extends React.Component {
       dataFormat: 'json',
       dataSource,
       height,
-      width: '99%',
+      width: '90%',
     };
 
     return (

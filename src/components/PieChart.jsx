@@ -53,9 +53,14 @@ class PieDataSource {
 }
 
 const PieChartStyled = styled.div`
+  grid-area: ${({ gridArea }) => gridArea || null};
+  grid-column: ${({ gridColumn }) => gridColumn || null};
+  grid-row: ${({ gridRow }) => gridRow || null};
   align-self: ${({ align }) => align || 'center'};
   justify-self: ${({ justify }) => justify || 'center'};
   width: 100%;
+  max-width: ${({ maxWidth }) => `${maxWidth}px` || null};
+  float: ${({ float }) => float || null };
 `;
 
 class PieChart extends React.Component {
@@ -68,7 +73,6 @@ class PieChart extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resize);
-    window.dispatchEvent(new Event('resize'));
   }
 
   componentWillUnmount() {
@@ -76,16 +80,12 @@ class PieChart extends React.Component {
   }
 
   resize = () => { 
-    const { percentOfTotalColumns, width } = this.props;
+    const { maxWidth, percentOfTotalColumns } = this.props;
     const { chart } = this.state;
 
     if (chart) {
-      let newWidth = chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns;
-      if (width) {
-        newWidth = Math.min(newWidth, width);
-      }
-
-      chart.resizeTo(newWidth, chart.height);
+      const width = Math.min(chart.container.parentElement.parentElement.parentElement.getBoundingClientRect().width * percentOfTotalColumns, maxWidth);
+      chart.resizeTo(width, chart.height);
     } 
   }
 
@@ -96,7 +96,7 @@ class PieChart extends React.Component {
   }
 
   render() {
-    const { align, data, dataSourceConfig, justify, height = '250', percentOfTotalColumns, width } = this.props;
+    const { align, data, dataSourceConfig, float, gridArea, gridColumn, gridRow, justify, height = '250', percentOfTotalColumns, maxWidth, width } = this.props;
 
     const dataSource = new PieDataSource(data, dataSourceConfig);
     const chartConfigs = {
@@ -105,11 +105,11 @@ class PieChart extends React.Component {
       dataFormat: 'json',
       dataSource,
       height,
-      width: '99%',
+      width: '90%',
     };
 
     return (
-      <PieChartStyled align={align} justify={justify} width={width}>
+      <PieChartStyled align={align} float={float} gridArea={gridArea} gridColumn={gridColumn} gridRow={gridRow} justify={justify} maxWidth={maxWidth}>
         <ReactFusioncharts {...chartConfigs} onRender={this.handleRender} />
       </PieChartStyled>
     );
