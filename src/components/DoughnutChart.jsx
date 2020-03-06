@@ -43,40 +43,6 @@ class DoughnutDataSource {
       showLegend: '0',
       formatNumberScale: '0',
       chartRightMargin: '0',
-      // palette: '1',
-      // paletteColors: '#FF0000, #0372AB, #FF5904',
-      // showZeroPies: '0',
-      // showPercentInToolTip: '1',
-      // labelSepChar: ',',
-      // clickURL: '/#',
-      // clickURLOverridesPlotLinks: '',
-      // useDataPlotColorForLabels: '0',
-      // hasRTLText: '0',
-      // plotHighlightEffect: 'fadeout|color=#ff0000, alpha=60',
-      // showPrintMenuItem: '0',
-
-      // subcaption: 'No Subcaption Necessary',
-
-      // subCaptionFontSize: 10,
-      // captionFont: 'Font Name Here',
-      // subCaptionFont: 'Font Name Here',
-      // subCaptionFontColor: 'Hex Code Here',
-      // captionFontBold: '1',
-      // subCaptionFontBold: '1',
-      // alignCaptionWithCanvas: '0',
-      // captionHorizontalPadding: 0,
-      // use3DLighting: '1',
-      // showShadow: '1',
-
-      // pieRadius: '90%',
-      // enableRotation: '1',
-      // enableMultiSlicing: '1',
-
-      // captionPadding: '-50',
-      // chartTopMargin: '-80',
-      // paletteColors: '#FF0000, #0372AB, #FF5904',
-      // plottooltext: '<b>$percentValue</b> of our Android users are on <b>$label</b>',
-      // legendPosition: 'right',
     };
 
     this.data = data;
