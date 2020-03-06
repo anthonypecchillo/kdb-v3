@@ -58,11 +58,11 @@ const NJOverviewPage = ({ nationName, jurisdictionName, language }) => (
     <Tile gridArea="demographics" height="800px" align="start">
       <NJDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
-    <Tile gridArea="contacts">
-      <NJContacts jurisdictionName={jurisdictionName} nationName={nationName} />
-    </Tile>
     <Tile gridArea="economics">
       <NJEconomics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
+    </Tile>
+    <Tile gridArea="contacts">
+      <NJContacts jurisdictionName={jurisdictionName} nationName={nationName} />
     </Tile>
   </OverviewGrid>
 );
