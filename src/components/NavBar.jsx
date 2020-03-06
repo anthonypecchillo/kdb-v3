@@ -92,6 +92,10 @@ const NavItemLink = styled(Link)`
   &:visited {
     color: black;
   }
+
+  @media (max-width: 1025px) {
+    display: none;
+  }
 `;
 
 const NavItem = styled.div`
