@@ -88,8 +88,6 @@ class InstitutionalFrameworks extends React.Component {
               groupedInstitutionalFrameworks[framework.politicalScope.toLowerCase()].push(framework);
             });
 
-            console.log(groupedInstitutionalFrameworks)
-
             return (
               <>
                 <Tabs

@@ -86,7 +86,7 @@ const LawBody = ({ citations, coatOfArmsUrl, isOpen, summary, title }) => {
         {citations.map(citation => {
           const iconSize = citations.length < 3 ? '4x' : '1x';
           return (
-            <a href={citation.url} rel="noopener noreferrer" target="_blank">
+            <a key={citation.id} href={citation.url} rel="noopener noreferrer" target="_blank">
               <Icon2
                 className={`far fa-file-pdf fa-${iconSize}`}
                 key={citation.id}
