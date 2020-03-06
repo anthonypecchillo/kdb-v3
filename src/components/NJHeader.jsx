@@ -13,18 +13,22 @@ const navLinkListNational = [
   {
     linkText: 'Overview',
     urlText: 'overview',
+    faIconClass: 'info',
   },
   {
     linkText: 'Forest & Land Use',
     urlText: 'forests-and-land-use',
+    faIconClass: 'trees',
   },
   {
     linkText: 'Governance',
     urlText: 'governance',
+    faIconClass: 'balance-scale-right',
   },
   {
     linkText: 'Partnerships',
     urlText: 'partnerships',
+    faIconClass: 'handshake',
   },
 ];
 
@@ -32,29 +36,35 @@ const navLinkListJurisdictional = [
   {
     linkText: 'Overview',
     urlText: 'overview',
+    faIconClass: 'info',
   },
   {
     linkText: 'Forests & Land Use',
     urlText: 'forests-and-land-use',
+    faIconClass: 'trees',
   },
   {
     linkText: 'Governance',
     urlText: 'governance',
+    faIconClass: 'balance-scale-right',
   },
   {
     linkText: 'Partnerships',
     urlText: 'partnerships',
+    faIconClass: 'handshake',
   },
   {
     linkText: 'Report Cards',
     urlText: 'report-cards',
+    faIconClass: 'file-alt',
   },
 ];
 
 const NJHeaderGrid = styled.div`
   display: grid;
   ${'' /* grid-template-columns: 50px 3fr minmax(330px, 1fr) 50px; */}
-  grid-template-columns: 50px 3fr 330px 50px;
+  ${'' /* grid-template-columns: 50px 3fr 330px 50px; */}
+  grid-template-columns: 3% 3fr 330px 3%;
   grid-template-rows: 1fr 3fr 30px 30px;
 
   background-image: ${({ bannerURL }) => `url(${bannerURL})`};
@@ -70,6 +80,10 @@ const NJHeaderGrid = styled.div`
   top: -326px;
   width: 100%;
   z-index: 997;
+
+  @media (max-width: 1025px) {
+    grid-template-columns: 3% 1fr 1fr 3%;
+  }
 `;
 
 const NJHeaderTitle = styled.h1`
@@ -92,6 +106,10 @@ const NJHeaderFlags = styled.div`
   justify-self: end;
 
   color: white;
+
+  @media (max-width: 1025px) {
+    display: none;
+  }
 `;
 
 const NJFlag = styled.div`
