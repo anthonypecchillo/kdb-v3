@@ -53,12 +53,14 @@ const StyledSelect = styled.select`
     font-weight: normal;
   }
 
-  @media (max-width: 1026px) {
+  @media (max-width: 1025px) {
     align-self: end;
     justify-self: start;
 
     margin-bottom: 12px;
     width: 100%;
+
+    display: none;
   }
 `;
 
