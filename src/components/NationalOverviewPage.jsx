@@ -34,7 +34,7 @@ const OverviewGrid = styled.div`
   }
 
   @media (max-width: 460px) {
-    grid-template-rows: 800px 800px 800px 1000px;
+    grid-template-rows: auto 800px 1000px 500px;
     grid-template-areas:
       'land land land land'
       'demographics demographics demographics demographics'
@@ -44,21 +44,20 @@ const OverviewGrid = styled.div`
 `;
 
 const NationalOverviewPage = ({ nationName, jurisdictionName, language }) => (
-  <About />
-  // <OverviewGrid>
-  //   <Tile gridArea="land">
-  //     <NationalLand nationName={nationName} language={language} />
-  //   </Tile>
-  //   <Tile gridArea="demographics" height="800px" align="start">
-  //     <NationalDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-  //   </Tile>
-  //   <Tile gridArea="economics">
-  //     <NationalEconomics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-  //   </Tile>
-  //   <Tile gridArea="deforestation">
-  //     <NationalDeforestation nationName={nationName} language={language} />
-  //   </Tile>
-  // </OverviewGrid>
+  <OverviewGrid>
+    <Tile gridArea="land">
+      <NationalLand nationName={nationName} language={language} />
+    </Tile>
+    <Tile gridArea="demographics" height="800px" align="start">
+      <NationalDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
+    </Tile>
+    <Tile gridArea="economics">
+      <NationalEconomics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
+    </Tile>
+    <Tile gridArea="deforestation">
+      <NationalDeforestation nationName={nationName} language={language} />
+    </Tile>
+  </OverviewGrid>
 );
 
 export default NationalOverviewPage;
