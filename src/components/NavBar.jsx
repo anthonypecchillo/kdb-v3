@@ -185,7 +185,7 @@ const HamburgerIcon = styled.i`
   }
 
   @media (max-width: 765px) {
-    margin-right: 5vw
+    margin-right: 5vw;
   }
 `;
 
@@ -211,7 +211,9 @@ const NavBar = ({ content, toggleHamburgerMenu, toggleLanguage, toggleModal }) =
           <i className="fa fa-search" />
         </SearchBarButton>
       </SearchBar>
-      <HamburgerIcon className="fas fa-bars" onClick={toggleHamburgerMenu} />
+      <div onClick={toggleHamburgerMenu}>
+        <HamburgerIcon className="fas fa-bars" onClick={toggleHamburgerMenu} />
+      </div>
     </NavBarGrid>
   );
 };
