@@ -16,21 +16,51 @@ const GovernanceGrid = styled.div`
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 80vh 80vh;
+  grid-template-areas:
+    'programs safeguards'
+    'old-governance-data old-governance-data';
 
   height: 100%;
   width: 100%;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 80vh 80vh 80vh;
+    grid-template-areas:
+      'programs'
+      'safeguards'
+      'old-governance-data';
+
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  @media (max-width: 1025px) {
+    margin: 0;
+    width: 100%;
+  }
+
+  ${'' /* @media (max-width: 460px) {
+    grid-template-rows: auto auto 800px 1000px 1000px;
+    grid-template-areas:
+      'description description description description'
+      'fmms fmms fmms fmms'
+      'demographics demographics demographics demographics'
+      'economics economics economics economics'
+      'contacts contacts contacts contacts';
+  } */}
 `;
 
 const NJGovernancePage = ({ jurisdictionName, jurisdictionType, language, nationName }) => {
   return (
     <GovernanceGrid>
-      <Tile>
+      <Tile gridArea="programs">
         <Programs jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} language={language} nationName={nationName} />
       </Tile>
-      <Tile>
+      <Tile gridArea="safeguards">
         <Safeguards jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
       </Tile>
-      <Tile gridColumn="1/3" gridRow="2/3">
+      <Tile gridArea="old-governance-data">
         <OldGovernanceData jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
       </Tile>
     </GovernanceGrid>

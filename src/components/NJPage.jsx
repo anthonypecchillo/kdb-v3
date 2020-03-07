@@ -9,11 +9,14 @@ import styled from 'styled-components';
 import NJHeader from './NJHeader';
 import NJBody from './NJBody';
 
+import Wood from '../assets/icons/wood1.jpg';
+
 const NJPageGrid = styled.div`
   display: grid;
   grid-template-rows: 460px auto;
 
   background-color: #e5e5e5;
+  ${'' /* background: ${`repeat center/125% url(${Wood})`}; */}
   height: auto;
   padding-top: 75px;
   width: 100%;

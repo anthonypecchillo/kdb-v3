@@ -8,7 +8,6 @@ import styled, { css } from 'styled-components';
 
 const TabStyled = styled.div`
   color: #a0a0a0;
-  font-size: 14px;
   font-weight: 700;
   ${({ isActive }) =>
     isActive &&
