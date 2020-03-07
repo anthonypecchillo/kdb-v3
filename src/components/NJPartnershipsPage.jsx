@@ -15,6 +15,11 @@ const PartnershipsGrid = styled.div`
 
   height: 100%;
   width: 100%;
+
+  @media (max-width: 1025px) {
+    margin: 0;
+    width: 100%;
+  }
 `;
 
 const PartnershipsTitle = styled.h1`
@@ -85,7 +90,7 @@ const SearchBarButton = styled.button`
 
 
 const NJPartnershipsPage = () => (
-  <Tile margin="0 auto" height="1097" maxWidth="1100px" width="90%">
+  <Tile margin="0 auto" height="1097" maxWidth="1280px">
     <PartnershipsGrid>
       <PartnershipsTitle>Partnerships</PartnershipsTitle>
       <PartnershipsOptionsGrid>
