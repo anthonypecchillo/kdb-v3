@@ -103,7 +103,9 @@ class LawListItem extends React.Component {
 
     const chevronClass = isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
     const lawNumber = law.lawNumber || '';
-    const pubDate = law.pubDate ? format(new Date(law.pubDate), 'MMMM do, yyyy') : 'Date unavailable';
+    // Source for date formatting regex (need this for Safari smh)
+    // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+    const pubDate = law.pubDate ? format(new Date(law.pubDate.replace(/-/g, "/")), 'MMMM do, yyyy') : 'Date unavailable';
     const { coatOfArmsUrl } = law.region;
 
     const citations = law.citations.length ? law.citations : [];

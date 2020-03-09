@@ -76,7 +76,7 @@ const NationalDeforestation = ({ language, nationName }) => {
   const { deforestationRates } = region;
 
   let deforestationRatesData;
-  if (region.deforestationRates) {
+  if (deforestationRates) {
     const { deforestationRates } = region;
     deforestationRatesData = deforestationRates.map(rate => {
       return {
