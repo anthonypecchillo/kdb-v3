@@ -33,6 +33,10 @@ const OldGovernanceSafeguardsStyled = styled.div`
   overflow-y: scroll;
   padding: 15px;
   width: 100%;
+
+  @media (max-width: 1280px) {
+    overflow-y: inherit;
+  }
 `;
 
 const OldGovernanceSafeguards = ({ jurisdictionName, language, nationName }) => {

@@ -15,7 +15,7 @@ const GovernanceGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 80vh 80vh;
+  grid-template-rows: 80vh auto;
   grid-template-areas:
     'programs safeguards'
     'old-governance-data old-governance-data';
@@ -25,7 +25,7 @@ const GovernanceGrid = styled.div`
 
   @media (max-width: 1280px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 80vh 80vh 80vh;
+    grid-template-rows: 80vh auto auto;
     grid-template-areas:
       'programs'
       'safeguards'
