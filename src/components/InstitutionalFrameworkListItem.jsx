@@ -44,9 +44,9 @@ const FrameworkTitle = styled.div`
   font-weight: 600;
 `;
 
-const FrameworkPoliticalScope = styled.div`
-
-`;
+// const FrameworkPoliticalScope = styled.div`
+//
+// `;
 
 const FrameworkDescription = styled.p`
   font-size: 14px;

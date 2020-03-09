@@ -6,7 +6,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ScrollToTopOnMount from './ScrollToTopOnMount';
-import Tile from './Tile';
 
 const iconMap = {
 	'Soy': ['seedling', 'chess-bishop'],

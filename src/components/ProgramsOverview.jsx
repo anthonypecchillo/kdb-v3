@@ -6,13 +6,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import LottieControl from './LottieControl';
-import Tile from './Tile';
 
-const content = (
-  <div>
-
-  </div>
-);
+// const content = (
+//   <div>
+//
+//   </div>
+// );
 
 const ProgramsOverviewStyled = styled.div`
   border-top: 3px solid #3e522d;

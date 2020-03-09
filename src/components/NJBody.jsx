@@ -16,7 +16,7 @@ import NJOverviewPage from './NJOverviewPage';
 import NJForestAndLandUsePage from './NJForestAndLandUsePage';
 import NJGovernancePage from './NJGovernancePage';
 import NJPartnershipsPage from './NJPartnershipsPage';
-import NJReportCardsPage from './NJReportCardsPage';
+// import NJReportCardsPage from './NJReportCardsPage';
 
 import TempIconList from './TempIconList';
 

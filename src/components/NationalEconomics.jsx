@@ -119,22 +119,6 @@ const EconomicsTagListContainer = styled.div`
   width: 100%;
 `;
 
-const EconomicsTagList = styled.ul`
-  list-style-type: none;
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 100px;
-  width: 100%;
-`;
-
-const EconomicsTagListItem = styled.li`
-  border: 1px solid black;
-  background-color: tomato;
-  height: 50px;
-  margin: 15px 0;
-  width: 90%;
-`;
-
 const NationalEconomics = ({ language, nationName }) => {
   const { data, loading, error } = useQuery(GET_NATION_ECONOMICS, {
     variables: { name: nationName, languageCode: language },

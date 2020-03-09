@@ -62,8 +62,6 @@ class InstitutionalFrameworks extends React.Component {
   render() {
     const { jurisdictionName, language, nationName } = this.props;
     const { activeTab } = this.state;
-    let scopedInstitutionalFrameworks;
-    let activeView;
 
     return (
       <InstitutionalFrameworksGrid>
@@ -76,12 +74,6 @@ class InstitutionalFrameworks extends React.Component {
             if (error) return <p>ERROR</p>;
 
             const { institutionalFrameworks } = data.jurisdictionByName;
-
-            if (activeTab === 'All') {
-              scopedInstitutionalFrameworks = institutionalFrameworks;
-            } else {
-              scopedInstitutionalFrameworks = institutionalFrameworks.filter(framework => framework.politicalScope === activeTab);
-            }
 
             const groupedInstitutionalFrameworks = { national: [], state: [] };
             institutionalFrameworks.forEach(framework => {

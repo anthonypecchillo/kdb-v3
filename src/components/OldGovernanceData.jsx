@@ -6,8 +6,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import OldGovernanceLawPolicyStrategy from './OldGovernanceLawPolicyStrategy';
-import OldGovernanceSafeguards from './OldGovernanceSafeguards';
-import OldGovernanceZoningSpatialPlanning from './OldGovernanceZoningSpatialPlanning';
 import Tabs from './Tabs';
 
 const OLD_GOVERNANCE_DATA_TAB_LABELS = ['Laws, Policy, Strategy'];

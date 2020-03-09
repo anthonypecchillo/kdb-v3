@@ -120,24 +120,6 @@ const EconomicsTagListContainer = styled.div`
   overflow-x: scroll;
 `;
 
-const EconomicsTagList = styled.ul`
-  list-style-type: none;
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 100px;
-  width: 100%;
-`;
-
-const EconomicsTagListItem = styled.li`
-  border: 1px solid black;
-  background-color: tomato;
-  height: 50px;
-  margin: 15px 0;
-  padding-top: 15px;
-  text-align: center;
-  width: 90%;
-`;
-
 const NJEconomics = ({ jurisdictionName, language, nationName }) => {
   const { data, loading, error } = useQuery(GET_JURISDICTION_ECONOMICS, {
     variables: { nationName: nationName, jurisdictionName: jurisdictionName, languageCode: language },

@@ -11,8 +11,6 @@ import NationalEconomics from './NationalEconomics';
 import NationalDeforestation from './NationalDeforestation';
 import Tile from './Tile';
 
-import About from './About';
-
 const OverviewGrid = styled.div`
   display: grid;
   grid-column-gap: 2%;

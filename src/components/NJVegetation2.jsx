@@ -87,7 +87,6 @@ class NJVegetation extends React.Component {
 
   render() {
     const { jurisdictionName, language, nationName } = this.props;
-    const { width } = this.state.dimensions;
 
     return (
       <VegetationGrid ref={el => (this.container = el)}>

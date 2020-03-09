@@ -126,7 +126,6 @@ const NJContacts = ({ jurisdictionName, nationName }) => {
   if (error) return <p>ERROR</p>;
 
   const { contacts } = data.jurisdictionByName;
-  const roles = ['Governor', 'Representative 1', 'Representative 2'];
 
   return (
     <ContactsGrid>

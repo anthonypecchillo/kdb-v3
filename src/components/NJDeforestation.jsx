@@ -133,14 +133,14 @@ const DeforestationText = styled.div`
   }
 `;
 
-const DeforestationRateTitle = styled.div`
-  ${'' /* grid-area: deforestation-rate-title; */}
-  align-self: end;
-
-  font-weight: 600;
-  margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
-  text-align: center;
-`;
+// const DeforestationRateTitle = styled.div`
+//   ${'' /* grid-area: deforestation-rate-title; */}
+//   align-self: end;
+//
+//   font-weight: 600;
+//   margin-bottom: ${({ marginBottom }) => marginBottom || '0'};
+//   text-align: center;
+// `;
 
 const DeforestationDriversTitle = styled.div`
   grid-area: drivers-of-deforestation-title;
@@ -225,28 +225,14 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   if (error) return <p>ERROR</p>;
 
 
-  let totalDeforestationColumn = '1/4';
-  let totalDeforestationRow = '2/3';
   let totalDeforestationPercentOfTotalColumns = '0.33';
-
-  let deforestationRatesColumn = '1/3';
-  let deforestationRatesRow = '3/5';
   let deforestationRatesPercentOfTotalColumns = '0.66';
-
   if (windowSize.width > 460 && windowSize.width <= 1025) {
-    totalDeforestationColumn = '1/2';
-    totalDeforestationRow = '3/5';
     totalDeforestationPercentOfTotalColumns = '0.4';
-    deforestationRatesColumn = '1/3';
-    deforestationRatesRow = '5/6';
     deforestationRatesPercentOfTotalColumns = '1';
   }
   if (windowSize.width <= 460) {
-    totalDeforestationColumn = '1/2';
-    totalDeforestationRow = '3/4';
     totalDeforestationPercentOfTotalColumns = '1';
-    deforestationRatesColumn = '1/2';
-    deforestationRatesRow = '6/7';
     deforestationRatesPercentOfTotalColumns = '1';
   }
 

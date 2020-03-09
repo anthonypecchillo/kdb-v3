@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import NJHeader from './NJHeader';
 import NJBody from './NJBody';
 
-import Wood from '../assets/icons/wood1.jpg';
+// import Wood from '../assets/icons/wood1.jpg';
 
 const NJPageGrid = styled.div`
   display: grid;
