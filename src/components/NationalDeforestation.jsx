@@ -75,12 +75,18 @@ const NationalDeforestation = ({ language, nationName }) => {
   const { deforestationTrend, region, jurisdictions } = data.nationByName;
   const { deforestationRates } = region;
 
-  const deforestationRatesData = deforestationRates.map(rate => {
-    return {
-      label: rate.year.toString(),
-      value: rate.amount,
-    };
-  });
+  let deforestationRatesData;
+  if (region.deforestationRates) {
+    const { deforestationRates } = region;
+    deforestationRatesData = deforestationRates.map(rate => {
+      return {
+        label: rate.year.toString(),
+        value: rate.amount,
+      };
+    });
+  } else {
+    deforestationRatesData = [];
+  }
 
   const testDeforestationRateCategories = [{
     category: deforestationRatesData.map(rate => {
@@ -91,23 +97,25 @@ const NationalDeforestation = ({ language, nationName }) => {
   const nationalDeforestationRateYears = deforestationRatesData.map(rate => Number(rate.label));
 
   const testDeforestationRatesData = jurisdictions.map(jurisdiction => {
-    let jurisdictionDeforestationRates = jurisdiction.region.deforestationRates.map(rate => {
-      if (nationalDeforestationRateYears.includes(rate.year)) {
-        return {
-          label: rate.year.toString(),
-          value: rate.amount,
-        };
-      } else {
-        return null;
-      }
-    });
+    let jurisdictionDeforestationRates;
+    if (jurisdiction.region.deforestationRates) {
+      jurisdictionDeforestationRates = jurisdiction.region.deforestationRates.map(rate => {
+        if (nationalDeforestationRateYears.includes(rate.year)) {
+          return {
+            label: rate.year.toString(),
+            value: rate.amount,
+          };
+        } else {
+          return null;
+        }
+      });
+      jurisdictionDeforestationRates = jurisdictionDeforestationRates.filter(record => record !== null);
 
-    jurisdictionDeforestationRates = jurisdictionDeforestationRates.filter(record => record !== null);
-
-    return {
-      seriesname: jurisdiction.name,
-      data: jurisdictionDeforestationRates,
-    };
+      return {
+        seriesname: jurisdiction.name,
+        data: jurisdictionDeforestationRates,
+      };
+    }
   });
 
   const nationDeforestationRates = [{
