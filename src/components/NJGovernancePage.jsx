@@ -32,7 +32,7 @@ const GovernanceGrid = styled.div`
       'old-governance-data';
 
     margin: 0 auto;
-    width: 90%;
+    ${'' /* width: 90%; */}
   }
 
   @media (max-width: 1025px) {

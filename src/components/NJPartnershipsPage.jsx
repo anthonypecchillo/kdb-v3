@@ -88,7 +88,6 @@ const SearchBarButton = styled.button`
   width: 40px;
 `;
 
-
 const NJPartnershipsPage = () => (
   <Tile margin="0 auto" height="1097" maxWidth="1280px">
     <PartnershipsGrid>
