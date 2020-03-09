@@ -18,17 +18,20 @@ const GET_NATION_ECONOMICS = gql`
       id
       name
       humanDevelopmentIndex {
+        id
         amount
         year
         citation_id
       }
       perCapitaIncome {
+        id
         amount
         units
         year
         citation_id
       }
       gdp {
+        id
         amount
         units
         year

@@ -17,11 +17,13 @@ const GET_JURISDICTION_LAND = gql`
       id
       name
       landArea {
+        id
         amount
         year
         citation_id
       }
       forestArea {
+        id
         amount
         units
         year

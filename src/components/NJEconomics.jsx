@@ -18,17 +18,20 @@ const GET_JURISDICTION_ECONOMICS = gql`
       id
       name
       humanDevelopmentIndex {
+        id
         amount
         year
         citation_id
       }
       perCapitaIncome {
+        id
         amount
         units
         year
         citation_id
       }
       gdp {
+        id
         amount
         units
         year
@@ -36,6 +39,7 @@ const GET_JURISDICTION_ECONOMICS = gql`
       }
       nation {
         gdp {
+          id
           amount
           units
           year
