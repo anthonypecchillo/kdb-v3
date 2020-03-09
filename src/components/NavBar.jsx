@@ -71,10 +71,15 @@ const NavTitle = styled.div`
     text-align: center;
   }
 
-  @media (max-width: 413px) {
+  @media (max-width: 438px) {
     font-size: 16px;
     line-height: 20px;
-    padding: 20px 35px 0px 32px;
+    padding: 20px 33px 0px 33px;
+  }
+
+  @media (max-width: 413px) {
+    line-height: 20px;
+    padding: 20px 12px 0px 12px;
   }
 `;
 
@@ -160,21 +165,23 @@ const SearchBarButton = styled.button`
   width: 40px;
 `;
 
-const HamburgerIcon = styled.i`
+const HamburgerIconContainer = styled.div`
   grid-area: hamburger
   align-self: center;
+
+  display: grid;
   justify-self: right;
 
   font-size: 36px;
   margin-right: 5vw;
   text-align: left;
-  transition: color 0.4s ease 0.05s;
-  width: auto;
+  ${'' /* transition: color 0.4s ease 0.05s; */}
+  width: 75px;
 
-  &:hover {
+  ${'' /* &:hover {
     color: #582399;
     cursor: pointer;
-  }
+  } */}
 
   @media (min-width: 1026px) {
     display: none;
@@ -186,6 +193,46 @@ const HamburgerIcon = styled.i`
 
   @media (max-width: 765px) {
     margin-right: 5vw;
+  }
+
+  @media (max-width: 413px) {
+    ${'' /* margin-left: 43.5px; */}
+
+  }
+`;
+
+const HamburgerIcon = styled.i`
+  justify-self: center;
+  ${'' /* grid-area: hamburger */}
+  ${'' /* align-self: center; */}
+  ${'' /* justify-self: right; */}
+
+  font-size: 36px;
+  ${'' /* margin-right: 5vw; */}
+  ${'' /* text-align: left; */}
+  transition: color 0.4s ease 0.05s;
+  ${'' /* width: auto; */}
+
+  &:hover {
+    color: #582399;
+    cursor: pointer;
+  }
+
+  @media (min-width: 1026px) {
+    display: none;
+  }
+
+  @media (max-width: 1025px) {
+    ${'' /* margin-right: 38.25px; */}
+  }
+
+  @media (max-width: 765px) {
+    ${'' /* margin-right: 5vw; */}
+  }
+
+  @media (max-width: 413px) {
+    ${'' /* margin-left: 43.5px; */}
+    ${'' /* text-align: center; */}
   }
 `;
 
@@ -211,9 +258,9 @@ const NavBar = ({ content, toggleHamburgerMenu, toggleLanguage, toggleModal }) =
           <i className="fa fa-search" />
         </SearchBarButton>
       </SearchBar>
-      <div onClick={toggleHamburgerMenu}>
+      <HamburgerIconContainer onClick={toggleHamburgerMenu}>
         <HamburgerIcon className="fas fa-bars" onClick={toggleHamburgerMenu} />
-      </div>
+      </HamburgerIconContainer>
     </NavBarGrid>
   );
 };
