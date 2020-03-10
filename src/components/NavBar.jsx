@@ -71,7 +71,7 @@ const NavTitle = styled.div`
     text-align: center;
   }
 
-  @media (max-width: 438px) {
+  @media (max-width: 454px) {
     font-size: 16px;
     line-height: 20px;
     padding: 20px 33px 0px 33px;
