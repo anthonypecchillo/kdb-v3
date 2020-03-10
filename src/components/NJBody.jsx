@@ -25,7 +25,7 @@ const NJBodyStyled = styled.div`
 
   background-color: #e5e5e5;
   /* background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); */
-  height: calc(100% - 110px);
+  height: 100%;
   padding: 2.5% 1.25%;
   width: 90%;
   max-width: 1480px;

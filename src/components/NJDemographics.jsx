@@ -174,8 +174,9 @@ class NJDemographics extends React.Component {
               caption: 'Ethnic Distribution',
               // numberSuffix: ' people',
               numberSuffix: '%',
-              showLabels: '0',
-              showLegend: '1',
+              showLabels: '1',
+              showLegend: '0',
+              pieRadius: '90',
             };
 
             return (
@@ -195,11 +196,10 @@ class NJDemographics extends React.Component {
                   data={socialGroupsData}
                   dataSourceConfig={socialGroupsDataSourceConfig}
                   justify="center"
-                  height={'310'}
+                  height={'300'}
                   percentOfTotalColumns={1}
-                  maxWidth={370}
+                  maxWidth={680}
                 />
-                <div/>
                 <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
               </>
             );

@@ -73,7 +73,7 @@ const GET_JURISDICTION_ECONOMICS = gql`
 
 const EconomicsGrid = styled.div`
   display: grid;
-  grid-template-rows: 1fr 0.5fr 2fr 0.5fr 1fr 0.6fr 0.5fr 1fr 0.6fr 6.25fr auto 2fr 0.75fr;
+  grid-template-rows: 1fr 0.5fr 2fr 0.5fr 1fr 0.6fr 0.5fr 1fr 0.6fr auto auto auto 0.75fr;
   justify-items: center;
 
   height: 100%;
@@ -120,8 +120,6 @@ const EconomicsCitation = styled.div`
 const EconomicsTagListContainer = styled.div`
   height: 100%;
   width: 100%;
-
-  overflow-x: scroll;
 `;
 
 const NJEconomics = ({ jurisdictionName, language, nationName }) => {
@@ -156,8 +154,9 @@ const NJEconomics = ({ jurisdictionName, language, nationName }) => {
   const gdpBreakdownDataSourceConfig = {
     caption: 'GDP Breakdown',
     numberSuffix: '%',
-    showLabels: '0',
-    showLegend: '1',
+    showLabels: '1',
+    showLegend: '0',
+    pieRadius: '90',
   };
 
   return (
@@ -180,9 +179,10 @@ const NJEconomics = ({ jurisdictionName, language, nationName }) => {
         data={gdpBreakdownData}
         dataSourceConfig={gdpBreakdownDataSourceConfig}
         justify="center"
-        height={'310'}
+        height={'300'}
         percentOfTotalColumns={1}
         maxWidth={370}
+        maxWidth={680}
       />
       <EconomicsTotalTitle marginBottom="10px">Major Exports</EconomicsTotalTitle>
       <EconomicsTagListContainer>

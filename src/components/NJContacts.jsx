@@ -34,25 +34,25 @@ const GET_JURISDICTION_CONTACTS = gql`
 
 const ContactsGrid = styled.div`
   display: grid;
-  grid-gap: 3%;
+  ${'' /* grid-gap: 3%; */}
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto 5fr;
-  place-items: center;
+  grid-template-rows: 40px auto;
+  justify-items: center;
 
-  height: 100%;
+  height: auto;
   width: 100%;
 
   @media (max-width: 765px) {
-    grid-gap: 1.5%;
+    ${'' /* grid-gap: 1.5%; */}
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, auto);
   }
 `;
 
 const ContactsTitle = styled.h3`
   grid-column: 1/4;
 
-  height: 100%;
+  height: auto;
   margin: 0;
   text-align: center;
   width: 100%;
@@ -64,11 +64,12 @@ const ContactsTitle = styled.h3`
 
 const ContactsCardGrid = styled.div`
   display: grid;
-  grid-row-gap: 5%;
-  grid-template-rows: 20px 150px auto;
-  place-items: center;
+  ${'' /* grid-row-gap: 5%; */}
+  grid-template-rows: 40px 150px auto;
+  align-items: start;
+  justify-items: center;
 
-  height: 100%;
+  ${'' /* height: 250px; */}
   width: 100%;
   max-width: 330px;
 `;
@@ -78,6 +79,7 @@ const ContactsRoleTitle = styled.h4`
   justify-self: center;
 
   margin: 0;
+  margin-bottom: 5%;
 `;
 
 const ContactsPhoto = styled.div`
@@ -104,6 +106,8 @@ const ContactsPhoto = styled.div`
 const ContactsDetails = styled.div`
   align-self: start;
   text-align: center;
+  height: 105%;
+  margin: 5% 0;
   width: 100%;
 `;
 

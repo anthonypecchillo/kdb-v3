@@ -17,7 +17,7 @@ const OverviewGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto 1000px 400px;
+  grid-template-rows: auto auto auto auto;
   grid-template-areas:
     'description description description description'
     'fmms fmms fmms fmms'
@@ -27,17 +27,17 @@ const OverviewGrid = styled.div`
   height: 100%;
 
   @media (max-width: 765px) {
-    grid-template-rows: auto auto 800px 1000px 1000px;
+    grid-template-rows: auto auto auto auto auto;
     grid-template-areas:
       'description description description description'
       'fmms fmms fmms fmms'
       'demographics demographics demographics demographics'
       'economics economics economics economics'
-      '. contacts contacts .';
+      'contacts contacts contacts contacts';
   }
 
   @media (max-width: 460px) {
-    grid-template-rows: auto auto 800px 1000px 1000px;
+    grid-template-rows: auto auto auto auto auto;
     grid-template-areas:
       'description description description description'
       'fmms fmms fmms fmms'
