@@ -16,12 +16,11 @@ const ForestAndLandUseGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 800px auto 800px 800px;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     'land land land .'
     'deforestation deforestation deforestation deforestation'
-    'CO2 CO2 CO2 .'
-    'vegetation vegetation . .';
+    'CO2 CO2 CO2 .';
 
   height: 100%;
 
@@ -30,16 +29,14 @@ const ForestAndLandUseGrid = styled.div`
       'land land land land'
       'deforestation deforestation deforestation deforestation'
       'CO2 CO2 CO2 CO2'
-      'vegetation vegetation vegetation vegetation';
   }
 
-  @media (max-width: 460px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 800px auto 800px;
+  @media (max-width: 665px) {
+    grid-template-rows: auto auto 800px;
     grid-template-areas:
-      'vegetation'
-      'deforestation'
-      'CO2';
+      'vegetation vegetation vegetation vegetation'
+      'deforestation deforestation deforestation deforestation'
+      'CO2 CO2 CO2 CO2';
   }
 `;
 
@@ -76,9 +73,15 @@ function useWindowSize() {
 const NJForestAndLandUsePage = ({ nationName, jurisdictionName, language }) => {
   const windowSize = useWindowSize();
 
-  const NJLandView = windowSize.width > 460 ? (
+  const NJLandView = windowSize.width > 665 ? (
     <Tile gridArea="land">
       <NJLand jurisdictionName={jurisdictionName} language={language} nationName={nationName}/>
+    </Tile>
+  ) : null;
+
+  const NJVegetationView = windowSize.width <= 665 ? (
+    <Tile gridArea="vegetation">
+      <NJVegetation2 jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
   ) : null;
 
@@ -91,9 +94,7 @@ const NJForestAndLandUsePage = ({ nationName, jurisdictionName, language }) => {
       <Tile gridArea="CO2">
         <NJCO2Emissions jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
       </Tile>
-      <Tile gridArea="vegetation">
-        <NJVegetation2 jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-      </Tile>
+      {NJVegetationView}
     </ForestAndLandUseGrid>
   );
 };
