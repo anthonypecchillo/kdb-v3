@@ -408,7 +408,7 @@ p {
   text-indent: 20px;
 }
 
-ul {
+ul, ol {
   font-size: 14px;
   list-style-position: outside;
 }
