@@ -50,14 +50,14 @@ const GET_JURISDICTION_LAND = gql`
 const VegetationGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto 1fr;
   ${'' /* justify-items: center; */}
 
   width: 100%;
-
 `;
 
 const VegetationTitle = styled.h3`
+  ${'' /* grid-column: 1/2; */}
   height: 100%;
   margin: 0;
   text-align: center;
@@ -129,16 +129,18 @@ const NJVegetation = ({ jurisdictionName, language, nationName }) => {
     numberSuffix: ' km²',
     xAxisName: 'Vegetation Type',
     yAxisName: 'Land Area (km²)',
-    showLabels: '0',
-    showLegend: '0'
+    showLabels: '1',
+    showLegend: '0',
+    legendPosition: 'bottom',
+    pieRadius: '80',
   };
 
   return (
     <VegetationGrid>
-      <VegetationTitle>Land (Alternate/Mobile)</VegetationTitle>
-      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={350} />
-      <PieChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={370} />
-      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={350} />
+      <VegetationTitle>Land</VegetationTitle>
+      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={570} />
+      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={570} />
+      <PieChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig}  justify="center" percentOfTotalColumns={1} maxWidth={570} height={275} />
     </VegetationGrid>
   );
 };

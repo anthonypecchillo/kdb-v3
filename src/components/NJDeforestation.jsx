@@ -228,7 +228,7 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   let totalDeforestationPercentOfTotalColumns = '0.33';
   let deforestationRatesPercentOfTotalColumns = '0.66';
   if (windowSize.width > 460 && windowSize.width <= 1025) {
-    totalDeforestationPercentOfTotalColumns = '0.4';
+    totalDeforestationPercentOfTotalColumns = '0.5';
     deforestationRatesPercentOfTotalColumns = '1';
   }
   if (windowSize.width <= 460) {
@@ -242,7 +242,7 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   const { deforestationDrivers, forestArea, originalForestArea } = data.jurisdictionByName;
   const totalDeforestationData = [
     {
-      label: 'Still<br/>Forested',
+      label: 'Forested',
       value: Math.round(forestArea.amount),
     },
     {
@@ -255,6 +255,8 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
     centerLabel: '$label:<br/><br/>$value',
     defaultCenterLabel: `Original <br/>Forest Area:<br/><br/> ${Math.round(originalForestArea.amount).toLocaleString()} km²`,
     numberSuffix: ' km²',
+    showLegend: '1',
+    showLabels: '0',
   };
 
   const { deforestationRates } = data.jurisdictionByName.region;
@@ -276,6 +278,7 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
       align="center"
       data={totalDeforestationData}
       dataSourceConfig={totalDeforestationDataSourceConfig}
+      height={275}
       maxWidth={312}
       percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
       float={'right'}
@@ -287,7 +290,8 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
       align="center"
       data={totalDeforestationData}
       dataSourceConfig={totalDeforestationDataSourceConfig}
-      maxWidth={312}
+      height={285}
+      maxWidth={350}
       percentOfTotalColumns={totalDeforestationPercentOfTotalColumns}
       gridArea="total-deforestation-plot"
     />

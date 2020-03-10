@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import BarChart from './BarChart';
 import Loading from './Loading';
 import DoughnutChart from './DoughnutChart';
+import PieChart from './PieChart';
 
 const GET_JURISDICTION_LAND = gql`
   query getJurisdictionLand($nationName: String!, $jurisdictionName: String!, $languageCode: String!) {
@@ -49,7 +50,8 @@ const GET_JURISDICTION_LAND = gql`
 const LandGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr 2fr;
+  grid-template-rows: auto auto auto;
+  justify-items: center;
 
   width: 100%;
 `;
@@ -128,14 +130,18 @@ const NJLand = ({ jurisdictionName, language, nationName }) => {
     numberSuffix: ' km²',
     xAxisName: 'Vegetation Type',
     yAxisName: 'Land Area (km²)',
+    showLabels: '1',
+    showLegend: '0',
+    legendPosition: 'bottom',
   };
 
   return (
     <LandGrid>
       <LandTitle>Land</LandTitle>
-      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} justify="left" percentOfTotalColumns={0.5} maxWidth={350} />
-      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} justify="right" percentOfTotalColumns={0.5} maxWidth={350} />
-      <BarChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="left" />
+      <DoughnutChart data={landDistributionData} dataSourceConfig={landDistributionDataSourceConfig} percentOfTotalColumns={0.5} maxWidth={350} />
+      <DoughnutChart data={forestManagementData} dataSourceConfig={forestManagementDataSourceConfig} percentOfTotalColumns={0.5} maxWidth={350} />
+      {/* <BarChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} justify="left" /> */}
+      <PieChart data={vegetationData} dataSourceConfig={vegetationDataSourceConfig} gridColumn={'1/3'} height={400} justify="center" percentOfTotalColumns={1} maxWidth={750} legendPosition={'bottom'} />
     </LandGrid>
   )
 };
