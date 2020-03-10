@@ -7,8 +7,7 @@ import { NavLink, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NJNavGrid = styled.div`
-  grid-column: 1/5;
-  grid-row: 3/5;
+  grid-area: header-nav;
 
   display: grid;
   grid-template-columns: ${({ length }) => `repeat(${length}, auto) minmax(10px, 5fr)`};

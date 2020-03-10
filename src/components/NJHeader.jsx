@@ -62,15 +62,19 @@ const navLinkListJurisdictional = [
 
 const NJHeaderGrid = styled.div`
   display: grid;
-  ${'' /* grid-template-columns: 50px 3fr minmax(330px, 1fr) 50px; */}
-  ${'' /* grid-template-columns: 50px 3fr 330px 50px; */}
   grid-template-columns: 3% 3fr 330px 3%;
   grid-template-rows: 1fr 3fr 30px 30px;
+  grid-template-areas:
+    '. header-title header-flags .'
+    '. . header-map-container .'
+    'header-nav header-nav header-nav header-nav'
+    'header-nav header-nav header-nav header-nav';
 
   background-image: ${({ bannerURL }) => `url(${bannerURL})`};
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top left;
+  background-origin: padding-box;
   background-attachment: fixed;
   box-shadow: 6px 18px 18px rgba(0,0,0,0.08), -6px 18px 18px rgba(0,0,0,0.08);
 
@@ -83,22 +87,50 @@ const NJHeaderGrid = styled.div`
 
   @media (max-width: 1025px) {
     grid-template-columns: 3% 1fr 1fr 3%;
+    grid-template-rows: 1fr 2fr 30px 30px;
+    grid-template-areas:
+      '. header-title header-title .'
+      '. header-flags header-flags .'
+      'header-nav header-nav header-nav header-nav'
+      'header-nav header-nav header-nav header-nav';
+
+    height: 345px;
+    top: -211px;
+  }
+
+  @media (max-width: 765px) {
+    grid-template-rows: 1fr 1fr 30px 30px;
+    height: 230px;
+    top: -96px;
+  }
+
+  @media (max-width: 460px) {
+    ${'' /* height: 115px; */}
   }
 `;
 
 const NJHeaderTitle = styled.h1`
-  grid-column: 2/3;
-  grid-row: 1/2;
+  grid-area: header-title;
+
   align-self: center;
-  justify-self: start;
+  justify-self: left;
 
   color: white;
   margin: 0;
+
+  @media (max-width: 765px) {
+    justify-self: center;
+    font-size: 28px;
+  }
+
+  @media (max-width: 460px) {
+    font-size: 24px;
+  }
 `;
 
 const NJHeaderFlags = styled.div`
-  grid-column: 3/4;
-  grid-row: 1/2;
+  grid-area: header-flags;
+
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: 20px;
@@ -108,7 +140,16 @@ const NJHeaderFlags = styled.div`
   color: white;
 
   @media (max-width: 1025px) {
-    display: none;
+    align-self: start;
+    justify-self: left;
+  }
+
+  @media (max-width: 765px) {
+    justify-self: center;
+  }
+
+  @media (max-width: 460px) {
+    ${'' /* display: none; */}
   }
 `;
 
@@ -118,6 +159,11 @@ const NJFlag = styled.div`
   background: ${({ flagURL }) => `no-repeat center/100% url(${flagURL})`};
   height: 50px;
   width: 72px;
+
+  @media (max-width: 460px) {
+    height: 25px;
+    width: 36px;
+  }
 `;
 
 const NJHeader = ({ flags, fullName, headerImageURL, jurisdictionType, nationName, jurisdictionName }) => {

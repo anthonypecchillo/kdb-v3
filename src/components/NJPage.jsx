@@ -20,6 +20,14 @@ const NJPageGrid = styled.div`
   height: auto;
   padding-top: 75px;
   width: 100%;
+
+  @media (max-width: 1025px) {
+    grid-template-rows: 345px auto;
+  }
+
+  @media (max-width: 765px) {
+    grid-template-rows: 230px auto;
+  }
 `;
 
 const NJPage = ({

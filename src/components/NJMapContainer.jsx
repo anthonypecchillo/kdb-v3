@@ -6,7 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NJMapContainerStyled = styled.div`
-  grid-column: 3/4;
+  grid-area: header-map-container;
   grid-row: 2/4;
 
   background-color: ${({ opacity }) => `rgba(255, 255, 255, ${opacity})`};
