@@ -13,13 +13,14 @@ import styled from 'styled-components';
 charts(FusionCharts);
 
 class PieDataSource {
-  constructor(data, { caption, numberSuffix, showLegend = '0', showLabels = '1' }) {
+  constructor(data, { caption, pieRadius, numberSuffix, showLegend = '0', showLabels = '1', legendPosition = 'right' }) {
     this.chart = {
       caption,
       numberSuffix,
       showLabels,
       showLegend,
-      legendPosition: 'right',
+      legendPosition,
+      pieRadius,
       animation: '1',
       animationDuration: '1',
       animateClockwise: '0',
@@ -27,10 +28,20 @@ class PieDataSource {
       showPercentValues: '0',
       showValues: '0',
       theme: 'fusion',
+      baseFont: 'Montserrat',
+      // baseFontSize: '12',
       captionAlignment: 'center',
       captionOnTop: '1',
       captionFontSize: 18,
       captionFontColor: '#000000',
+      // captionFont: 'Montserrat',
+      captionFontBold: '0',
+      // legendCaptionFont: 'Montserrat',
+      legendItemFont: 'Montserrat',
+      legendItemFontSize: '14',
+      legendItemHoverFontColor: '#abc123',
+      // legendNumColumns: '2',
+      minimiseWrappingInLegend: '1',
       startingAngle: '210',
       enableSlicing: '1',
       slicingDistance: 5,
@@ -40,12 +51,20 @@ class PieDataSource {
       captionpadding: '0',
       decimals: '1',
       formatNumberScale: '0',
-      chartRightMargin: '-6',
-
       enableSmartLabels: '1',
       manageLabelOverflow: '1',
       useEllipsesWhenOverflow: '1',
-      // isSmartLineSlanted: '0',
+      showToolTip: '1',
+      // toolTipColor: ,
+      toolTipBorderColor: '#e5e5e5',
+      toolTipSepChar: ': ',
+      showToolTipShadow: '1',
+      tooltipbgalpha: '100',
+      // tooltipborderradius: '50',
+      toolTipPadding: '9',
+      // plottooltext: '<center>$label in Brazil<br/>make up $value of the total vegetation.</center>',
+      labelFont: 'Montserrat',
+      labelFontSize: '10',
     };
 
     this.data = data;

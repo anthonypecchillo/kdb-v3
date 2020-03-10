@@ -13,26 +13,37 @@ import styled from 'styled-components';
 charts(FusionCharts);
 
 class DoughnutDataSource {
-  constructor(data, { caption, centerLabel, defaultCenterLabel, numberSuffix }) {
+  constructor(data, { caption, centerLabel, defaultCenterLabel, numberSuffix, showLegend = '0', showLabels = '1', }) {
     this.chart = {
       caption,
       centerLabel,
       defaultCenterLabel,
       numberSuffix,
+      showLabels,
+      showLegend,
+      pieRadius: '80',
+      doughnutRadius: '81%',
       animation: '1',
       animationDuration: '1',
       animateClockwise: '0',
       alphaAnimation: '0',
       showPercentValues: '0',
-      showLabels: '1',
       showValues: '0',
       theme: 'fusion',
+      baseFont: 'Montserrat',
+      // baseFontSize: '12',
       captionAlignment: 'center',
       captionOnTop: '1',
       captionFontSize: 18,
       captionFontColor: '#000000',
-      doughnutRadius: '81%',
-      startingAngle: '210',
+      // captionFont: 'Montserrat',
+      captionFontBold: '0',
+      legendItemFont: 'Montserrat',
+      legendItemFontSize: '14',
+      legendItemHoverFontColor: '#abc123',
+      // legendNumColumns: '2',
+      minimiseWrappingInLegend: '1',
+      // startingAngle: '210',
       enableSlicing: '1',
       slicingDistance: 5,
       bgAlpha: '0',
@@ -40,9 +51,24 @@ class DoughnutDataSource {
       alignCaptionWithCanvas: '0',
       captionpadding: '0',
       decimals: '1',
-      showLegend: '0',
       formatNumberScale: '0',
-      chartRightMargin: '0',
+
+      enableSmartLabels: '1',
+      manageLabelOverflow: '1',
+      useEllipsesWhenOverflow: '1',
+      showToolTip: '1',
+      // toolTipColor: ,
+      toolTipBorderColor: '#e5e5e5',
+      toolTipSepChar: ': ',
+      showToolTipShadow: '1',
+      tooltipbgalpha: '100',
+      // tooltipborderradius: '50',
+      toolTipPadding: '9',
+      // plottooltext: '<center>$label in Brazil<br/>make up $value of the total vegetation.</center>',
+      labelFont: 'Montserrat',
+      labelFontSize: '10',
+      centerLabelFontSize: '12',
+      // labelFontSize: '12',
     };
 
     this.data = data;
@@ -97,7 +123,7 @@ class DoughnutChart extends React.Component {
     const dataSource = new DoughnutDataSource(data, dataSourceConfig);
     const chartConfigs = {
       type: 'doughnut2d',
-      width: '90%',
+      width: '99%',
       height,
       containerBackgroundOpacity: '0',
       dataFormat: 'json',
