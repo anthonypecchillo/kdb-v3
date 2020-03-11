@@ -38,7 +38,7 @@ const FooterGrid = styled.div`
   background-color: white;
   border-top: 3px solid #3e522d;
   color: #3e522d;
-  height: 363px;
+  height: 360px;
 
   @media (max-width: 765px) {
     grid-template-columns: 1fr;
@@ -197,7 +197,7 @@ const FooterCopyrightText = styled.div`
 
   background-color: #3e522d;
   color: white;
-  height: 102%;
+  height: 100%;
   line-height: 51px;
   margin: 0;
   padding-left: 18px;
