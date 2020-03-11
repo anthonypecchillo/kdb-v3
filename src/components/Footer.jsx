@@ -32,12 +32,13 @@ const YOUTUBE_URL = 'https://www.youtube.com/channel/UCI4m4y7gTCa_o75aGBXNOaw';
 const FooterGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1.5fr 4.5fr 2fr 1fr;
+  grid-template-rows: 1.5fr 4.5fr 3fr 1.5fr;
   align-items: center;
 
-  background-color: #3e522d;
-  color: white;
-  height: 352px;
+  background-color: white;
+  border-top: 3px solid #3e522d;
+  color: #3e522d;
+  height: 363px;
 
   @media (max-width: 765px) {
     grid-template-columns: 1fr;
@@ -57,7 +58,7 @@ const FooterGrid = styled.div`
 
 const AcknowledgementsGrid = styled.div`
   grid-column: 2/3;
-  grid-row: 2/5;
+  grid-row: 2/4;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -124,7 +125,7 @@ const FooterNavListItemGrid = styled.div`
   display: grid;
   grid-template-columns: 30px auto 4fr;
 
-  color: white;
+  color: #3e522d;
   cursor: pointer;
   transition: color 0.4s ease 0.05s;
 
@@ -138,11 +139,11 @@ const FooterNavListItemGrid = styled.div`
   }
 
   &:link {
-    color: white;
+    color: #3e522d;
   }
 
   &:visited {
-    color: white;
+    color: #3e522d;
   }
 
   @media (max-width: 765px) {
@@ -173,7 +174,7 @@ const Icon = styled.i`
 const SocialIcon = styled.i`
   place-self: start;
 
-  color: white;
+  color: #3e522d;
   transition: color 0.6s ease 0s;
 
   &:hover {
@@ -182,23 +183,30 @@ const SocialIcon = styled.i`
 `;
 
 const FooterCopyrightText = styled.div`
+  grid-column: 1/3;
   grid-row: 4/5;
 
   align-self: start;
 
-  margin-left: 15px;
+  background-color: #3e522d;
+  color: white;
+  height: 102%;
+  line-height: 51px;
+  margin: 0;
+  padding-left: 18px;
+  width: 100%;
+
+  @media (max-width: 1025px) {
+    text-align: center;
+    padding: 0;
+  }
 
   @media (max-width: 765px) {
     grid-area: copyright;
     grid-column: 1/5;
 
-    background-color: black;
-    color: #b5db37;
-    height: 100%;
-    line-height: 50px;
-    margin: 0;
-    text-align: center;
-    width: 100%;
+    font-size: 12px;
+    line-height: 51px;
   }
 `;
 
@@ -222,7 +230,7 @@ const LogoLink = styled.a`
 
 const Logo = styled.div`
   background: ${({ logo }) => `no-repeat center/100% url(${logo}`});
-  background-color: white;
+  ${'' /* background-color: black; */}
   height: 115px;
   width: 115px;
 
@@ -271,25 +279,25 @@ const Footer = ({ content }) => {
         <FooterNavListItemLink to="/about">
           <FooterNavListItemGrid>
             <Icon className="fas fa-info" />
-            <span>{ABOUT}</span>
+            <span className="menu-text">{ABOUT}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/sources">
           <FooterNavListItemGrid>
             <Icon className="far fa-file-pdf" />
-            <span>{SOURCES}</span>
+            <span className="menu-text">{SOURCES}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/contact">
           <FooterNavListItemGrid>
             <Icon className="far fa-address-book" />
-            <span>{CONTACTS}</span>
+            <span className="menu-text">{CONTACTS}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <BackToMainSiteLink href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
           <FooterNavListItemGrid>
             <Icon className="fas fa-home" />
-            <span>{BACK_TO_MAIN_SITE}</span>
+            <span className="menu-text">{BACK_TO_MAIN_SITE}</span>
           </FooterNavListItemGrid>
         </BackToMainSiteLink>
       </FooterNavListGrid>
@@ -336,16 +344,14 @@ const Footer = ({ content }) => {
         </a>
       </FooterSocialGrid>
 
-      <FooterCopyrightText>©Governors' Climate and Forests Task Force, 2019</FooterCopyrightText>
-
       <BackToMainSiteLink2 href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
         <FooterNavListItemGrid>
           <Icon className="fas fa-home" />
-          <span>{BACK_TO_MAIN_SITE}</span>
+          <span className="menu-text">{BACK_TO_MAIN_SITE}</span>
         </FooterNavListItemGrid>
       </BackToMainSiteLink2>
 
-      <div />
+      <FooterCopyrightText>©Governors' Climate and Forests Task Force, 2019</FooterCopyrightText>
     </FooterGrid>
   );
 };
