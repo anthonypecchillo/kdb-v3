@@ -67,7 +67,6 @@ const NADMATitle = styled.h3`
 const NADMAContent = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
 `;
 
 const NationalApproachesToDeforestationMonitoringAndAccounting = ({ language, nationName }) => {

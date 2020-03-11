@@ -67,7 +67,6 @@ const GlobalPerspectiveTitle = styled.h3`
 const GlobalPerspectiveContent = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
 `;
 
 const NationalGlobalPerspective = ({ language, nationName }) => {

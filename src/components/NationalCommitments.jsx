@@ -67,7 +67,6 @@ const CommitmentsTitle = styled.h3`
 const CommitmentsContent = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
 `;
 
 const NationalCommitments = ({ language, nationName }) => {

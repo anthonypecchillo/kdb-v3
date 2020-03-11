@@ -30,7 +30,7 @@ const OverviewGrid = styled.div`
   }
 
   @media (max-width: 460px) {
-    grid-template-rows: 800px 800px 800px 800px;
+    grid-template-rows: repeat(4, auto);
     grid-template-areas:
       'nadma nadma nadma nadma'
       'nadfd nadfd nadfd nadfd'

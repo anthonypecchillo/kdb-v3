@@ -67,7 +67,6 @@ const NADFDTitle = styled.h3`
 const NADFDContent = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
 `;
 
 const NationalApproachesToDeforestationAndForestDegradation = ({ language, nation }) => {
