@@ -293,25 +293,25 @@ const Footer = ({ content }) => {
         <FooterNavListItemLink to="/about">
           <FooterNavListItemGrid>
             <Icon className="fas fa-info" />
-            <span style={{'padding-right': '10px'}}>{ABOUT}</span>
+            <span style={{'paddingRight': '10px'}}>{ABOUT}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/sources">
           <FooterNavListItemGrid>
             <Icon className="far fa-file-pdf" />
-            <span style={{'padding-right': '10px'}}>{SOURCES}</span>
+            <span style={{'paddingRight': '10px'}}>{SOURCES}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/contact">
           <FooterNavListItemGrid>
             <Icon className="far fa-address-book" />
-            <span style={{'padding-right': '10px'}}>{CONTACTS}</span>
+            <span style={{'paddingRight': '10px'}}>{CONTACTS}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <BackToMainSiteLink href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
           <FooterNavListItemGrid>
             <Icon className="fas fa-home" />
-            <span style={{'padding-right': '10px'}}>{BACK_TO_MAIN_SITE}</span>
+            <span style={{'paddingRight': '10px'}}>{BACK_TO_MAIN_SITE}</span>
           </FooterNavListItemGrid>
         </BackToMainSiteLink>
       </FooterNavListGrid>

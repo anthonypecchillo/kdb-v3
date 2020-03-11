@@ -7,6 +7,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import LanguageSelect from './LanguageSelect';
+import MemberStates from './MemberStates';
 
 const HamburgerMenuBox = styled.div`
   display: block;
@@ -29,10 +30,11 @@ const HamburgerMenuBox = styled.div`
 const HamburgerMenuGrid = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 8fr 0.5fr;
-  grid-template-rows: 25px 75px 25px repeat(3, 60px) 75px 25px;
+  grid-template-rows: 75px 25px repeat(3, 60px) 75px 300px;
   place-items: center;
 
   height: 100%;
+  margin: 25px 0;
   width: 100%;
 `;
 
@@ -115,10 +117,6 @@ const HamburgerMenu = ({ content, toggleHamburgerMenu, toggleLanguage }) => {
       <HamburgerMenuBox>
         <HamburgerMenuGrid>
           <div />
-          <div />
-          <div />
-
-          <div />
           <SearchBar>
             <SearchBarInput placeholder={SEARCH_PLACEHOLDER} type="text" />
             <SearchBarButton>
@@ -147,9 +145,8 @@ const HamburgerMenu = ({ content, toggleHamburgerMenu, toggleLanguage }) => {
           <LanguageSelect toggleLanguage={toggleLanguage} />
           <div />
 
-          <div />
-          <div />
-          <div />
+          <MemberStates />
+
         </HamburgerMenuGrid>
       </HamburgerMenuBox>
       <HamburgerMenuFade onClick={toggleHamburgerMenu} />

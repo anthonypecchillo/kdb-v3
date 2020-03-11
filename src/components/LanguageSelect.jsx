@@ -60,7 +60,7 @@ const StyledSelect = styled.select`
     margin-bottom: 12px;
     width: 100%;
 
-    display: none;
+    ${'' /* display: none; */}
   }
 `;
 
