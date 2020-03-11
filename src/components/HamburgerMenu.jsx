@@ -145,7 +145,7 @@ const HamburgerMenu = ({ content, toggleHamburgerMenu, toggleLanguage }) => {
           <LanguageSelect toggleLanguage={toggleLanguage} />
           <div />
 
-          <MemberStates />
+          <MemberStates toggleHamburgerMenu={toggleHamburgerMenu} />
 
         </HamburgerMenuGrid>
       </HamburgerMenuBox>

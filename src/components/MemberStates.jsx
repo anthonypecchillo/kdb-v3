@@ -103,7 +103,7 @@ const ModalStateLink = styled(Link)`
 `;
 
 // TODO: Use primary key from DB as uniqueID for props
-const MemberStates = ({ toggleModal }) => {
+const MemberStates = ({ toggleHamburgerMenu }) => {
   let gridArea;
 
   return (
@@ -120,7 +120,7 @@ const MemberStates = ({ toggleModal }) => {
               gridArea={gridArea}
               key={index}
               to={jurisdiction.URL}
-              onClick={toggleModal}
+              onClick={toggleHamburgerMenu}
             >
               {jurisdiction.NATION_NAME}
             </ModalNationLink>
@@ -133,7 +133,7 @@ const MemberStates = ({ toggleModal }) => {
             gridArea={gridArea}
             key={index}
             to={jurisdiction.URL}
-            onClick={toggleModal}
+            onClick={toggleHamburgerMenu}
           >
             {jurisdiction.JURISDICTION_NAME}
           </ModalStateLink>
