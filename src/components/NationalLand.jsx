@@ -84,7 +84,7 @@ const NationalLand = ({ language, nationName }) => {
 
   const landAreaAmount = landArea ? landArea.amount : null;
   const landDistributionDataSourceConfig = {
-    // caption: 'Land Distribution',
+    caption: 'Land Distribution',
     centerLabel: '$label:<br/><br/>$value',
     defaultCenterLabel: `Total:<br/><br/>${Math.round(landAreaAmount).toLocaleString()} km²`,
     numberSuffix: ' km²',
@@ -92,7 +92,7 @@ const NationalLand = ({ language, nationName }) => {
 
   return (
     <LandGrid>
-      <LandTitle>Land Distribution</LandTitle>
+      <LandTitle>Land</LandTitle>
       <DoughnutChart
         data={landDistributionData}
         dataSourceConfig={landDistributionDataSourceConfig}

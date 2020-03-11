@@ -142,8 +142,9 @@ const NationalDemographics = ({ language, nationName }) => {
     caption: 'Ethnic Distribution',
     // numberSuffix: ' people',
     numberSuffix: '%',
-    showLabels: '0',
-    showLegend: '1',
+    showLabels: '1',
+    showLegend: '0',
+    pieRadius: '90',
   };
 
   return (
@@ -153,7 +154,7 @@ const NationalDemographics = ({ language, nationName }) => {
       <DemographicsTotalValue>{populationAmount}</DemographicsTotalValue>
       <DemographicsTotalNationalPercent>{percentageOfGlobalPopulation}</DemographicsTotalNationalPercent>
       <DoughnutChart data={urbanVsRuralData} dataSourceConfig={urbanVsRuralDataSourceConfig} justify="center" percentOfTotalColumns={1} maxWidth={312}/>
-      <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'310'} maxWidth={370} percentOfTotalColumns={0.9} />
+      <PieChart data={socialGroupsData} dataSourceConfig={socialGroupsDataSourceConfig} justify="center" height={'300'} maxWidth={680} percentOfTotalColumns={1} />
       <DemographicsCitation>IBGE. 2012. Censo Demográfico 2010</DemographicsCitation>
     </DemographicsGrid>
   );
