@@ -42,8 +42,9 @@ const FooterGrid = styled.div`
 
   @media (max-width: 765px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 1.5fr 1.5fr 2.5fr 1.5fr 3fr 1.5fr;
-    grid-row-gap: 20px;
+    ${'' /* grid-template-rows: 1.5fr 1.5fr 2.5fr 1.5fr 3fr 1.5fr; */}
+    grid-template-rows: 50px 22px 48px 33px 122px 51px;
+    grid-row-gap: 10px;
     grid-template-areas:
       'backtomainsite2'
       'navlistgrid'
@@ -52,7 +53,7 @@ const FooterGrid = styled.div`
       'acknowledgementsgrid'
       'copyright';
 
-    height: 405px;
+    height: auto;
   }
 `;
 
@@ -65,7 +66,7 @@ const AcknowledgementsGrid = styled.div`
   /* grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); */
   grid-template-rows: 1fr 1fr;
   grid-row-gap: 22px;
-  grid-column-gap: 22px;
+  grid-column-gap: 8px;
   align-items: start;
   justify-items: center;
 
@@ -77,8 +78,7 @@ const AcknowledgementsGrid = styled.div`
     grid-row: 5/6;
     grid-template-columns: repeat(4, auto);
     grid-template-rows: 1fr 1fr;
-    margin: 0 30px;
-    grid-column-gap: 15px;
+    grid-gap: 10px;
     align-items: start;
   }
 `;
@@ -97,6 +97,8 @@ const FooterTitle2 = styled.h3`
   @media (max-width: 765px) {
     grid-area: withsupportfrom;
     place-self: center;
+
+    margin-top: 10px;
   }
 `;
 
@@ -109,7 +111,7 @@ const FooterNavListGrid = styled.div`
 
   @media (max-width: 765px) {
     grid-area: navlistgrid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     grid-template-rows: 1fr;
     justify-items: center;
 
@@ -147,7 +149,7 @@ const FooterNavListItemGrid = styled.div`
   }
 
   @media (max-width: 765px) {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 
@@ -159,11 +161,16 @@ const FooterSocialGrid = styled.div`
   margin-left: 15px;
 
   @media (max-width: 765px) {
-    grid-area: socialgrid
+    grid-area: socialgrid;
     grid-template-columns: repeat(4, auto);
     justify-items: center;
 
-    margin-left: 0;
+    margin: 0 15px;
+  }
+
+  @media (max-width: 460px) {
+    grid-area: socialgrid;
+    margin: 0 10px;
   }
 `;
 
@@ -205,8 +212,15 @@ const FooterCopyrightText = styled.div`
     grid-area: copyright;
     grid-column: 1/5;
 
+    line-height: 56px;
+  }
+
+  @media (max-width: 460px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 400px) {
     font-size: 12px;
-    line-height: 51px;
   }
 `;
 
@@ -279,25 +293,25 @@ const Footer = ({ content }) => {
         <FooterNavListItemLink to="/about">
           <FooterNavListItemGrid>
             <Icon className="fas fa-info" />
-            <span className="menu-text">{ABOUT}</span>
+            <span style={{'padding-right': '10px'}}>{ABOUT}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/sources">
           <FooterNavListItemGrid>
             <Icon className="far fa-file-pdf" />
-            <span className="menu-text">{SOURCES}</span>
+            <span style={{'padding-right': '10px'}}>{SOURCES}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <FooterNavListItemLink to="/contact">
           <FooterNavListItemGrid>
             <Icon className="far fa-address-book" />
-            <span className="menu-text">{CONTACTS}</span>
+            <span style={{'padding-right': '10px'}}>{CONTACTS}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
         <BackToMainSiteLink href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
           <FooterNavListItemGrid>
             <Icon className="fas fa-home" />
-            <span className="menu-text">{BACK_TO_MAIN_SITE}</span>
+            <span style={{'padding-right': '10px'}}>{BACK_TO_MAIN_SITE}</span>
           </FooterNavListItemGrid>
         </BackToMainSiteLink>
       </FooterNavListGrid>
