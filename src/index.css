@@ -416,3 +416,17 @@ ul, ol {
 li {
   margin-bottom: 14px;
 }
+
+@media (max-width: 460px) {
+  p {
+    font-size: 12px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+
+  li {
+    font-size: 12px;
+  }
+}
