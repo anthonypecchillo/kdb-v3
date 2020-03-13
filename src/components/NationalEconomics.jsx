@@ -188,11 +188,6 @@ const NationalEconomics = ({ language, nationName }) => {
       <PieChart data={gdpBreakdownData} dataSourceConfig={gdpBreakdownDataSourceConfig} justify="center" height={'300'} maxWidth={680} percentOfTotalColumns={1} />
       <EconomicsTotalTitle marginBottom="10px">Major Exports</EconomicsTotalTitle>
       <EconomicsTagListContainer>
-        {/* <EconomicsTagList>
-          {majorExports.map((majorExport, index) => (
-            <EconomicsTagListItem key={index}>{majorExport.majorExportTranslate.name}</EconomicsTagListItem>
-          ))}
-        </EconomicsTagList> */}
         <ExportsList majorExports={majorExports} />
       </EconomicsTagListContainer>
       <EconomicsCitation>IBGE. 2012. Censo Demográfico 2010</EconomicsCitation>

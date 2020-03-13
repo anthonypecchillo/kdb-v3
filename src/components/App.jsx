@@ -11,9 +11,9 @@ import Contact from './Contact';
 import Footer from './Footer';
 import HamburgerMenu from './HamburgerMenu';
 import Landing from './Landing';
-import NJPage from './NJPage';
 import Modal from './Modal';
 import NavBar from './NavBar';
+import NJPage from './NJPage';
 import Sources from './Sources';
 
 import content from '../const/multi-lingual';
@@ -39,23 +39,9 @@ class App extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-  toggleModal() {
-    const { showHamburgerMenu, showModal } = this.state;
-
-    // history.goBack();
-    if (!showHamburgerMenu) {
-      document.body.style.overflow = showModal ? 'unset' : 'hidden';
-
-      this.setState({
-        showModal: !showModal,
-      });
-    }
-  }
-
   toggleHamburgerMenu() {
     const { showHamburgerMenu, showModal } = this.state;
 
-    // history.goBack();
     if (!showModal) {
       document.body.style.overflow = showHamburgerMenu ? 'unset' : 'hidden';
 
@@ -71,9 +57,21 @@ class App extends React.Component {
     });
   }
 
+  toggleModal() {
+    const { showHamburgerMenu, showModal } = this.state;
+
+    if (!showHamburgerMenu) {
+      document.body.style.overflow = showModal ? 'unset' : 'hidden';
+
+      this.setState({
+        showModal: !showModal,
+      });
+    }
+  }
+
   render() {
     const { language, showHamburgerMenu, showModal } = this.state;
-    const { footer, navBar, landingPage } = content[language];
+    const { footer, landingPage, navBar } = content[language];
 
     const modalBox = showModal ? <Modal toggleModal={this.toggleModal} /> : null;
     const hamburgerMenu = showHamburgerMenu ? (

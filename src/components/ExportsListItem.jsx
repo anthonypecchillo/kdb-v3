@@ -10,7 +10,6 @@ const ExportsListItemGrid = styled.div`
   grid-template-columns: 30px 1fr;
 
   height: 40px;
-  ${'' /* width: 170px; */}
 `;
 
 const Icon = styled.i`

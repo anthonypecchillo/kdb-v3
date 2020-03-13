@@ -116,6 +116,8 @@ const NationalDeforestation = ({ language, nationName }) => {
         data: jurisdictionDeforestationRates,
       };
     }
+
+    return null;
   });
 
   const nationDeforestationRates = [{

@@ -11,7 +11,6 @@ const DeforestationDriversListGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, auto);
   grid-template-rows: repeat(auto-fill, 40px);
-  ${'' /* grid-gap: 10px; */}
   justify-content: space-evenly;
 
   margin: 0 auto;

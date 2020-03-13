@@ -11,7 +11,6 @@ const ExportsListGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(auto-fill, 40px);
-  ${'' /* grid-gap: 10px; */}
   justify-content: space-evenly;
 
   height: 100%;

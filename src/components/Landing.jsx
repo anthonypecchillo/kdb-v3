@@ -11,7 +11,6 @@ import Map from './Map';
 import ScrollToTopOnMount from './ScrollToTopOnMount';
 import SellingPoints from './SellingPoints';
 
-// One fragment is (was?) 90.6px!
 const LandingGrid = styled.div`
   display: grid;
   grid-template-rows: 8fr 8fr 9fr;

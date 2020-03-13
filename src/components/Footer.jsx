@@ -42,7 +42,6 @@ const FooterGrid = styled.div`
 
   @media (max-width: 765px) {
     grid-template-columns: 1fr;
-    ${'' /* grid-template-rows: 1.5fr 1.5fr 2.5fr 1.5fr 3fr 1.5fr; */}
     grid-template-rows: 50px 22px 48px 33px 122px 51px;
     grid-row-gap: 10px;
     grid-template-areas:

@@ -9,7 +9,6 @@ import LottieControl from './LottieControl';
 import ScrollToTopOnMount from './ScrollToTopOnMount';
 import Tile from './Tile';
 
-// One fragment is (was?) 90.6px!
 const AboutGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;

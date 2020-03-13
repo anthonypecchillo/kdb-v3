@@ -10,17 +10,12 @@ import jurisdictions from '../const/jurisdictions';
 
 const ModalBox = styled.div`
   background-color: white;
-  /* box-shadow: 0px 6px 6px rgba(0,0,0,0.8); */
   display: block;
   height: 400px;
-  /* left: 130px; */
-  /* margin-top: 150px; */
   margin-top: 75px;
   position: fixed;
-  /* right: 180px; */
   transition: border 0.6s ease 0s, background-color 0.6s ease 0s, color 0.6s ease 0s;
   width: 100%;
-  /* width: calc(100% - 310px); */
   z-index: 999;
 `;
 
@@ -95,39 +90,32 @@ const ModalStateLink = styled(Link)`
 `;
 
 // TODO: Use primary key from DB as uniqueID for props
-const Modal = ({ toggleModal }) => {
-  // const back = e => {
-  //   // e.stopPropagation();
-  //   // history.goBack();
-  //   alert('You clicked me!');
-  // };
-  return (
-    <>
-      <ModalBox>
-        <MemberStatesGrid>
-          {jurisdictions.map((jurisdiction, index) => {
-            if (!jurisdiction) {
-              return <div key={index} />;
-            }
+const Modal = ({ toggleModal }) => (
+  <>
+    <ModalBox>
+      <MemberStatesGrid>
+        {jurisdictions.map((jurisdiction, index) => {
+          if (!jurisdiction) {
+            return <div key={index} />;
+          }
 
-            if (index < 11) {
-              return (
-                <ModalNationLink key={index} to={jurisdiction.URL} onClick={toggleModal}>
-                  {jurisdiction.NATION_NAME}
-                </ModalNationLink>
-              );
-            }
+          if (index < 11) {
             return (
-              <ModalStateLink key={index} to={jurisdiction.URL} onClick={toggleModal}>
-                {jurisdiction.JURISDICTION_NAME}
-              </ModalStateLink>
+              <ModalNationLink key={index} to={jurisdiction.URL} onClick={toggleModal}>
+                {jurisdiction.NATION_NAME}
+              </ModalNationLink>
             );
-          })}
-        </MemberStatesGrid>
-      </ModalBox>
-      <ModalFade onClick={toggleModal} />
-    </>
-  );
-};
+          }
+          return (
+            <ModalStateLink key={index} to={jurisdiction.URL} onClick={toggleModal}>
+              {jurisdiction.JURISDICTION_NAME}
+            </ModalStateLink>
+          );
+        })}
+      </MemberStatesGrid>
+    </ModalBox>
+    <ModalFade onClick={toggleModal} />
+  </>
+);
 
 export default Modal;

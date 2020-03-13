@@ -66,8 +66,6 @@ const Icon2 = styled.i`
 `;
 
 const LawBody = ({ citations, coatOfArmsUrl, isOpen, summary, title }) => {
-  // TODO: Conditional Here! If summary is an array, dynamically render list.
-  //                         Else, render as paragraph tag.
   if (!isOpen) {
     return <LawBodyGrid isOpen={isOpen} />;
   }
