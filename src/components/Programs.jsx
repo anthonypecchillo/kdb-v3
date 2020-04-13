@@ -12,13 +12,14 @@ import NationalPoliciesAndPlans from './NationalPoliciesAndPlans';
 import ProgramsOverview from './ProgramsOverview';
 import Tabs from './Tabs';
 
-const JURISDICTION_PROGRAMS_TAB_LABELS = ['Institutional Frameworks', 'Laws & Regulations', 'Overview'];
+const JURISDICTION_PROGRAMS_TAB_LABELS = ['Overview', 'Laws & Regulations', 'Institutional Frameworks'];
 const NATION_PROGRAMS_TAB_LABELS = ['Laws & Regulations', 'Policies & Plans', 'Institutions'];
 
 const ProgramsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 40px 37px calc(100% - 5% - 15px);
+  ${'' /* grid-template-rows: 40px 37px calc(100% - 5% - 15px); */}
+  grid-template-rows: 40px 37px auto;
 
   height: 100%;
   width: 100%;
@@ -34,7 +35,7 @@ class Programs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: this.props.jurisdictionType === 'state' ? 'Institutional Frameworks' : 'Laws & Regulations',
+      activeTab: this.props.jurisdictionType === 'state' ? 'Overview' : 'Laws & Regulations',
     };
 
     this.handleTabClick = this.handleTabClick.bind(this);

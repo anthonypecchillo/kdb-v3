@@ -14,9 +14,9 @@ const GovernanceGrid = styled.div`
   grid-column-gap: 2%;
   grid-row-gap: 25px;
   grid-template-columns: 1fr;
-  grid-template-rows: 80vh;
+  grid-template-rows: auto;
 
-  height: 100%;
+  ${'' /* height: 100%; */}
   width: 100%;
 `;
 

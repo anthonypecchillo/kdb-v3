@@ -18,8 +18,8 @@ import Indonesia from 'fusionmaps/maps/fusioncharts.indonesia';
 import CoteDivoire from 'fusionmaps/maps/fusioncharts.cotedivoire';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import ReactFC from 'react-fusioncharts';
-// import WorldCountries from '../maps/worldwithcountries';
-import WorldCountries from 'fusionmaps/maps/fusioncharts.worldwithcountries';
+import WorldCountries from '../maps/worldwithcountries';
+// import WorldCountries from 'fusionmaps/maps/fusioncharts.worldwithcountries';
 
 FusionCharts.options.creditLabel = false;
 ReactFC.fcRoot(
@@ -49,7 +49,7 @@ const dataSource = {
     nullentitycolor: '#C3D2DA',
     entityfillhovercolor: '#87ceeb',
     showLegend: false,
-    chartRightMargin: -150,
+    // chartRightMargin: -150,
     // caption: 'GCF Task Force National Influence',
     // subcaption: 'By Number of GCF Task Force States/Provinces',
     // includevalueinlabels: '1',
@@ -608,8 +608,8 @@ const dataSource = {
 
 const chartConfigs = {
   type: 'worldwithcountries',
-  width: '100%',
-  height: '600',
+  width: '99%',
+  height: 'auto',
   dataFormat: 'json',
   dataSource,
   events: {
@@ -654,10 +654,45 @@ const chartConfigs = {
   },
 };
 
-const WorldMap = () => (
-  <ReactFC
-    {...chartConfigs}
-  />
-);
+class WorldMap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chart: null,
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  resize = () => { 
+    const { chart } = this.state;
+
+    if (chart) {
+      chart.resizeTo(chart.container.parentElement.getBoundingClientRect().width,
+      Math.min(chart.container.parentElement.getBoundingClientRect().width * 0.5283, window.innerHeight * .75));
+    } 
+  }
+
+  handleRender = (chart) => {
+    if (!this.state.chart) {
+      this.setState({ chart }, this.resize);
+    }
+  }
+
+  render() {
+    return (
+      <ReactFC
+        {...chartConfigs}
+        onRender={this.handleRender}
+      />
+    );
+  }
+};
 
 export default WorldMap;

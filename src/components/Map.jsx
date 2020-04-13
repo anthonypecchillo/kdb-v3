@@ -9,7 +9,7 @@ import WorldMap from './WorldMap';
 
 const MapGrid = styled.div`
   display: grid;
-  grid-template-rows: 17fr 3fr;
+  grid-template-rows: auto auto auto 100px;
   align-items: center;
   justify-items: center;
 
@@ -17,7 +17,7 @@ const MapGrid = styled.div`
 `;
 
 const MapTitle = styled.h1`
-  margin: 0;
+  margin-bottom: 0;
   text-align: center;
 `;
 
@@ -58,8 +58,11 @@ const MapButtonText = styled.span`
 `;
 
 const MapContainer = styled.div`
-  height: 662.5px;
-  width: 95vw;
+  justify-self: left;
+
+  height: auto;
+  max-height: 80vh;
+  width: 100vw;
 `;
 
 class Map extends React.Component {
@@ -74,9 +77,9 @@ class Map extends React.Component {
 
     return (
       <MapGrid>
+        <MapTitle>{TITLE}</MapTitle>
+        <MapSubTitle>{SUB_TITLE}</MapSubTitle>
         <MapContainer>
-          <MapTitle>{TITLE}</MapTitle>
-          <MapSubTitle>{SUB_TITLE}</MapSubTitle>
           <WorldMap />
         </MapContainer>
         <MapButton onClick={toggleModal}>

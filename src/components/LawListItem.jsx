@@ -13,7 +13,8 @@ const LawListItemGrid = styled.div`
   grid-template-rows: 45px auto 45px;
 
   border-radius: 5px;
-  box-shadow: 6px 18px 18px rgba(0, 0, 0, 0.08), -6px 18px 18px rgba(0, 0, 0, 0.08);
+  ${'' /* box-shadow: 6px 18px 18px rgba(0, 0, 0, 0.08), -6px 18px 18px rgba(0, 0, 0, 0.08); */}
+  box-shadow: 4px 8px 6px rgba(0, 0, 0, 0.08), -4px 8px 6px rgba(0, 0, 0, 0.08);
   font-size: 16px;
   font-weight: 500;
   margin: 0 auto;
@@ -44,7 +45,6 @@ const LawHeader = styled.div`
   @media (max-width: 460px) {
     grid-template-columns: 8fr minmax(140px, 3fr) minmax(36px, 1fr);
   }
-
 `;
 
 const LawTitle = styled.span`
@@ -76,9 +76,8 @@ const LawTagList = styled.div`
   direction: rtl;
   height: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;  /* For Momentum Scroll on Mobile */
   padding-right: 2.5%;
-  width: 91.1%;
 
   ::-webkit-scrollbar {
     display: none;
@@ -100,7 +99,6 @@ const LawTag = styled.div`
   line-height: 31px;
   padding-left: 10px;
   padding-right: ${({ isFirstItem }) => !isFirstItem && '10px'};
-  ${'' /* padding: 0 10px; */}
   text-align: center;
 
   @media (max-width: 460px) {
@@ -129,7 +127,6 @@ class LawListItem extends React.Component {
   render() {
     const { index, law, lawListLength } = this.props;
     const { isOpen } = this.state;
-
     const chevronClass = isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
     const lawNumber = law.lawNumber || '';
     // Source for date formatting regex (need this for Safari smh)

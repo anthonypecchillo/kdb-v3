@@ -55,7 +55,7 @@ const NJOverviewPage = ({ nationName, jurisdictionName, language }) => (
     <Tile gridArea="fmms">
       <NJForestMonitoringAndMeasurementSystems jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
-    <Tile gridArea="demographics" height="800px" align="start">
+    <Tile gridArea="demographics" height="auto" align="start">
       <NJDemographics jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
     </Tile>
     <Tile gridArea="economics">

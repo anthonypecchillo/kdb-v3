@@ -4,17 +4,27 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 
+const PartnershipLabel = styled.span`
+  grid-area: ${({gridArea}) => gridArea};
+  align-self: ${({ align }) => align || 'center'};
+
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: ${({marginTop}) => marginTop};
+`;
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     alignSelf: 'center',
-    gridColumn: '1/3',
+    gridArea: 'status-stepper',
   },
   stepper: {
     backgroundColor: '#e5e5e5',
@@ -46,7 +56,8 @@ const PartnershipStatusStepper = ({ activeStep }) => {
 
   return (
     <div className={classes.root}>
-      <div>Status:</div>
+      <PartnershipLabel>Initiative Status:</PartnershipLabel>
+      <br />
       <br />
       <Typography className={classes.instructions} />
       <Stepper className={classes.stepper} alternativeLabel activeStep={activeStep}>

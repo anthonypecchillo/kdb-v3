@@ -12,7 +12,8 @@ const PartnershipListItemGrid = styled.div`
   grid-template-rows: 45px auto 45px;
 
   border-radius: 5px;
-  box-shadow: 6px 18px 18px rgba(0, 0, 0, 0.08), -6px 18px 18px rgba(0, 0, 0, 0.08);
+  ${'' /* box-shadow: 6px 18px 18px rgba(0, 0, 0, 0.08), -6px 18px 18px rgba(0, 0, 0, 0.08); */}
+  box-shadow: 4px 8px 6px rgba(0, 0, 0, 0.08), -4px 8px 6px rgba(0, 0, 0, 0.08);
   font-size: 16px;
   font-weight: 500;
   margin: 0 auto;
@@ -20,6 +21,14 @@ const PartnershipListItemGrid = styled.div`
     isOpen && index !== lastIndex ? '45px' : '30px'};
   margin-top: ${({ index, isOpen }) => (isOpen && index !== 0 ? '45px' : '30px')};
   width: 95%;
+
+  @media (max-width: 765px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 460px) {
+    font-size: 12px;
+  }
 `;
 
 const PartnershipHeader = styled.div`
@@ -31,6 +40,10 @@ const PartnershipHeader = styled.div`
   border-radius: 5px 5px 0 0;
   color: #ffffff;
   width: 100%;
+
+  @media (max-width: 460px) {
+    grid-template-columns: 11fr minmax(36px, 1fr);
+  }
 `;
 
 const PartnershipTitle = styled.span`
@@ -38,6 +51,11 @@ const PartnershipTitle = styled.span`
   justify-self: start;
 
   margin-left: 2.5%;
+
+  @media (max-width: 460px) {
+    margin-left: 5%;
+    ${'' /* text-align: center; */}
+  }
 `;
 
 const Icon = styled.i`
@@ -53,12 +71,17 @@ const PartnershipTagList = styled.div`
   direction: rtl;
   height: 100%;
   overflow-x: auto;
-  /* -webkit-overflow-scrolling: touch;   For Momentum Scroll on Mobile */
+  -webkit-overflow-scrolling: touch;
   padding-right: 2.5%;
-  width: 100%;
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 460px) {
+    margin-right: 4.45%;
+    margin-left: 4.45%;
+    padding-right: 0;
   }
 `;
 
@@ -67,10 +90,15 @@ const PartnershipTag = styled.div`
   /* border: 1px solid black; */
   /* border-radius: 10px; */
   height: 70%;
-  line-height: 31px; /* 0.70 (height) times grid row height (48px)...plus a little? */
-  margin: 0 10px;
-  padding: 0 10px;
+  line-height: 31px;
+  padding-left: 10px;
+  padding-right: ${({ isFirstItem }) => !isFirstItem && '10px'};
   text-align: center;
+
+  @media (max-width: 460px) {
+    padding-left: 5px;
+    padding-right: ${({ isFirstItem }) => !isFirstItem && '5px'};
+  }
 `;
 
 class PartnershipListItem extends React.Component {
@@ -91,9 +119,11 @@ class PartnershipListItem extends React.Component {
   }
 
   render() {
-    const { index, partnershipListLength } = this.props;
+    const { index, partnership, partnershipListLength } = this.props;
     const { isOpen } = this.state;
     const chevronClass = isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+
+    // TODO: Chevron Icon stopped flipping after FA Pro was added to project...fix this.
     return (
       <PartnershipListItemGrid index={index} isOpen={isOpen} lastIndex={partnershipListLength - 1}>
         <PartnershipHeader onClick={this.handleChevronClick}>
@@ -103,12 +133,22 @@ class PartnershipListItem extends React.Component {
           <Icon className={chevronClass} />
         </PartnershipHeader>
 
-        <PartnershipBody isOpen={isOpen} />
+        <PartnershipBody
+          isOpen={isOpen}
+        />
 
+        {/* <PartnershipTagList isOpen={isOpen}>
+          {partnership.partnershipTags.map((partnershipTag, index) => (
+            <PartnershipTag
+              isFirstItem={!index}
+              key={index}>{partnershipTag.partnershipTagTranslate.tagName}
+            </PartnershipTag>
+          ))}
+        </PartnershipTagList> */}
         <PartnershipTagList isOpen={isOpen}>
-          <PartnershipTag>Mato Grasso</PartnershipTag>
+          <PartnershipTag isFirstItem>Acre</PartnershipTag>
           <PartnershipTag>Amazonas</PartnershipTag>
-          <PartnershipTag>Acre</PartnershipTag>
+          <PartnershipTag>Mato Grasso</PartnershipTag>
         </PartnershipTagList>
       </PartnershipListItemGrid>
     );

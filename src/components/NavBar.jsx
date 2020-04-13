@@ -244,10 +244,10 @@ const NavBar = ({ content, toggleHamburgerMenu, toggleLanguage, toggleModal }) =
         <Logo />
       </Link>
       <NavTitle>Knowledge Database</NavTitle>
+      <NavItem gridArea="navlink1" onClick={toggleModal}>{NAVIGATE}</NavItem>
       <NavItemLink to="/about">
-        <NavItem gridArea="navlink1">{ABOUT}</NavItem>
+        <NavItem gridArea="navlink2">{ABOUT}</NavItem>
       </NavItemLink>
-      <NavItem gridArea="navlink2" onClick={toggleModal}>{NAVIGATE}</NavItem>
       <NavItemLink to="/contact">
         <NavItem gridArea="navlink3">{CONTACT}</NavItem>
       </NavItemLink>

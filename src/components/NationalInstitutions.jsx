@@ -27,7 +27,7 @@ const NationalInstitutionsStyled = styled.div`
   border-top: 3px solid #3e522d;
   height: calc(100% - 2.5% - 40px);
   margin-top: 10px;
-  overflow-y: scroll;
+  ${'' /* overflow-y: scroll; */}
   padding: 15px;
   width: 100%;
 `;

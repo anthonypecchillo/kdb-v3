@@ -35,9 +35,9 @@ const PartnershipListStyled = styled.div`
 
   background-color: white;
   border-top: 3px solid #3e522d;
-  height: 100%;
-  margin: 10px 0 15px 0;
-  overflow-y: scroll;
+  ${'' /* height: auto; */}
+  margin-top: 10px;
+  ${'' /* overflow-y: scroll; */}
   width: 100%;
 `;
 

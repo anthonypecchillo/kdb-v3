@@ -51,7 +51,7 @@ const LawListStyled = styled.div`
   border-top: 3px solid #3e522d;
   height: calc(100% - 5% - 37px - 15px);
   margin: 10px 0 15px 0;
-  overflow-y: scroll;
+  ${'' /* overflow-y: scroll; */}
   width: 100%;
 `;
 

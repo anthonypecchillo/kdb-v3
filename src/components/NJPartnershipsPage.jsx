@@ -11,9 +11,12 @@ import Tile from './Tile';
 const PartnershipsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 60px 37px 1000px;
+  grid-template-rows: auto 37px auto;
 
-  height: 100%;
+  background-color: #ffffff;
+  ${'' /* height: 100%; */}
+  margin: 0 auto;
+  max-width: 1480px;
   width: 100%;
 
   @media (max-width: 1025px) {
@@ -23,7 +26,7 @@ const PartnershipsGrid = styled.div`
 `;
 
 const PartnershipsTitle = styled.h1`
-  margin-top: 0px;
+  ${'' /* margin-top: 0px; */}
   text-align: center;
 `;
 
@@ -89,7 +92,7 @@ const SearchBarButton = styled.button`
 `;
 
 const NJPartnershipsPage = () => (
-  <Tile margin="0 auto" height="1097" maxWidth="1280px">
+  <Tile boxShadow="none">
     <PartnershipsGrid>
       <PartnershipsTitle>Partnerships</PartnershipsTitle>
       <PartnershipsOptionsGrid>

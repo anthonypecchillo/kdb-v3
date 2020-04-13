@@ -12,7 +12,7 @@ const Tile = styled.div`
   justify-self: ${({ justify }) => justify || 'center'};
 
   background-color: white;
-  box-shadow: 6px 18px 18px rgba(0, 0, 0, 0.08), -6px 18px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: ${({ boxShadow }) => boxShadow || '6px 18px 18px rgba(0, 0, 0, 0.08), -6px 18px 18px rgba(0, 0, 0, 0.08)'};
   height: ${({ height }) => height || '100%'};
   margin: ${({ margin }) => margin || '0'};
   max-width: ${({ maxWidth }) => maxWidth || null};

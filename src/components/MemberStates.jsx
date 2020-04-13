@@ -36,7 +36,7 @@ const MemberStatesGrid = styled.div`
   }
 
   @media (max-width: 460px) {
-    grid-column: 1/4;
+    grid-column: 1/2;
     grid-template-columns: repeat(5, 1fr);
     grid-template-areas:
       "brazil indonesia mexico peru ivorycoast"

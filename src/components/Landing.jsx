@@ -13,9 +13,9 @@ import SellingPoints from './SellingPoints';
 
 const LandingGrid = styled.div`
   display: grid;
-  grid-template-rows: 8fr 8fr 9fr;
+  grid-template-rows: 8fr auto 9fr;
 
-  height: 2367.5px;
+  height: auto;
   padding-top: 75px;
 `;
 

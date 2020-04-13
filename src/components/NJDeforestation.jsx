@@ -260,12 +260,21 @@ const NJDeforestation = ({ jurisdictionName, language, nationName }) => {
   };
 
   const { deforestationRates } = data.jurisdictionByName.region;
-  const deforestationRatesData = deforestationRates.map(rate => {
-    return {
-      label: rate.year.toString(),
-      value: rate.amount,
-    };
-  });
+
+  let deforestationRatesData;
+  if (deforestationRates) {
+    deforestationRatesData = deforestationRates.map(rate => {
+      return {
+        label: rate.year.toString(),
+        value: rate.amount,
+      };
+    });
+  } else {
+    deforestationRatesData = [{
+      label: null,
+      value: null,
+    }];
+  }
   const deforestationRatesDataSourceConfig = {
     caption: 'Deforestation Rate',
     xAxisName: 'Year',

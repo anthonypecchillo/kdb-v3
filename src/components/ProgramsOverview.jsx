@@ -15,7 +15,7 @@ import LottieControl from './LottieControl';
 
 const ProgramsOverviewStyled = styled.div`
   border-top: 3px solid #3e522d;
-  height: calc(100% - 2.5% - 40px);
+  height: auto;
   margin-top: 10px;
   overflow-y: scroll;
   padding: 15px;

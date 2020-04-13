@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import NationalOverviewPage from './NationalOverviewPage';
 // import NationalApproachesPage from './NationalApproachesPage';
@@ -16,21 +16,23 @@ import NJOverviewPage from './NJOverviewPage';
 import NJForestAndLandUsePage from './NJForestAndLandUsePage';
 import NJGovernancePage from './NJGovernancePage';
 import NJPartnershipsPage from './NJPartnershipsPage';
-// import NJReportCardsPage from './NJReportCardsPage';
+import NJReportCardsPage from './NJReportCardsPage';
 
 import TempIconList from './TempIconList';
 
 const NJBodyStyled = styled.div`
-  justify-self: center;
-
   background-color: #e5e5e5;
   /* background-image: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%); */
   height: 100%;
-  padding: 50px 1.25%;
-  width: 90%;
-  max-width: 1480px;
 
-  @media (max-width: 1025px) {
+  ${({ hasTiles }) => hasTiles && css`
+    justify-self: center;
+    padding: 50px 1.25%;
+    width: 95%;
+    max-width: 1480px;
+  `};
+
+  @media (max-width: 1280px) {
     width: 100%;
     max-width: none;
   }
@@ -38,6 +40,7 @@ const NJBodyStyled = styled.div`
 
 const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) => {
   const { pageId } = useParams();
+  let hasTiles = true;
   let view;
 
   if (jurisdictionType === 'nation') {
@@ -53,6 +56,7 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
         view = <NationalGovernancePage jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} nationName={nationName} language={language} />;
         break;
       case 'partnerships':
+        hasTiles = false;
         view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
       default:
@@ -72,11 +76,12 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
         view = <NJGovernancePage jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} nationName={nationName} language={language} />;
         break;
       case 'partnerships':
+        hasTiles = false;
         view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
         break;
       case 'report-cards':
-        // view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
-        view = <TempIconList />
+        view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        // <TempIconList />
         break;
       default:
         view = null;
@@ -84,7 +89,7 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
   }
 
   return (
-    <NJBodyStyled>
+    <NJBodyStyled hasTiles={hasTiles}>
       <ScrollToTopOnMount />
       {view}
     </NJBodyStyled>

@@ -118,8 +118,8 @@ const HamburgerMenu = ({ content, toggleHamburgerMenu, toggleLanguage }) => {
           </SearchBar>
 
           <div />
-          <NavLink isFirstNavLink>{ABOUT}</NavLink>
-          <NavLink>{NAVIGATE}</NavLink>
+          <NavLink isFirstNavLink>{NAVIGATE}</NavLink>
+          <NavLink>{ABOUT}</NavLink>
           <NavLink>{CONTACT}</NavLink>
 
           <LanguageSelect toggleLanguage={toggleLanguage} />

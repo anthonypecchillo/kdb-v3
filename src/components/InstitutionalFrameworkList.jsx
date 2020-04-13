@@ -12,7 +12,7 @@ const InstitutionalFrameworkListStyled = styled.div`
   border-top: 3px solid #3e522d;
   height: calc(100% - 2.5%);
   margin: 8px 0;
-  overflow-y: scroll;
+  ${'' /* overflow-y: scroll; */}
   width: 100%;
 `;
 
@@ -79,11 +79,11 @@ const InstitutionalFrameworkList = ({ activeList, frameworks }) => {
 
   return (
     <InstitutionalFrameworkListStyled>
-      <h2>State</h2>
-      {stateFrameworks}
-
       <h2>National</h2>
       {nationalFrameworks}
+
+      <h2>State</h2>
+      {stateFrameworks}
     </InstitutionalFrameworkListStyled>
   );
 }

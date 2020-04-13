@@ -28,15 +28,15 @@ const GET_JURISDICTION_ZONING_SPATIAL_PLAN = gql`
 
 const OldGovernanceZoningSpatialPlanningStyled = styled.div`
   border-top: 3px solid #3e522d;
-  height: calc(100% - 2.5% - 40px);
+  height: auto;
   margin-top: 10px;
-  overflow-y: scroll;
+  ${'' /* overflow-y: scroll; */}
   padding: 15px;
   width: 100%;
 
-  @media (max-width: 1280px) {
+  ${'' /* @media (max-width: 1280px) {
     overflow-y: inherit;
-  }
+  } */}
 `;
 
 const OldGovernanceZoningSpatialPlanning = ({ jurisdictionName, language, nationName }) => {
