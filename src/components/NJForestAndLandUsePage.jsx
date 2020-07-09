@@ -91,9 +91,9 @@ const NJForestAndLandUsePage = ({ nationName, jurisdictionName, language }) => {
       <Tile gridArea="deforestation">
         <NJDeforestation jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
       </Tile>
-      <Tile gridArea="CO2">
+      {/* <Tile gridArea="CO2">
         <NJCO2Emissions jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-      </Tile>
+      </Tile> */}
       {NJVegetationView}
     </ForestAndLandUseGrid>
   );
