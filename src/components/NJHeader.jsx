@@ -53,11 +53,11 @@ const navLinkListJurisdictional = [
     urlText: 'partnerships',
     faIconClass: 'handshake',
   },
-  {
-    linkText: 'Report Cards',
-    urlText: 'report-cards',
-    faIconClass: 'file-alt',
-  },
+  // {
+  //   linkText: 'Report Cards',
+  //   urlText: 'report-cards',
+  //   faIconClass: 'file-alt',
+  // },
 ];
 
 const NJHeaderGrid = styled.div`
