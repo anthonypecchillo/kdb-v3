@@ -5,11 +5,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import LottieControl from './LottieControl';
 import NationalApproachesToDeforestationMonitoringAndAccounting from './NationalApproachesToDeforestationMonitoringAndAccounting';
 import NationalApproachesToDeforestationAndForestDegradation from './NationalApproachesToDeforestationAndForestDegradation';
 import NationalCommitments from './NationalCommitments';
 import NationalGlobalPerspective from './NationalGlobalPerspective';
+import ScrollToTopOnMount from './ScrollToTopOnMount';
 import Tile from './Tile';
+
+const TEMPConstructionGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  background-color: #e5e5e5;
+  height: 800px;
+  padding: 50px 50px;
+  padding-top: 125px;
+`;
 
 const OverviewGrid = styled.div`
   display: grid;
@@ -40,20 +53,29 @@ const OverviewGrid = styled.div`
 `;
 
 const NationalForestsAndLandUsePage = ({ nationName, jurisdictionName, language }) => (
-  <OverviewGrid>
-    <Tile gridArea="nadma">
-      <NationalApproachesToDeforestationMonitoringAndAccounting jurisdictionName={jurisdictionName} language={language} />
+  <TEMPConstructionGrid>
+    <Tile height="600px" maxWidth="1000px">
+      <LottieControl />
+      <center>
+        <h1>Under Construction!</h1>
+      </center>
     </Tile>
-    <Tile gridArea="nadfd">
-      <NationalApproachesToDeforestationAndForestDegradation jurisdictionName={jurisdictionName} language={language} />
-    </Tile>
-    <Tile gridArea="commitments">
-      <NationalCommitments jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-    </Tile>
-    <Tile gridArea="globalperspective">
-      <NationalGlobalPerspective jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
-    </Tile>
-  </OverviewGrid>
+  </TEMPConstructionGrid>
 );
 
 export default NationalForestsAndLandUsePage;
+
+{/* <OverviewGrid>
+  <Tile gridArea="nadma">
+    <NationalApproachesToDeforestationMonitoringAndAccounting jurisdictionName={jurisdictionName} language={language} />
+  </Tile>
+  <Tile gridArea="nadfd">
+    <NationalApproachesToDeforestationAndForestDegradation jurisdictionName={jurisdictionName} language={language} />
+  </Tile>
+  <Tile gridArea="commitments">
+    <NationalCommitments jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
+  </Tile>
+  <Tile gridArea="globalperspective">
+    <NationalGlobalPerspective jurisdictionName={jurisdictionName} language={language} nationName={nationName} />
+  </Tile>
+</OverviewGrid> */}
