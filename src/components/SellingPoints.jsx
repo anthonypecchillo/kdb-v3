@@ -13,17 +13,17 @@ const TROPICAL_FOREST_URL = 'https://general-site-assets.s3-us-west-1.amazonaws.
 
 const carouselSlidesData = [
   {
-    content: 'MILLION SQUARE KILOMETERS OF TROPICAL FOREST',
+    content: 'SQUARE KILOMETERS OF TROPICAL FOREST',
     imageURL: SQUARE_KILOMETERS_FOREST_URL,
-    value: '4.9',
+    value: '4.9 Million',
   },
   {
-    content: 'BILLION TONNES OF FOREST CARBON',
+    content: 'TONNES OF FOREST CARBON',
     imageURL: FOREST_CARBON_URL,
-    value: '55',
+    value: '55 Billion',
   },
   {
-    content: "WORLD's TROPICAL FORESTS",
+    content: "OF THE WORLD's TROPICAL FORESTS",
     imageURL: TROPICAL_FOREST_URL,
     value: '1/3',
   },
@@ -106,7 +106,7 @@ const CarouselSlideContent = styled.div`
 const CarouselSlideValue = styled.div`
   align-self: end;
 
-  font-size: 60px;
+  font-size: 48px;
 `;
 
 const CarouselSlideDescription = styled.div`
