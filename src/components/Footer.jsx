@@ -322,27 +322,29 @@ const Footer = ({ content }) => {
       </FooterNavListGrid>
 
       <AcknowledgementsGrid>
+        <div />
         <LogoLink href={NORAD_URL} rel="noopener noreferrer" target="_blank" row={0}>
           <Logo logo={NORAD_LOGO_URL} />
         </LogoLink>
         <LogoLink href={RBF_URL} rel="noopener noreferrer" target="_blank" row={0}>
           <Logo logo={RBF_LOGO_URL} />
         </LogoLink>
+        <div />
         <LogoLink href={CIFOR_URL} rel="noopener noreferrer" target="_blank" row={0}>
           <Logo logo={CIFOR_LOGO_URL} />
         </LogoLink>
-        <LogoLink href={GFW_URL} rel="noopener noreferrer" target="_blank" row={0}>
+        {/* <LogoLink href={GFW_URL} rel="noopener noreferrer" target="_blank" row={0}>
           <Logo logo={GFW_LOGO_URL} />
-        </LogoLink>
+        </LogoLink> */}
         <LogoLink href={PNS_URL} rel="noopener noreferrer" target="_blank" row={1}>
           <Logo logo={PNS_LOGO_URL} />
         </LogoLink>
         <LogoLink href={MDA_URL} rel="noopener noreferrer" target="_blank" row={1}>
           <Logo logo={MDA_LOGO_URL} />
         </LogoLink>
-        <LogoLink href={EII_URL} rel="noopener noreferrer" target="_blank" row={1}>
+        {/* <LogoLink href={EII_URL} rel="noopener noreferrer" target="_blank" row={1}>
           <Logo logo={EII_LOGO_URL} />
-        </LogoLink>
+        </LogoLink> */}
         <LogoLink href={TCG_URL} rel="noopener noreferrer" target="_blank" row={1}>
           <Logo logo={TCG_LOGO_URL} />
         </LogoLink>
