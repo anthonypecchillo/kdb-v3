@@ -216,13 +216,13 @@ const dataSource = {
           {
             id: 'il',
             color: '#83AC55',
-            toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black; width: 190px; height: 100px;'><br/>We should put a description here<br/>about the unique kind of involvement<br/> $lName has with the GCF Task Force,<br/> since there is no quantitative data<br/> to display.</div>",
+            // toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black; width: 190px; height: 100px;'><br/>We should put a description here<br/>about the unique kind of involvement<br/> $lName has with the GCF Task Force,<br/> since there is no quantitative data<br/> to display.</div>",
             showLabel: '1',
           },
           {
             id: 'ca',
             color: '#83AC55',
-            toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black; width: 190px; height: 100px;'><br/>We should put a description here<br/>about the unique kind of involvement<br/> $lName has with the GCF Task Force,<br/> since there is no quantitative data<br/> to display.</div>",
+            // toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black; width: 190px; height: 100px;'><br/>We should put a description here<br/>about the unique kind of involvement<br/> $lName has with the GCF Task Force,<br/> since there is no quantitative data<br/> to display.</div>",
             showLabel: '1',
           },
         ],
@@ -598,7 +598,7 @@ const dataSource = {
           {
             id: '010',
             color: '#83AC55',
-            toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black; width: 190px; height: 100px;'><br/>We should put a description here<br/>about the unique kind of involvement<br/> $lName has with the GCF Task Force,<br/> since there is no quantitative data<br/> to display.</div>",
+            // toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black; width: 190px; height: 100px;'><br/>We should put a description here<br/>about the unique kind of involvement<br/> $lName has with the GCF Task Force,<br/> since there is no quantitative data<br/> to display.</div>",
             showLabel: '1'
           },
         ],
