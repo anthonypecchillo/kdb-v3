@@ -122,6 +122,10 @@ const FooterNavListItemLink = styled(Link)`
   text-decoration: none;
 `;
 
+const TEMPLink = styled.a`
+  text-decoration: none;
+`;
+
 const FooterNavListItemGrid = styled.div`
   display: grid;
   grid-template-columns: 30px auto 4fr;
@@ -301,12 +305,14 @@ const Footer = ({ content }) => {
             <span style={{'paddingRight': '10px'}}>{SOURCES}</span>
           </FooterNavListItemGrid>
         </FooterNavListItemLink>
-        <FooterNavListItemLink to="/contact">
+        {/* <FooterNavListItemLink to="/contact"> */}
+        <TEMPLink href="https://www.gcftf.org/contact">
           <FooterNavListItemGrid>
             <Icon className="far fa-address-book" />
             <span style={{'paddingRight': '10px'}}>{CONTACTS}</span>
           </FooterNavListItemGrid>
-        </FooterNavListItemLink>
+        </TEMPLink>
+        {/* </FooterNavListItemLink> */}
         <BackToMainSiteLink href={GCFTF_URL} rel="noopener noreferrer" target="_blank">
           <FooterNavListItemGrid>
             <Icon className="fas fa-home" />

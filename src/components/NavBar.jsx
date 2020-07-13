@@ -103,6 +103,26 @@ const NavItemLink = styled(Link)`
   }
 `;
 
+const TEMPLink = styled.a`
+  text-decoration: none;
+
+  &:active {
+    text-decoration: ${({ underline }) => underline && 'underline solid black'};
+  }
+
+  &:link {
+    color: black;
+  }
+
+  &:visited {
+    color: black;
+  }
+
+  @media (max-width: 1025px) {
+    display: none;
+  }
+`;
+
 const NavItem = styled.div`
   grid-area: ${({ gridArea }) => gridArea};
 
@@ -248,9 +268,11 @@ const NavBar = ({ content, toggleHamburgerMenu, toggleLanguage, toggleModal }) =
       <NavItemLink to="/about">
         <NavItem gridArea="navlink2">{ABOUT}</NavItem>
       </NavItemLink>
-      <NavItemLink to="/contact">
+      {/* <NavItemLink to="/contact"> */}
+      <TEMPLink href="https://www.gcftf.org/contact">
         <NavItem gridArea="navlink3">{CONTACT}</NavItem>
-      </NavItemLink>
+      </TEMPLink>
+      {/* </NavItemLink> */}
       <LanguageSelect toggleLanguage={toggleLanguage} />
       <SearchBar>
         <SearchBarInput placeholder={SEARCH_PLACEHOLDER} type="text" />
