@@ -127,14 +127,19 @@ class PartnershipListItem extends React.Component {
     return (
       <PartnershipListItemGrid index={index} isOpen={isOpen} lastIndex={partnershipListLength - 1}>
         <PartnershipHeader onClick={this.handleChevronClick}>
-          <PartnershipTitle>
-            Acre State Sustainable Development Program - PDSA Phase II
-          </PartnershipTitle>
+          <PartnershipTitle>{partnership.partnershipTranslate.name}</PartnershipTitle>
           <Icon className={chevronClass} />
         </PartnershipHeader>
 
         <PartnershipBody
+          description={partnership.partnershipTranslate.description}
+          fundingAmount={partnership.fundingAmount}
+          fundingCurrency={partnership.fundingCurrency}
+          initiativeStatus={partnership.initiativeStatus}
+          initiativeTypes={partnership.initiativeTypes}
           isOpen={isOpen}
+          partnerOrganizations={partnership.organizations}
+          title={partnership.partnershipTranslate.name}
         />
 
         {/* <PartnershipTagList isOpen={isOpen}>
@@ -146,9 +151,11 @@ class PartnershipListItem extends React.Component {
           ))}
         </PartnershipTagList> */}
         <PartnershipTagList isOpen={isOpen}>
-          <PartnershipTag isFirstItem>Acre</PartnershipTag>
-          <PartnershipTag>Amazonas</PartnershipTag>
-          <PartnershipTag>Mato Grasso</PartnershipTag>
+          {partnership.partnershipJurisdictions.map((partnershipJurisdiction, index) => (
+            <PartnershipTag isFirstItem={!index} key={index}>
+              {partnershipJurisdiction.name}
+            </PartnershipTag>
+          ))}
         </PartnershipTagList>
       </PartnershipListItemGrid>
     );

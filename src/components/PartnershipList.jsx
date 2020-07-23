@@ -2,33 +2,65 @@
  * Copyright 2019-present GCF Task Force. All Rights Reserved.
  */
 
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import React from 'react';
 import styled from 'styled-components';
 
+import Loading from './Loading';
 import PartnershipListItem from './PartnershipListItem';
 
-const DUMMY_PARTNERSHIP_DATA = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-  { id: 11 },
-  { id: 12 },
-  { id: 13 },
-  { id: 14 },
-  { id: 15 },
-  { id: 16 },
-  { id: 17 },
-  { id: 18 },
-  { id: 19 },
-  { id: 20 },
-];
+const GET_NATION_PARTNERSHIPS = gql`
+  query getNationPartnerships($name: String!, $languageCode: String!) {
+    nationByName(name: $name) {
+      id
+      partnerships {
+        id
+        nation {
+          id
+          name
+        }
+        fundingAmount
+        fundingCurrency
+        partnershipJurisdictions {
+          id
+          name
+        }
+        initiativeStatus {
+          id
+          initiativeStatusTranslate(code: $languageCode) {
+            id
+            name
+          }
+        }
+        organizations {
+          id
+          nameShort
+          url
+          organizationTranslate(code: $languageCode) {
+            id
+            nameLong
+          }
+        }
+        initiativeTypes {
+          id
+          initiativeTypeTranslate(code: $languageCode) {
+            id
+            name
+          }
+        }
+        partnershipTranslate(code: $languageCode) {
+          id
+          name
+          description
+          initiativeStatusDetails
+        }
+        url
+      }
+    }
+  }
+`;
+
 
 const PartnershipListStyled = styled.div`
   justify-self: center;
@@ -41,17 +73,37 @@ const PartnershipListStyled = styled.div`
   width: 100%;
 `;
 
-const PartnershipList = () => (
-  <PartnershipListStyled>
-    {DUMMY_PARTNERSHIP_DATA.map((partnership, index) => (
-      <PartnershipListItem
-        index={index}
-        key={partnership.id}
-        partnership={partnership}
-        partnershipListLength={DUMMY_PARTNERSHIP_DATA.length}
-      />
-    ))}
-  </PartnershipListStyled>
-);
+const PartnershipList = ({ jurisdictionName, jurisdictionType, language, nationName }) => {
+  const { data, loading, error } = useQuery(GET_NATION_PARTNERSHIPS, {
+    variables: { name: nationName, languageCode: language },
+  });
+  if (loading) return <Loading />;
+  if (error) return <p>ERROR</p>;
+
+  let { partnerships } = data.nationByName;
+  console.log(jurisdictionType);
+  if (jurisdictionType === 'state') {
+    partnerships = partnerships.filter(partnership => {
+      const jurisdictions = partnership.partnershipJurisdictions.map(partnershipJurisdiction => partnershipJurisdiction.name);
+      return jurisdictions.includes(jurisdictionName);
+    });
+  }
+
+  console.log(partnerships);
+
+  return (
+    <PartnershipListStyled>
+      {partnerships.map((partnership, index) => (
+        // <div>{JSON.stringify(partnership)}</div>
+        <PartnershipListItem
+          index={index}
+          key={partnership.id}
+          partnership={partnership}
+          partnershipListLength={partnerships.length}
+        />
+      ))}
+    </PartnershipListStyled>
+  );
+};
 
 export default PartnershipList;

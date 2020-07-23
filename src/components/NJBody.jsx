@@ -57,7 +57,7 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
         break;
       case 'partnerships':
         hasTiles = false;
-        view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        view = <NJPartnershipsPage jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} nationName={nationName} language={language} />;
         break;
       default:
         view = null;
@@ -77,7 +77,7 @@ const NJBody = ({ nationName, jurisdictionName, jurisdictionType, language }) =>
         break;
       case 'partnerships':
         hasTiles = false;
-        view = <NJPartnershipsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;
+        view = <NJPartnershipsPage jurisdictionName={jurisdictionName} jurisdictionType={jurisdictionType} nationName={nationName} language={language} />;
         break;
       case 'report-cards':
         view = <NJReportCardsPage jurisdictionName={jurisdictionName} nationName={nationName} language={language} />;

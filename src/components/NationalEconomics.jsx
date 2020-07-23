@@ -49,7 +49,7 @@ const GET_NATION_ECONOMICS = gql`
           }
           citation_id
         }
-       	majorExports {
+        majorExports {
           id
           faIconClass
           majorExportTranslate(code: $languageCode) {

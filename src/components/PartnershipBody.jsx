@@ -3,6 +3,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import styled, { css } from 'styled-components';
 
 import PartnershipStatusStepper from './PartnershipStatusStepper';
@@ -116,6 +117,7 @@ const PartnershipDescription = styled.div`
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 7.26%;
+  ${'' /* overflow-y: scroll; */}
 
   @media (max-width: 1025px) {
     border-left: 0;
@@ -141,6 +143,14 @@ const PartnershipTagList = styled.div`
   border-radius: 0 0 5px 5px;
   padding-right: 2.5%;
   width: 100%;
+
+  @media (max-width: 765px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 460px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PartnershipTag = styled.div`
@@ -158,9 +168,31 @@ const PartnershipTag = styled.div`
 
   @media (max-width: 460px) {
     font-size: 14px;
-    margin: 0 5px;
+    margin: 5px 5px;
   }
 `;
+
+const truncateString = function(str, maxLength = 17, ending = ' ...') {
+  if (str.length > maxLength) {
+    let result = '';
+    const words = str.split(' ');
+
+    let index = 0;
+    while (
+      words[index] &&
+      // result.length + ending < maxLength &&
+      (result + words[index]).length < maxLength - ending.length
+    ) {
+      result += ` ${words[index]}`;
+      index += 1;
+    }
+
+    return result + ending;
+    // return str.substring(0, maxLength - ending.length) + ending;
+  }
+
+  return str;
+};
 
 // Hook for keeping track of window size
 // Source: https://usehooks.com/useWindowSize/
@@ -192,7 +224,17 @@ function useWindowSize() {
   return windowSize;
 }
 
-const PartnershipBody = ({ isOpen }) => {
+const PartnershipBody = ({
+  description,
+  initiativeStatus,
+  initiativeTypes,
+  fundingAmount,
+  fundingCurrency,
+  isOpen,
+  partnerOrganizations,
+  title,
+}) => {
+
   const windowSize = useWindowSize();
   let partnersListLabelMarginTop = '10px';
   let statusView;
@@ -201,50 +243,73 @@ const PartnershipBody = ({ isOpen }) => {
     return <PartnershipBodyGrid isOpen={isOpen} />;
   }
 
+  const initiativeTypeText =
+    initiativeTypes && initiativeTypes.length > 0
+      ? initiativeTypes[0].initiativeTypeTranslate.name
+      : 'No data to display.';
+
+  let fundingAmountText;
+  if (!fundingAmount || !fundingCurrency) {
+    fundingAmountText = 'No data to display.';
+  } else {
+    fundingAmountText = `${fundingAmount.toLocaleString()} ${fundingCurrency}`;
+  }
+
+  let initiativeStatusText;
+  let initiativeStatusStep;
+  if (!initiativeStatus) {
+    initiativeStatusText = 'No data to display.';
+    initiativeStatusStep = -1;
+  } else {
+    initiativeStatusText = initiativeStatus.initiativeStatusTranslate.name;
+    initiativeStatusStep = initiativeStatus.id - 1;
+  }
+
+  const partnerOrganizationsText = partnerOrganizations.map(organization => {
+    if (organization.nameShort) {
+      return organization.nameShort;
+    }
+    return organization.organizationTranslate.nameLong;
+  });
+
   if (windowSize.width <= 460) {
     partnersListLabelMarginTop = 0;
-    statusView =
+    statusView = (
       <>
         <PartnershipLabel gridArea="status-label">Initiative Status:</PartnershipLabel>
-        <PartnershipText gridArea="status">In Progress</PartnershipText>
+        <PartnershipText gridArea="status">{initiativeStatusText}</PartnershipText>
       </>
+    );
   } else {
-    statusView = <PartnershipStatusStepper activeStep={2} />;
+    statusView = <PartnershipStatusStepper activeStep={initiativeStatusStep} />;
   }
+
+  const descriptionHTML = ReactHtmlParser(description);
 
   return (
     <PartnershipBodyGrid isOpen={isOpen}>
-      <PartnershipTitle gridarea="partnership-title">Acre State Sustainable Development Program - PDSA Phase II</PartnershipTitle>
+      <PartnershipTitle gridarea="partnership-title">{title}</PartnershipTitle>
       <PartnershipLabel gridArea="initiative-type-label">Initiative Type:</PartnershipLabel>
-      <PartnershipTag gridArea="initiative-type">Protected Areas</PartnershipTag>
+      <PartnershipTag gridArea="initiative-type">
+        {initiativeTypeText}
+      </PartnershipTag>
       <PartnershipLabel gridArea="funding-amount-label">Funding Raised:</PartnershipLabel>
-      <PartnershipText gridArea="funding-amount">$34,456,732</PartnershipText>
+      <PartnershipText gridArea="funding-amount">{fundingAmountText}</PartnershipText>
       <PartnershipLabel gridArea="funding-source-label">Funding Source:</PartnershipLabel>
-      <PartnershipText gridArea="funding-source">European Union</PartnershipText>
-      <PartnershipLabel align="start" gridArea="partners-list-label" marginTop={partnersListLabelMarginTop}>Partners:</PartnershipLabel>
+      <PartnershipText gridArea="funding-source">[Work In Progress]</PartnershipText>
+      <PartnershipLabel
+        align="start"
+        gridArea="partners-list-label"
+        marginTop={partnersListLabelMarginTop}
+      >
+        Partners:
+      </PartnershipLabel>
       <PartnershipTagList>
-        <PartnershipTag>IBAM</PartnershipTag>
-        <PartnershipTag>SEMA</PartnershipTag>
-        <PartnershipTag>INPE</PartnershipTag>
-        <PartnershipTag>ABCD</PartnershipTag>
-        <PartnershipTag>EFGHIJK</PartnershipTag>
+        {partnerOrganizationsText.map(partnerOrganizationText => (
+          <PartnershipTag>{truncateString(partnerOrganizationText)}</PartnershipTag>
+        ))}
       </PartnershipTagList>
-      <PartnershipDescription>
-        <p style={{'margin': 0}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in mauris quam. In
-          semper dolor vel nunc porttitor ornare. Maecenas hendrerit urna euismod, sodales orci eget,
-          pulvinar risus. Proin lacinia tincidunt ante, quis feugiat ipsum accumsan id. Sed facilisis
-          urna nisl, in ultricies turpis fermentum eget. Nullam turpis libero, venenatis eu urna eget,
-          dapibus varius mauris. Integer vehicula porttitor vestibulum. Nunc bibendum tortor id
-          egestas commodo.
-        </p>
-        <p style={{'margin-bottom': 0}}>
-          Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          Aliquam pharetra eleifend felis. Praesent commodo risus nec aliquet maximus. Mauris bibendum
-          volutpat dui. Pellentesque at cursus arcu. Pellentesque consequat aliquet faucibus. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-      </PartnershipDescription>
+      <PartnershipDescription>{descriptionHTML}</PartnershipDescription>
       {statusView}
     </PartnershipBodyGrid>
   );

@@ -91,7 +91,7 @@ const SearchBarButton = styled.button`
   width: 40px;
 `;
 
-const NJPartnershipsPage = () => (
+const NJPartnershipsPage = ({ nationName, jurisdictionName, jurisdictionType, language }) => (
   <Tile boxShadow="none">
     <PartnershipsGrid>
       <PartnershipsTitle>Partnerships</PartnershipsTitle>
@@ -104,7 +104,12 @@ const NJPartnershipsPage = () => (
           </SearchBarButton>
         </SearchBar>
       </PartnershipsOptionsGrid>
-      <PartnershipList />
+      <PartnershipList
+        jurisdictionName={jurisdictionName}
+        jurisdictionType={jurisdictionType}
+        language={language}
+        nationName={nationName}
+      />
     </PartnershipsGrid>
   </Tile>
 );
