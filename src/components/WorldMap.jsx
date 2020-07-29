@@ -263,6 +263,17 @@ const dataSource = {
             },
           ],
         },
+        entityDef: [
+          { internalId: '001' },
+          { internalId: '003', lname: 'Amapá' },
+          { internalId: '004' },
+          { internalId: '010', lname: 'Maranhão' },
+          { internalId: '011' },
+          { internalId: '014', lname: 'Pará' },
+          { internalId: '022', lname: 'Rondônia' },
+          { internalId: '023' },
+          { internalId: '027' },
+        ],
         data: [
           { id: '001', value: '148,125', link: '/brazil/acre', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
           { id: '003', value: '104,135', link: '/brazil/amapa', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
@@ -365,6 +376,15 @@ const dataSource = {
             },
           ],
         },
+        entityDef: [
+          { internalId: '004' },
+          { internalId: '005' },
+          { internalId: '013' },
+          { internalId: '019' },
+          { internalId: '022' },
+          { internalId: '026' },
+          { internalId: '030', lname: 'Yucatán' },
+        ],
         data: [
           { id: '004', value: '40,591', link: '/mexico/campeche', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
           { id: '005', value: '34,328', link: '/mexico/chiapas', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
@@ -411,6 +431,15 @@ const dataSource = {
             },
           ],
         },
+        entityDef: [
+          { internalId: '01' },
+          { internalId: '10', lname: 'Huánuco' },
+          { internalId: '16' },
+          { internalId: '17' },
+          { internalId: '20' },
+          { internalId: '22', lname: 'San Martín' },
+          { internalId: '25' },
+        ],
         data: [
           { id: '01', value: '28,476', link: '/peru/amazonas', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
           { id: '10', value: '15,818', link: '/peru/huanuco', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
@@ -452,6 +481,9 @@ const dataSource = {
             },
           ],
         },
+        entityDef: [
+          { internalId: '08', lname: 'Caquetá' },
+        ],
         data: [
           { id: '08', value: '65,700', link: '/colombia/caqueta', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
         ],
@@ -522,6 +554,10 @@ const dataSource = {
             },
           ],
         },
+        entityDef: [
+          { internalId: 'CI.LC', lname: 'Bélier' },
+          { internalId: 'CI.MV' },
+        ],
         data: [
           { id: 'CI.LC', value: '826', link: '/ivorycoast/belier', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },
           { id: 'CI.MV', value: '820', link: '/ivorycoast/cavally', showLabel: '1', toolText: "<div style='font-size:14px; text-align:center; padding: 2px 4px 2px 4px; color:black;'>$lName</div><div style='font-size:12px; color:black;'>Total Forest Area: <b>$value km<sup>2</sup></b></div>" },

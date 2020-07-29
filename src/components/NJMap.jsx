@@ -38,12 +38,12 @@ const NJMapConfig = {
   brazil: {
     entityDef: [
       { internalId: '001', newId: 'Acre' },
-      { internalId: '003', newId: 'Amapa' },
+      { internalId: '003', newId: 'Amapa', lname: 'Amapá' },
       { internalId: '004', newId: 'Amazonas' },
-      { internalId: '010', newId: 'Maranhao' },
+      { internalId: '010', newId: 'Maranhao', lname: 'Maranhão' },
       { internalId: '011', newId: 'Mato Grosso' },
-      { internalId: '014', newId: 'Para' },
-      { internalId: '022', newId: 'Rondonia' },
+      { internalId: '014', newId: 'Para', lname: 'Pará' },
+      { internalId: '022', newId: 'Rondonia', lname: 'Rondônia' },
       { internalId: '023', newId: 'Roraima' },
       { internalId: '027', newId: 'Tocantins' },
     ],
@@ -87,7 +87,7 @@ const NJMapConfig = {
       { internalId: '019', newId: 'Oaxaca' },
       { internalId: '022', newId: 'Quintana Roo' },
       { internalId: '026', newId: 'Tobasco' },
-      { internalId: '030', newId: 'Yucatan' },
+      { internalId: '030', newId: 'Yucatan', lname: 'Yucatán' },
     ],
     data: [
       { id: 'Campeche', value: '40,591', link: '/mexico/campeche', showLabel: '1' },
@@ -102,11 +102,11 @@ const NJMapConfig = {
   peru: {
     entityDef: [
       { internalId: '01', newId: 'Amazonas' },
-      { internalId: '10', newId: 'Huanuco' },
+      { internalId: '10', newId: 'Huanuco', lname: 'Huánuco' },
       { internalId: '16', newId: 'Loreto' },
       { internalId: '17', newId: 'Madre de Dios' },
       { internalId: '20', newId: 'Piura' },
-      { internalId: '22', newId: 'San Martin' },
+      { internalId: '22', newId: 'San Martin', lname: 'San Martín' },
       { internalId: '25', newId: 'Ucayali' },
     ],
     data: [
@@ -121,7 +121,7 @@ const NJMapConfig = {
   },
   ivorycoast: {
     entityDef: [
-      { internalId: 'CI.LC', newId: 'Belier' },
+      { internalId: 'CI.LC', newId: 'Belier', lname: 'Bélier' },
       { internalId: 'CI.MV', newId: 'Cavally' },
     ],
     data: [
@@ -130,7 +130,7 @@ const NJMapConfig = {
     ],
   },
   colombia: {
-    entityDef: [{ internalId: '08', newId: 'Caqueta' }],
+    entityDef: [{ internalId: '08', newId: 'Caqueta', lname: 'Caquetá' }],
     data: [{ id: 'Caqueta', value: '65,700', link: '/colombia/caqueta', showLabel: '1' }],
   },
   ecuador: {
