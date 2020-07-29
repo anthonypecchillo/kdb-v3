@@ -24,6 +24,7 @@ const NavBarGrid = styled.div`
   overflow: hidden;
   position: fixed;
   width: 100%;
+  max-width: 1680px;
   z-index: 999;
 
   @media (max-width: 1025px) {

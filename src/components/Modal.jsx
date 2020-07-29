@@ -16,6 +16,7 @@ const ModalBox = styled.div`
   position: fixed;
   transition: border 0.6s ease 0s, background-color 0.6s ease 0s, color 0.6s ease 0s;
   width: 100%;
+  max-width: 1680px;
   z-index: 999;
 `;
 
@@ -38,6 +39,7 @@ const MemberStatesGrid = styled.div`
 
   height: 100%;
   width: 100%;
+  max-width: 1680px;
 `;
 
 const ModalFade = styled.div`
@@ -47,7 +49,8 @@ const ModalFade = styled.div`
   left: 0;
   position: absolute;
   right: 0;
-  top: 475px;
+  ${'' /* top: 475px; */}
+  top: 0px;
   z-index: 998;
 `;
 

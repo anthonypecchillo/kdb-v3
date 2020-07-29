@@ -63,6 +63,7 @@ const MapContainer = styled.div`
   height: auto;
   max-height: 80vh;
   width: 100vw;
+  max-width: 1680px;
 `;
 
 class Map extends React.Component {

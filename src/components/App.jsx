@@ -23,6 +23,8 @@ const ROUTES = jurisdictions.filter(jurisdiction => jurisdiction);
 
 const AppContainer = styled.div`
   height: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
 `;
 
 class App extends React.Component {
